@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-18T00:00:00+01:00</updated><entry><title>Variance, gradient, Jacobian and Hessian matrix 记忆</title><link href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>lirenlin</name></author><id>tag:,2018-12-18:variance-gradient-jacobian-and-hessian-matrix-ji-yi.html</id><summary type="html">&lt;p&gt;Jacobian矩阵　用于一阶梯度下降法&lt;br/&gt;
+Hessian矩阵，用于二阶牛顿法&lt;br/&gt;
+高斯牛顿法，使用J&lt;sup&gt;T&lt;/sup&gt;J作为牛顿法中二阶Hessian矩阵的近似，　从而省略了计算Ｈ的过程&lt;br/&gt;
+&lt;a href="http://jacoxu.com/jacobian%E7%9F%A9%E9%98%B5%E5%92%8Chessian%E7%9F%A9%E9%98%B5/"&gt;下面这个文章介绍了Jacobian与Hessian矩阵的关系用途&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hessian是对称矩阵&lt;br/&gt;
+&lt;a href="https://blog.csdn.net/dsbatigol/article/details/12558891"&gt;jacobian, Hassian and gradient关系&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;covariance,协方差：&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$cov(X,Y) = E((X-\mu)(Y-\nu)) = E(X \cdot Y) - \mu\nu$$&lt;/div&gt;
+&lt;p&gt;variance, 方差：　二阶矩&lt;br/&gt;
+ 一个随机变量的方差描述的是它的离散程度，也就是该变量离其期望值的距离, &lt;span class="math"&gt;\(\mu=E[X]\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Var(X) = cov(X, X)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$Var(X) = E[(X-\mu)^2]$$&lt;/div&gt;
+&lt;p&gt;期望：　一阶矩&lt;br/&gt;
+&lt;a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E6%96%B9%E5%B7%AE"&gt;方差Wiki&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="math"></category><category term="SLAM"></category></entry></feed>
