@@ -1,39 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-12-19T00:00:00+01:00</updated><entry><title>旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</title><link href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html" rel="alternate"></link><updated>2018-12-19T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html</id><summary type="html">&lt;ul&gt;
-&lt;li&gt;平滑插值&lt;/li&gt;
-&lt;li&gt;紧凑&lt;/li&gt;
-&lt;li&gt;无奇异性&lt;/li&gt;
-&lt;li&gt;内存和运算速度更优。内存上，一个四元数只占四个浮点数；在四元数相乘时可以直接在这四个数上进行加减乘的基本运算，比旋转向量转换成旋转矩阵相乘后再转换回旋转向量要高效得多（Rodrigues 变换还涉及除法和三角函数等高级运算）。这些在嵌入式平台上是不小的优势。何况，浮点数运算总是会有误差的，运算越多，误差累计越多，所以理论上四元数相乘也有精度上的优势。&lt;/li&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-12-19T00:00:00+01:00</updated><entry><title>Gradient梯度</title><link href="/gradientti-du.html" rel="alternate"></link><updated>2018-12-19T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:gradientti-du.html</id><summary type="html">&lt;p&gt;The gradient is a vector-valued function, as opposed to a derivative, which is scalar-valued. &lt;/p&gt;
+&lt;p&gt;In some applications it is customary to represent the gradient as a row vector or column vector of its components
+in a rectangular coordinate system.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;muti-variable function&lt;ul&gt;
+&lt;li&gt;scalar-valued function &lt;span class="math"&gt;\(f: \mathbb{R}^n \to \mathbb{R}\)&lt;/span&gt;, gradient vector, row matrix or column matrix.&lt;br/&gt;
+&lt;span class="math"&gt;\(f(\mathbf{x})\)&lt;/span&gt; where &lt;span class="math"&gt;\(\mathbf(x) = (x1, x2,...,xn)\)&lt;/span&gt;.
+&lt;div class="math"&gt;\begin{align*}
+\def\pdiff#1#2{\frac{\partial #1}{\partial #2}}
+Df(\mathbf{a}) = \left[\pdiff{f}{x_1}(\mathbf{a}) \ \pdiff{f}{x_2}(\mathbf{a}) \ \ldots \ 
+\pdiff{f}{x_n}(\mathbf{a})\right].
+\end{align*}&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;vector-valued function &lt;span class="math"&gt;\(\boldsymbol{f}: \mathbb{R}^n \to \mathbb{R}^m\)&lt;/span&gt;, mxn matrix. Jacobian matrix.&amp;lt;br&gt;
+&lt;div class="math"&gt;\begin{gather*}
+\mathbf{f}(\mathbf{x}) = (f_1(\mathbf{x}),f_2(\mathbf{x}), \cdots, f_m(\mathbf{x}))
+=
+\left[\begin{array}{c}
+f_1(\mathbf{x})\\f_2(\mathbf{x})\\ \vdots\\ f_m(\mathbf{x})
+\end{array}\right].
+\end{gather*}&lt;/div&gt;
+&lt;div class="math"&gt;\begin{gather*}
+\def\pdiff#1#2{\frac{\partial #1}{\partial #2}}
+D\mathbf{f}(\mathbf{a})=
+\left[
+\begin{array}{cccc}
+\displaystyle\pdiff{f_1}{x_1}(\mathbf{a})&amp;amp;
+\displaystyle\pdiff{f_1}{x_2}(\mathbf{a})&amp;amp;
+\ldots &amp;amp;
+\displaystyle\pdiff{f_1}{x_n}(\mathbf{a})\\
+    \displaystyle\pdiff{f_2}{x_1}(\mathbf{a})&amp;amp;
+    \displaystyle\pdiff{f_2}{x_2}(\mathbf{a})&amp;amp;
+    \ldots &amp;amp;
+    \displaystyle\pdiff{f_2}{x_n}(\mathbf{a})\\
+        \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots\\
+        \displaystyle\pdiff{f_m}{x_1}(\mathbf{a})&amp;amp;
+        \displaystyle\pdiff{f_m}{x_2}(\mathbf{a})&amp;amp;
+\ldots &amp;amp;
+\displaystyle\pdiff{f_m}{x_n}(\mathbf{a})
+\end{array}
+\right].
+\end{gather*}&lt;/div&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href="https://blog.csdn.net/EliminatedAcmer/article/details/81407176"&gt;CSDN总结&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>Bayes and Kalman Filter</title><link href="/bayes-and-kalman-filter.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bayes-and-kalman-filter.html</id><summary type="html">&lt;p&gt;SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.&lt;br/&gt;
-暂时搜集到的一些信息，没有自己整理&lt;/p&gt;
-&lt;p&gt;Bayes Filter推导(基于Bayes公式与Markov assumption)&lt;br/&gt;
-&lt;img src="images/bayes-1.png" alt="Bayes" title="bayes" style="width:50%"/&gt;&lt;/p&gt;
-&lt;p&gt;第一步用到的Bayes公式：
-&lt;/p&gt;
-&lt;div class="math"&gt;$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$&lt;/div&gt;
-&lt;p&gt;
-由此得出，贝叶斯滤波器分为两步：&lt;br/&gt;
-&lt;img src="images/bayes-3.jpeg" alt="Bayes" title="bayes" style="width:50%"/&gt;&lt;/p&gt;
-&lt;p&gt;在此式中&lt;span class="math"&gt;\(\eta\)&lt;/span&gt;未进一步说明，概率机器人一书中，被称之为归一化因子，具体表现形式如下：
-&lt;/p&gt;
-&lt;div class="math"&gt;$$\frac{1}{\eta} = \sum{p(z_t|x_t)\overline{bel}(x_t)dx_t}$$&lt;/div&gt;
-&lt;p&gt;
-因为最后&lt;span class="math"&gt;\(bel(x_t)\)&lt;/span&gt;是一个概率，其所有&lt;span class="math"&gt;\(x_t\)&lt;/span&gt;可能性概率的总和必须为１.&lt;/p&gt;
-&lt;p&gt;伪代码流程如下: &lt;br/&gt;
-&lt;img src="images/bayes-2.png" alt="Bayes" title="bayes" style="width:50%"/&gt;&lt;/p&gt;
-&lt;p&gt;相关资料的搜集:&lt;br/&gt;
-&lt;a href="/pdfs/slam02-bayes-filter-short.pdf"&gt;Bayes Filter by Cyrill Stachniss&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="http://ais.informatik.uni-freiburg.de/teaching/ss10/robotics/slides/10-kalman-filter.pdf"&gt;Introduction to Mobile Robotics - Bayes Filter – Kalman Filter&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="https://www.cnblogs.com/gaoxiang12/p/5560360.html"&gt;SLAM中的EKF，UKF，PF原理简介&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="https://blog.csdn.net/qq_30159351/article/details/53395515"&gt;SLAM笔记三——贝叶斯滤波器&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="https://blog.csdn.net/qinruiyan/article/details/50793114"&gt;SLAM学习笔记2：Kalman Filter(卡尔曼滤波) 与Least Square(最小二乘法) 的比较&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="https://www.cnblogs.com/ycwang16/p/5995702.html"&gt;细说贝叶斯滤波：Bayes filters&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Linear approximation to a function
+The gradient of a function f from the Euclidean space &lt;span class="math"&gt;\(\mathbb{R}^n \to \mathbb{R}\)&lt;/span&gt;
+at any particular point x0 in &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; characterizes the best linear
+approximation to f at x0. The approximation is as follows:
+    &lt;div class="math"&gt;$$f(x) \approx f (x0) + \nabla f(x0) \cdot (x−x0)$$&lt;/div&gt;
+for x close to x0, where &lt;span class="math"&gt;\(\nabla f(x0)\)&lt;/span&gt; is the gradient of f computed at x0,
+and the dot denotes the dot product on Rn.&lt;br/&gt;
+This equation is equivalent to the first two terms in the
+&lt;strong&gt;multivariable Taylor series expansion&lt;/strong&gt; of f at x0.&lt;br/&gt;
+The approximation is valid only when the function is differentiable, and can be
+used with the points which is very close to x0.&lt;br/&gt;
+This could be extended to &lt;strong&gt;multivariable linear approximation&lt;/strong&gt; case.&lt;br/&gt;
+It describes the &lt;strong&gt;tangent line/plane&lt;/strong&gt; over that point.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://mathinsight.org/linear_approximation_multivariable"&gt;mathinsight: linear approximation multivariable&lt;/a&gt; &lt;br/&gt;
+&lt;a href="https://mathinsight.org/derivative_matrix"&gt;mathinsight: derivative matrix&lt;/a&gt; &lt;br/&gt;
+&lt;a href="https://en.wikipedia.org/wiki/Gradient"&gt;Wiki: Gradient&lt;/a&gt; &lt;br/&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -88,8 +115,174 @@
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>博客中markdown文本语法与数学符号</title><link href="/bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html</id><summary type="html">&lt;p&gt;&lt;a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#html"&gt;Markdown cheatsheet&lt;/a&gt;&lt;br/&gt;
-&lt;a href="https://davidhamann.de/2017/06/12/latex-cheat-sheet/"&gt;LaTex methematics cheatsheet&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>非线性优化</title><link href="/fei-xian-xing-you-hua.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:fei-xian-xing-you-hua.html</id><summary type="html">&lt;p&gt;From &lt;a href="https://en.wikipedia.org/wiki/Nonlinear_programming"&gt;wiki&lt;/a&gt;&lt;/p&gt;
+&lt;/script&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</title><link href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html" rel="alternate"></link><updated>2018-12-19T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;平滑插值&lt;/li&gt;
+&lt;li&gt;紧凑&lt;/li&gt;
+&lt;li&gt;无奇异性&lt;/li&gt;
+&lt;li&gt;内存和运算速度更优。内存上，一个四元数只占四个浮点数；在四元数相乘时可以直接在这四个数上进行加减乘的基本运算，比旋转向量转换成旋转矩阵相乘后再转换回旋转向量要高效得多（Rodrigues 变换还涉及除法和三角函数等高级运算）。这些在嵌入式平台上是不小的优势。何况，浮点数运算总是会有误差的，运算越多，误差累计越多，所以理论上四元数相乘也有精度上的优势。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/EliminatedAcmer/article/details/81407176"&gt;CSDN总结&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>Bayes and Kalman Filter</title><link href="/bayes-and-kalman-filter.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bayes-and-kalman-filter.html</id><summary type="html">&lt;p&gt;SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.&lt;br/&gt;
+暂时搜集到的一些信息，没有自己整理&lt;/p&gt;
+&lt;p&gt;Bayes Filter推导(&lt;span style="color:red"&gt;基于Bayes公式与Markov assumption&lt;/span&gt;)&lt;br/&gt;
+&lt;img src="images/bayes-1.png" alt="Bayes" title="bayes" style="width:50%"/&gt;&lt;/p&gt;
+&lt;p&gt;第一步用到的Bayes公式：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$&lt;/div&gt;
+&lt;p&gt;
+由此得出，贝叶斯滤波器分为两步：&lt;br/&gt;
+1. 状态预测，基于状态转移模型：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\overline {bel} ({x_t}) = \int {p({x_t}|{u_t},{x_{t - 1}})} \;bel({x_{t - 1}})\;d{x_{t - 1}}$$&lt;/div&gt;
+&lt;p&gt;
+2. 状态更新，基于新的观测
+&lt;/p&gt;
+&lt;div class="math"&gt;$$bel({x_t}) = \;\eta \,p({z_t}|{x_t})\,\overline {bel} ({x_t})$$&lt;/div&gt;
+&lt;p&gt;在此式中&lt;span class="math"&gt;\(\eta\)&lt;/span&gt;未进一步说明，概率机器人一书中，被称之为&lt;strong&gt;归一化因子&lt;/strong&gt;，具体表现形式如下：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{1}{\eta} = \sum{p(z_t|x_t)\overline{bel}(x_t)dx_t}$$&lt;/div&gt;
+&lt;p&gt;
+因为最后&lt;span class="math"&gt;\(bel(x_t)\)&lt;/span&gt;是一个概率，其所有&lt;span class="math"&gt;\(x_t\)&lt;/span&gt;可能性概率的总和必须为１.&lt;/p&gt;
+&lt;p&gt;伪代码流程如下: &lt;br/&gt;
+&lt;img src="images/bayes-2.png" alt="Bayes" title="bayes" style="width:50%"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color:red"&gt;
+同时，我们注意，我们的目的是计算&lt;span class="math"&gt;\(x_t\)&lt;/span&gt;的后验概率，如果bel(xt)是任意分布，
+我们需要在&lt;span class="math"&gt;\(x_t\)&lt;/span&gt;的所有可能取值点上，计算该取值的概率，这在计算上是难于实现的。
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;相关资料的搜集:&lt;br/&gt;
+&lt;a href="/pdfs/slam02-bayes-filter-short.pdf"&gt;Bayes Filter by Cyrill Stachniss&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href="http://ais.informatik.uni-freiburg.de/teaching/ss10/robotics/slides/10-kalman-filter.pdf"&gt;Introduction to Mobile Robotics - Bayes Filter – Kalman Filter&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href="https://www.cnblogs.com/gaoxiang12/p/5560360.html"&gt;SLAM中的EKF，UKF，PF原理简介&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href="https://blog.csdn.net/qq_30159351/article/details/53395515"&gt;SLAM笔记三——贝叶斯滤波器&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href="https://blog.csdn.net/qinruiyan/article/details/50793114"&gt;SLAM学习笔记2：Kalman Filter(卡尔曼滤波) 与Least Square(最小二乘法) 的比较&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href="https://www.cnblogs.com/ycwang16/p/5995702.html"&gt;细说贝叶斯滤波：Bayes filters&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href="http://www.cnblogs.com/ycwang16/p/5999034.html"&gt;细说Kalman滤波：The Kalman Filter&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>博客中markdown文本语法与数学符号</title><link href="/bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html</id><summary type="html">&lt;p&gt;\mathbb{R}^n --&amp;gt; &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\boldsymbol{f} --&amp;gt; &lt;span class="math"&gt;\(\boldsymbol{f}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\to --&amp;gt; &lt;span class="math"&gt;\(\to\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\nabla f(x0) --&amp;gt; &lt;span class="math"&gt;\(\nabla f(x0)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\cdot --&amp;gt; &lt;span class="math"&gt;\(\cdot\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\eta --&amp;gt; &lt;span class="math"&gt;\(\eta\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\frac {1} {2} --&amp;gt; &lt;span class="math"&gt;\(\frac{1}{2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\int --&amp;gt; &lt;span class="math"&gt;\(\int\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\sum --&amp;gt; &lt;span class="math"&gt;\(\sum\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#html"&gt;Markdown cheatsheet&lt;/a&gt;&lt;br/&gt;
+&lt;a href="https://davidhamann.de/2017/06/12/latex-cheat-sheet/"&gt;LaTex methematics cheatsheet&lt;/a&gt;
+&lt;a href="http://www.malinc.se/math/latex/basiccodeen.php"&gt;LaTex&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary></entry><entry><title>非线性优化</title><link href="/fei-xian-xing-you-hua.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:fei-xian-xing-you-hua.html</id><summary type="html">&lt;p&gt;From &lt;a href="https://en.wikipedia.org/wiki/Nonlinear_programming"&gt;wiki&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In mathematics, nonlinear programming is the process of solving an optimization
 problem where some of the constraints or the objective function are nonlinear.

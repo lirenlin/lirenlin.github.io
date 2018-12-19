@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/other.atom.xml" rel="self"></link><id>/</id><updated>2018-12-18T00:00:00+01:00</updated><entry><title>博客中markdown文本语法与数学符号</title><link href="/bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html</id><summary type="html">&lt;p&gt;&lt;a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#html"&gt;Markdown cheatsheet&lt;/a&gt;&lt;br/&gt;
-&lt;a href="https://davidhamann.de/2017/06/12/latex-cheat-sheet/"&gt;LaTex methematics cheatsheet&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>图片测试</title><link href="/tu-pian-ce-shi.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:tu-pian-ce-shi.html</id><summary type="html">&lt;p&gt;Neko把你拿来做测试了！&lt;br/&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/other.atom.xml" rel="self"></link><id>/</id><updated>2018-12-18T00:00:00+01:00</updated><entry><title>博客中markdown文本语法与数学符号</title><link href="/bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html</id><summary type="html">&lt;p&gt;\mathbb{R}^n --&amp;gt; &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\boldsymbol{f} --&amp;gt; &lt;span class="math"&gt;\(\boldsymbol{f}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\to --&amp;gt; &lt;span class="math"&gt;\(\to\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\nabla f(x0) --&amp;gt; &lt;span class="math"&gt;\(\nabla f(x0)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\cdot --&amp;gt; &lt;span class="math"&gt;\(\cdot\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\eta --&amp;gt; &lt;span class="math"&gt;\(\eta\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\frac {1} {2} --&amp;gt; &lt;span class="math"&gt;\(\frac{1}{2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\int --&amp;gt; &lt;span class="math"&gt;\(\int\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;\sum --&amp;gt; &lt;span class="math"&gt;\(\sum\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#html"&gt;Markdown cheatsheet&lt;/a&gt;&lt;br/&gt;
+&lt;a href="https://davidhamann.de/2017/06/12/latex-cheat-sheet/"&gt;LaTex methematics cheatsheet&lt;/a&gt;
+&lt;a href="http://www.malinc.se/math/latex/basiccodeen.php"&gt;LaTex&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary></entry><entry><title>图片测试</title><link href="/tu-pian-ce-shi.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:tu-pian-ce-shi.html</id><summary type="html">&lt;p&gt;Neko把你拿来做测试了！&lt;br/&gt;
 &lt;!--
 This won't scale the image
 &lt;img alt="Description for people who can't see the image" src="/images/neko.jpg" title="Neko" /&gt;

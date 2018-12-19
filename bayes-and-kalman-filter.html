@@ -40,21 +40,31 @@
 <p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
 </footer><!-- /.post-info -->      <p>SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.<br/>
 暂时搜集到的一些信息，没有自己整理</p>
-<p>Bayes Filter推导(基于Bayes公式与Markov assumption)<br/>
+<p>Bayes Filter推导(<span style="color:red">基于Bayes公式与Markov assumption</span>)<br/>
 <img src="images/bayes-1.png" alt="Bayes" title="bayes" style="width:50%"/></p>
 <p>第一步用到的Bayes公式：
 </p>
 <div class="math">$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$</div>
 <p>
 由此得出，贝叶斯滤波器分为两步：<br/>
-<img src="images/bayes-3.jpeg" alt="Bayes" title="bayes" style="width:50%"/></p>
-<p>在此式中<span class="math">\(\eta\)</span>未进一步说明，概率机器人一书中，被称之为归一化因子，具体表现形式如下：
+1. 状态预测，基于状态转移模型：
+</p>
+<div class="math">$$\overline {bel} ({x_t}) = \int {p({x_t}|{u_t},{x_{t - 1}})} \;bel({x_{t - 1}})\;d{x_{t - 1}}$$</div>
+<p>
+2. 状态更新，基于新的观测
+</p>
+<div class="math">$$bel({x_t}) = \;\eta \,p({z_t}|{x_t})\,\overline {bel} ({x_t})$$</div>
+<p>在此式中<span class="math">\(\eta\)</span>未进一步说明，概率机器人一书中，被称之为<strong>归一化因子</strong>，具体表现形式如下：
 </p>
 <div class="math">$$\frac{1}{\eta} = \sum{p(z_t|x_t)\overline{bel}(x_t)dx_t}$$</div>
 <p>
 因为最后<span class="math">\(bel(x_t)\)</span>是一个概率，其所有<span class="math">\(x_t\)</span>可能性概率的总和必须为１.</p>
 <p>伪代码流程如下: <br/>
 <img src="images/bayes-2.png" alt="Bayes" title="bayes" style="width:50%"/></p>
+<p><span style="color:red">
+同时，我们注意，我们的目的是计算<span class="math">\(x_t\)</span>的后验概率，如果bel(xt)是任意分布，
+我们需要在<span class="math">\(x_t\)</span>的所有可能取值点上，计算该取值的概率，这在计算上是难于实现的。
+</span></p>
 <p>相关资料的搜集:<br/>
 <a href="/pdfs/slam02-bayes-filter-short.pdf">Bayes Filter by Cyrill Stachniss</a>
 <br/>
@@ -66,7 +76,9 @@
 <br/>
 <a href="https://blog.csdn.net/qinruiyan/article/details/50793114">SLAM学习笔记2：Kalman Filter(卡尔曼滤波) 与Least Square(最小二乘法) 的比较</a>
 <br/>
-<a href="https://www.cnblogs.com/ycwang16/p/5995702.html">细说贝叶斯滤波：Bayes filters</a></p>
+<a href="https://www.cnblogs.com/ycwang16/p/5995702.html">细说贝叶斯滤波：Bayes filters</a>
+<br/>
+<a href="http://www.cnblogs.com/ycwang16/p/5999034.html">细说Kalman滤波：The Kalman Filter</a></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
