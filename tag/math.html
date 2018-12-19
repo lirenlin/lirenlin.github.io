@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Yet another site - math</title>
+        <title>Yet another site - Math</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Yet another site Atom Feed" />
 
@@ -15,25 +15,175 @@
         <header id="banner" class="body">
                 <h1><a href="/">Yet another site </a></h1>
                 <nav><ul>
-                    <li><a href="/category/articles.html">articles</a></li>
-                    <li><a href="/category/math.html">math</a></li>
+                    <li><a href="/category/math.html">Math</a></li>
+                    <li><a href="/category/other.html">Other</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html">Variance, gradient, Jacobian and Hessian matrix 记忆</a></h1>
+                    <h1 class="entry-title"><a href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html">旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-12-19T00:00:00+01:00">
+                Published: Wed 19 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
+        </address>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
+</footer><!-- /.post-info -->                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/bayes-and-kalman-filter.html" rel="bookmark"
+                           title="Permalink to Bayes and Kalman Filter">Bayes and Kalman Filter</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-12-18T00:00:00+01:00">
                 Published: Tue 18 December 2018
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/lirenlin.html">lirenlin</a>
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
         </address>
-<p>In <a href="/category/math.html">math</a>.</p>
-<p>tags: <a href="/tag/math.html">math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info --><p>Jacobian矩阵　用于一阶梯度下降法<br/>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
+</footer><!-- /.post-info -->                <p>SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.<br/>
+暂时搜集到的一些信息，没有自己整理</p>
+<p>Bayes Filter推导(基于Bayes公式与Markov assumption)<br/>
+<img src="images/bayes-1.png" alt="Bayes" title="bayes" style="width:50%"/></p>
+<p>第一步用到的Bayes公式：
+</p>
+<div class="math">$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$</div>
+<p>
+由此得出，贝叶斯滤波器分为两步：<br/>
+<img src="images/bayes-3.jpeg" alt="Bayes" title="bayes" style="width:50%"/></p>
+<p>在此式中<span class="math">\(\eta\)</span>未进一步说明，概率机器人一书中，被称之为归一化因子，具体表现形式如下：
+</p>
+<div class="math">$$\frac{1}{\eta} = \sum{p(z_t|x_t)\overline{bel}(x_t)dx_t}$$</div>
+<p>
+因为最后<span class="math">\(bel(x_t)\)</span>是一个概率，其所有 ...</p>
+                <a class="readmore" href="/bayes-and-kalman-filter.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/fei-xian-xing-you-hua.html" rel="bookmark"
+                           title="Permalink to 非线性优化">非线性优化</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-12-18T00:00:00+01:00">
+                Published: Tue 18 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
+        </address>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
+</footer><!-- /.post-info -->                <p>From <a href="https://en.wikipedia.org/wiki/Nonlinear_programming">wiki</a></p>
+<blockquote>
+<p>In mathematics, nonlinear programming is the process of solving an optimization
+problem where some of the constraints or the objective function are nonlinear.
+An optimization problem is one of calculation of the extrema
+(maxima, minima or stationary points) of an objective function over a set of
+unknown real ...</p></blockquote>
+                <a class="readmore" href="/fei-xian-xing-you-hua.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/mle-map.html" rel="bookmark"
+                           title="Permalink to MLE & MAP">MLE & MAP</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-12-18T00:00:00+01:00">
+                Published: Tue 18 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
+        </address>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
+</footer><!-- /.post-info -->                <p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
+<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
+<br/>
+对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
+也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。</p>
+<p>MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
+Bayes rule
+</p>
+<div class="math">$$P(\theta|x) = \frac{P(x|\theta) * p(\theta)}{p(x)}$$</div>
+<div class="math">$$P(x|y,z) = \frac{P(y ...</div>
+                <a class="readmore" href="/mle-map.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/shu-zhi-fen-xi.html" rel="bookmark"
+                           title="Permalink to 数值分析">数值分析</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-12-18T00:00:00+01:00">
+                Published: Tue 18 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
+        </address>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
+</footer><!-- /.post-info -->                <p>From
+<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90">Wiki</a>:</p>
+<blockquote>
+<p>数值分析（英语：numerical analysis），是指在数学分析（区别于离散数学）问题中，对使用数值近似（相对于一般化的符号运算）算法的研究。</p>
+</blockquote>
+<p>direct method</p>
+<p>iterative method</p>
+<p>Numerical analysis
+解析解/闭合解
+数值解</p>
+                <a class="readmore" href="/shu-zhi-fen-xi.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html" rel="bookmark"
+                           title="Permalink to Variance, gradient, Jacobian and Hessian matrix 记忆">Variance, gradient, Jacobian and Hessian matrix 记忆</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-12-18T00:00:00+01:00">
+                Published: Tue 18 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
+        </address>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
+</footer><!-- /.post-info -->                <p>Jacobian矩阵　用于一阶梯度下降法<br/>
 Hessian矩阵，用于二阶牛顿法<br/>
 高斯牛顿法，使用J<sup>T</sup>J作为牛顿法中二阶Hessian矩阵的近似，　从而省略了计算Ｈ的过程<br/>
 <a href="http://jacoxu.com/jacobian%E7%9F%A9%E9%98%B5%E5%92%8Chessian%E7%9F%A9%E9%98%B5/">下面这个文章介绍了Jacobian与Hessian矩阵的关系用途</a></p>
@@ -46,65 +196,34 @@ Hessian矩阵，用于二阶牛顿法<br/>
  一个随机变量的方差描述的是它的离散程度，也就是该变量离其期望值的距离, <span class="math">\(\mu=E[X]\)</span>
 </p>
 <div class="math">$$Var(X) = cov(X, X)$$</div>
-<div class="math">$$Var(X) = E[(X-\mu)^2]$$</div>
-<p>期望：　一阶矩<br/>
-<a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E6%96%B9%E5%B7%AE">方差Wiki</a></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
+<div class="math">$$Var(X) = E[(X-\mu)^2 ...</div>
+                <a class="readmore" href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/xian-xing-gui-hua.html" rel="bookmark"
+                           title="Permalink to 线性规划">线性规划</a></h1>
+                </header>
 
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>                </article>
-            </aside><!-- /#featured -->
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-12-18T00:00:00+01:00">
+                Published: Tue 18 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
+        </address>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
+</footer><!-- /.post-info -->                <p>线性优化，　线性规划，　linear programming</p>
+                <a class="readmore" href="/xian-xing-gui-hua.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

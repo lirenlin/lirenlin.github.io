@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/other.atom.xml" rel="self"></link><id>/</id><updated>2018-12-18T00:00:00+01:00</updated><entry><title>博客中markdown文本语法与数学符号</title><link href="/bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bo-ke-zhong-markdownwen-ben-yu-fa-yu-shu-xue-fu-hao.html</id><summary type="html">&lt;p&gt;&lt;a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#html"&gt;Markdown cheatsheet&lt;/a&gt;&lt;br/&gt;
+&lt;a href="https://davidhamann.de/2017/06/12/latex-cheat-sheet/"&gt;LaTex methematics cheatsheet&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>图片测试</title><link href="/tu-pian-ce-shi.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:tu-pian-ce-shi.html</id><summary type="html">&lt;p&gt;Neko把你拿来做测试了！&lt;br/&gt;
+&lt;!--
+This won't scale the image
+&lt;img alt="Description for people who can't see the image" src="/images/neko.jpg" title="Neko" /&gt;
+--&gt;
+&lt;figure&gt;
+&lt;img src="images/neko.jpg" alt="A cute cat" title="Neko" style="width:50%"/&gt;
+&lt;figcaption&gt; Fig. Neko &lt;/figcaption&gt;
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;使用下面的内嵌html代码加载图片。&lt;br/&gt;
+markdown自身的语法不支持图片大小的设置。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;images/neko.jpg&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A cute cat&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Neko&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;width:50%&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;figcaption&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; Neko &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;figcaption&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>
