@@ -1,5 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-12-19T00:00:00+01:00</updated><entry><title>Gradient梯度</title><link href="/gradientti-du.html" rel="alternate"></link><updated>2018-12-19T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:gradientti-du.html</id><summary type="html">&lt;p&gt;The gradient is a vector-valued function, as opposed to a derivative, which is scalar-valued. &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-12-19T22:23:31+00:00</updated><entry><title>line search</title><link href="/line-search.html" rel="alternate"></link><updated>2018-12-19T22:23:31+00:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:line-search.html</id><summary type="html">&lt;p&gt;From &lt;a href="https://en.wikipedia.org/wiki/Line_search"&gt;Wiki&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In optimization, the line search strategy is one of two basic iterative 
+approaches to find a local minimum &lt;span class="math"&gt;\(\mathbf {x}^{*}\)&lt;/span&gt; of an objective function
+&lt;span class="math"&gt;\(\mathbf {f} :\mathbb {R} ^{n} \to \mathbb {R}\)&lt;/span&gt;. The other approach is 
+&lt;a href="https://en.wikipedia.org/wiki/Trust_region"&gt;trust region&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The line search approach first finds a descent direction along which the 
+objective function &lt;span class="math"&gt;\(f\)&lt;/span&gt; will be reduced and then computes a 
+step size that determines how far &lt;span class="math"&gt;\(\mathbf {x}\)&lt;/span&gt; should move along that 
+direction. The descent direction can be computed by various methods, such as 
+gradient descent, Newton's method and Quasi-Newton method. The step size can be 
+determined either exactly or inexactly. &lt;/p&gt;
+&lt;p&gt;trust-region methods first choose a step size (the size of the trust region) 
+and then a step direction, while line-search methods first choose a step 
+direction and then a step size. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;gradient descent, 一阶偏导, jacobian matrix&lt;br/&gt;
+Newtone method, 二阶偏导, Hessian matrix&lt;br/&gt;
+Guass-Newton method, 使用Jacobian matrix近似Hessian matrix &lt;span class="math"&gt;\(\mathbf {H} \approx 2\mathbf {J_r^T} \mathbf{J_r}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Gradient_descent"&gt;Wiki: gradient descent&lt;/a&gt;&lt;br/&gt;
+&lt;a href="https://zhuanlan.zhihu.com/p/32709034"&gt;【最优化】一文搞懂最速下降法&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>Gradient梯度</title><link href="/gradientti-du.html" rel="alternate"></link><updated>2018-12-19T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:gradientti-du.html</id><summary type="html">&lt;p&gt;The gradient is a vector-valued function, as opposed to a derivative, which is scalar-valued. &lt;/p&gt;
 &lt;p&gt;In some applications it is customary to represent the gradient as a row vector or column vector of its components
 in a rectangular coordinate system.&lt;/p&gt;
 &lt;ul&gt;
