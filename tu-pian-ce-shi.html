@@ -15,6 +15,7 @@
         <header id="banner" class="body">
                 <h1><a href="/">Yet another site </a></h1>
                 <nav><ul>
+                    <li><a href="/category/german.html">German</a></li>
                     <li><a href="/category/math.html">Math</a></li>
                     <li class="active"><a href="/category/other.html">Other</a></li>
                 </ul></nav>
@@ -44,14 +45,14 @@ This won't scale the image
 <img alt="Description for people who can't see the image" src="/images/neko.jpg" title="Neko" />
 -->
 <figure>
-<img src="images/neko.jpg" alt="A cute cat" title="Neko" style="width:50%"/>
+<img src="images/neko.jpg" alt="A cute cat" title="Neko" style="max-width:100%;max-height:100%"/>
 <figcaption> Fig. Neko </figcaption>
 </figure></p>
 <p>使用下面的内嵌html代码加载图片。<br/>
 markdown自身的语法不支持图片大小的设置。</p>
 <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;images/neko.jpg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;A cute cat&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Neko&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:50%&quot;</span><span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span> Neko <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;images/neko.jpg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;A cute cat&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Neko&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;max-width:100%;max-height=100%&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span> Fig. Neko <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
 </pre></div>
     </div><!-- /.entry-content -->

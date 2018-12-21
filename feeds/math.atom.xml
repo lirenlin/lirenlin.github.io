@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-19T22:23:31+00:00</updated><entry><title>line search</title><link href="/line-search.html" rel="alternate"></link><updated>2018-12-19T22:23:31+00:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:line-search.html</id><summary type="html">&lt;p&gt;From &lt;a href="https://en.wikipedia.org/wiki/Line_search"&gt;Wiki&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-21T15:08:08+01:00</updated><entry><title>计算机求导的四种方式</title><link href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html" rel="alternate"></link><updated>2018-12-21T15:08:08+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-21:ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html</id><summary type="html">&lt;p&gt;计算机求导，有四种方法:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;人工解析微分法（manual analytical differentiation）&lt;/li&gt;
+&lt;li&gt;数值微分法（numerical differentiation）&lt;/li&gt;
+&lt;li&gt;符号微分法（symbolic differentiation）&lt;/li&gt;
+&lt;li&gt;自动微分法（automatic differentiation）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="images/differentiation.jpeg" alt="Automatic differentiation in
+machine learning: a survey" title="differentiation" style="max-width: 100%; max-height: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;参考:&lt;br /&gt;
+&lt;a href="https://toutiao.io/posts/a5qqmj/preview"&gt;计算机求导的四种方式&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://arxiv.org/abs/1502.05767"&gt;Automatic differentiation in machine learning: a survey&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>line search</title><link href="/line-search.html" rel="alternate"></link><updated>2018-12-19T22:23:31+00:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:line-search.html</id><summary type="html">&lt;p&gt;From &lt;a href="https://en.wikipedia.org/wiki/Line_search"&gt;Wiki&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In optimization, the line search strategy is one of two basic iterative 
 approaches to find a local minimum &lt;span class="math"&gt;\(\mathbf {x}^{*}\)&lt;/span&gt; of an objective function
@@ -10,11 +21,12 @@ objective function &lt;span class="math"&gt;\(f\)&lt;/span&gt; will be reduced a
 step size that determines how far &lt;span class="math"&gt;\(\mathbf {x}\)&lt;/span&gt; should move along that 
 direction. The descent direction can be computed by various methods, such as 
 gradient descent, Newton's method and Quasi-Newton method. The step size can be 
-determined either exactly or inexactly. &lt;/p&gt;
+determined either exactly or inexactly.&lt;/p&gt;
 &lt;p&gt;trust-region methods first choose a step size (the size of the trust region) 
 and then a step direction, while line-search methods first choose a step 
-direction and then a step size. &lt;/p&gt;
+direction and then a step size.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;在置信域方法中，优化问题构成了一个不等式约束优化问题，此问题使用拉格朗日乘子的方式，将它转换成无约束优化问题. 具体算法案例有Levenberg-Marquardt algorithm.&lt;/p&gt;
 &lt;p&gt;gradient descent, 一阶偏导, jacobian matrix&lt;br/&gt;
 Newtone method, 二阶偏导, Hessian matrix&lt;br/&gt;
 Guass-Newton method, 使用Jacobian matrix近似Hessian matrix &lt;span class="math"&gt;\(\mathbf {H} \approx 2\mathbf {J_r^T} \mathbf{J_r}\)&lt;/span&gt;&lt;/p&gt;

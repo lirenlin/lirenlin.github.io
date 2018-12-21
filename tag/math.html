@@ -15,6 +15,7 @@
         <header id="banner" class="body">
                 <h1><a href="/">Yet another site </a></h1>
                 <nav><ul>
+                    <li><a href="/category/german.html">German</a></li>
                     <li><a href="/category/math.html">Math</a></li>
                     <li><a href="/category/other.html">Other</a></li>
                 </ul></nav>
@@ -22,7 +23,42 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/line-search.html">line search</a></h1>
+                    <h1 class="entry-title"><a href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html">计算机求导的四种方式</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-12-21T15:08:08+01:00">
+                Published: Fri 21 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
+        </address>
+<p>In <a href="/category/math.html">Math</a>.</p>
+<p>tags: <a href="/tag/math.html">Math</a> </p>
+</footer><!-- /.post-info --><p>计算机求导，有四种方法:</p>
+<ul>
+<li>人工解析微分法（manual analytical differentiation）</li>
+<li>数值微分法（numerical differentiation）</li>
+<li>符号微分法（symbolic differentiation）</li>
+<li>自动微分法（automatic differentiation）</li>
+</ul>
+<p><img src="images/differentiation.jpeg" alt="Automatic differentiation in
+machine learning: a survey" title="differentiation" style="max-width: 100%; max-height: 100%;"/></p>
+<p>参考:<br />
+<a href="https://toutiao.io/posts/a5qqmj/preview">计算机求导的四种方式</a><br />
+<a href="https://arxiv.org/abs/1502.05767">Automatic differentiation in machine learning: a survey</a></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/line-search.html" rel="bookmark"
+                           title="Permalink to line search">line search</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-12-19T22:23:31+00:00">
                 Published: Wed 19 December 2018
@@ -33,87 +69,16 @@
         </address>
 <p>In <a href="/category/math.html">Math</a>.</p>
 <p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info --><p>From <a href="https://en.wikipedia.org/wiki/Line_search">Wiki</a></p>
+</footer><!-- /.post-info -->                <p>From <a href="https://en.wikipedia.org/wiki/Line_search">Wiki</a></p>
 <blockquote>
 <p>In optimization, the line search strategy is one of two basic iterative 
 approaches to find a local minimum <span class="math">\(\mathbf {x}^{*}\)</span> of an objective function
 <span class="math">\(\mathbf {f} :\mathbb {R} ^{n} \to \mathbb {R}\)</span>. The other approach is 
 <a href="https://en.wikipedia.org/wiki/Trust_region">trust region</a>.</p>
-<p>The line search approach first finds a descent direction along which the 
-objective function <span class="math">\(f\)</span> will be reduced and then computes a 
-step size that determines how far <span class="math">\(\mathbf {x}\)</span> should move along that 
-direction. The descent direction can be computed by various methods, such as 
-gradient descent, Newton's method and Quasi-Newton method. The step size can be 
-determined either exactly or inexactly. </p>
-<p>trust-region methods first choose a step size (the size of the trust region) 
-and then a step direction, while line-search methods first choose a step 
-direction and then a step size. </p>
-</blockquote>
-<p>gradient descent, 一阶偏导, jacobian matrix<br/>
-Newtone method, 二阶偏导, Hessian matrix<br/>
-Guass-Newton method, 使用Jacobian matrix近似Hessian matrix <span class="math">\(\mathbf {H} \approx 2\mathbf {J_r^T} \mathbf{J_r}\)</span></p>
-<p><a href="https://en.wikipedia.org/wiki/Gradient_descent">Wiki: gradient descent</a><br/>
-<a href="https://zhuanlan.zhihu.com/p/32709034">【最优化】一文搞懂最速下降法</a></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>The line search approach first finds a descent direction along ...</p></blockquote>
+                <a class="readmore" href="/line-search.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
