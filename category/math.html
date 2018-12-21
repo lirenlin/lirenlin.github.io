@@ -1,40 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Yet another site - Math</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Yet another site Atom Feed" />
+  <head>
+    <meta charset="utf-8">
+    <title>Yet another site - Math</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Yet another site </a></h1>
-                <nav><ul>
-                    <li><a href="/category/german.html">German</a></li>
-                    <li class="active"><a href="/category/math.html">Math</a></li>
-                    <li><a href="/category/other.html">Other</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+    <link href="/theme/css/pygments.css" rel="stylesheet">
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html">计算机求导的四种方式</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2018-12-21T15:08:08+01:00">
-                Published: Fri 21 December 2018
-        </abbr>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> </p>
-</footer><!-- /.post-info --><p>计算机求导，有四种方法:</p>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html">计算机求导的四种方式</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-21T15:08:08+01:00">
+        <i class="icon-calendar"></i>Fri 21 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>计算机求导，有四种方法:</p>
 <ul>
 <li>人工解析微分法（manual analytical differentiation）</li>
 <li>数值微分法（numerical differentiation）</li>
@@ -45,114 +121,112 @@
 machine learning: a survey" title="differentiation" style="max-width: 100%; max-height: 100%;"/></p>
 <p>参考:<br />
 <a href="https://toutiao.io/posts/a5qqmj/preview">计算机求导的四种方式</a><br />
-<a href="https://arxiv.org/abs/1502.05767">Automatic differentiation in machine learning: a survey</a></p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<a href="https://arxiv.org/abs/1502.05767">Automatic differentiation in machine learning: a survey</a></p>
+                        <a class="btn primary xsmall" href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/line-search.html">line search</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-19T22:23:31+00:00">
+        <i class="icon-calendar"></i>Wed 19 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/line-search.html" rel="bookmark"
-                           title="Permalink to line search">line search</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-19T22:23:31+00:00">
-                Published: Wed 19 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>From <a href="https://en.wikipedia.org/wiki/Line_search">Wiki</a></p>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>From <a href="https://en.wikipedia.org/wiki/Line_search">Wiki</a></p>
 <blockquote>
 <p>In optimization, the line search strategy is one of two basic iterative 
 approaches to find a local minimum <span class="math">\(\mathbf {x}^{*}\)</span> of an objective function
 <span class="math">\(\mathbf {f} :\mathbb {R} ^{n} \to \mathbb {R}\)</span>. The other approach is 
 <a href="https://en.wikipedia.org/wiki/Trust_region">trust region</a>.</p>
 <p>The line search approach first finds a descent direction along ...</p></blockquote>
-                <a class="readmore" href="/line-search.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/line-search.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/gradientti-du.html">Gradient梯度</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-19T00:00:00+01:00">
+        <i class="icon-calendar"></i>Wed 19 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/gradientti-du.html" rel="bookmark"
-                           title="Permalink to Gradient梯度">Gradient梯度</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-19T00:00:00+01:00">
-                Published: Wed 19 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>The gradient is a vector-valued function, as opposed to a derivative, which is scalar-valued. </p>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>The gradient is a vector-valued function, as opposed to a derivative, which is scalar-valued. </p>
 <p>In some applications it is customary to represent the gradient as a row vector or column vector of its components
 in a rectangular coordinate system.</p>
 <ul>
 <li>muti-variable function<ul>
 <li>scalar-valued function <span class="math">\(f: \mathbb{R}^n \to \mathbb{R ...</span></li></ul></li></ul>
-                <a class="readmore" href="/gradientti-du.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/gradientti-du.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html">旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-19T00:00:00+01:00">
+        <i class="icon-calendar"></i>Wed 19 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html" rel="bookmark"
-                           title="Permalink to 旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数">旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-19T00:00:00+01:00">
-                Published: Wed 19 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <ul>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><ul>
 <li>平滑插值</li>
 <li>紧凑</li>
 <li>无奇异性</li>
 <li>内存和运算速度更优。内存上，一个四元数只占四个浮点数；在四元数相乘时可以直接在这四个数上进行加减乘的基本运算，比旋转向量转换成旋转矩阵相乘后再转换回旋转向量要高效得多（Rodrigues 变换还涉及除法和三角函数等高级运算）。这些在嵌入式平台上是不小的优势。何况，浮点数运算总是会有误差的，运算越多，误差累计越多，所以理论上四元数相乘也有精度上的优势。</li>
 </ul>
 <p><a href="https://blog.csdn.net/EliminatedAcmer/article/details/81407176">CSDN总结</a></p>
-                <a class="readmore" href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/bayes-and-kalman-filter.html">Bayes and Kalman Filter</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/bayes-and-kalman-filter.html" rel="bookmark"
-                           title="Permalink to Bayes and Kalman Filter">Bayes and Kalman Filter</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-18T00:00:00+01:00">
-                Published: Tue 18 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.<br/>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.<br/>
 暂时搜集到的一些信息，没有自己整理</p>
 <p>Bayes Filter推导(<span style="color:red">基于Bayes公式与Markov assumption</span>)<br/>
 <img src="images/bayes-1.png" alt="Bayes" title="bayes" style="width:50%"/></p>
@@ -166,56 +240,56 @@ in a rectangular coordinate system.</p>
 <div class="math">$$\overline {bel} ({x_t}) = \int {p({x_t}|{u_t},{x_{t - 1}})} \;bel({x_{t - 1}})\;d{x_{t - 1}}$$</div>
 <p>
 2 ...</p>
-                <a class="readmore" href="/bayes-and-kalman-filter.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/bayes-and-kalman-filter.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/fei-xian-xing-you-hua.html">非线性优化</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/fei-xian-xing-you-hua.html" rel="bookmark"
-                           title="Permalink to 非线性优化">非线性优化</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-18T00:00:00+01:00">
-                Published: Tue 18 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>From <a href="https://en.wikipedia.org/wiki/Nonlinear_programming">wiki</a></p>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>From <a href="https://en.wikipedia.org/wiki/Nonlinear_programming">wiki</a></p>
 <blockquote>
 <p>In mathematics, nonlinear programming is the process of solving an optimization
 problem where some of the constraints or the objective function are nonlinear.
 An optimization problem is one of calculation of the extrema
 (maxima, minima or stationary points) of an objective function over a set of
 unknown real ...</p></blockquote>
-                <a class="readmore" href="/fei-xian-xing-you-hua.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/fei-xian-xing-you-hua.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/mle-map.html">MLE & MAP</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/mle-map.html" rel="bookmark"
-                           title="Permalink to MLE & MAP">MLE & MAP</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-18T00:00:00+01:00">
-                Published: Tue 18 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
 <p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
 <br/>
 对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
@@ -225,28 +299,28 @@ Bayes rule
 </p>
 <div class="math">$$P(\theta|x) = \frac{P(x|\theta) * p(\theta)}{p(x)}$$</div>
 <div class="math">$$P(x|y,z) = \frac{P(y ...</div>
-                <a class="readmore" href="/mle-map.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/mle-map.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/shu-zhi-fen-xi.html">数值分析</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/shu-zhi-fen-xi.html" rel="bookmark"
-                           title="Permalink to 数值分析">数值分析</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-18T00:00:00+01:00">
-                Published: Tue 18 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>From
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>From
 <a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90">Wiki</a>:</p>
 <blockquote>
 <p>数值分析（英语：numerical analysis），是指在数学分析（区别于离散数学）问题中，对使用数值近似（相对于一般化的符号运算）算法的研究。</p>
@@ -256,28 +330,28 @@ Bayes rule
 <p>Numerical analysis
 解析解/闭合解
 数值解</p>
-                <a class="readmore" href="/shu-zhi-fen-xi.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/shu-zhi-fen-xi.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html">Variance, gradient, Jacobian and Hessian matrix 记忆</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html" rel="bookmark"
-                           title="Permalink to Variance, gradient, Jacobian and Hessian matrix 记忆">Variance, gradient, Jacobian and Hessian matrix 记忆</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-18T00:00:00+01:00">
-                Published: Tue 18 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>Jacobian矩阵　用于一阶梯度下降法<br/>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>Jacobian矩阵　用于一阶梯度下降法<br/>
 Hessian矩阵，用于二阶牛顿法<br/>
 高斯牛顿法，使用J<sup>T</sup>J作为牛顿法中二阶Hessian矩阵的近似，　从而省略了计算Ｈ的过程<br/>
 <a href="http://jacoxu.com/jacobian%E7%9F%A9%E9%98%B5%E5%92%8Chessian%E7%9F%A9%E9%98%B5/">下面这个文章介绍了Jacobian与Hessian矩阵的关系用途</a></p>
@@ -291,57 +365,84 @@ Hessian矩阵，用于二阶牛顿法<br/>
 </p>
 <div class="math">$$Var(X) = cov(X, X)$$</div>
 <div class="math">$$Var(X) = E[(X-\mu)^2 ...</div>
-                <a class="readmore" href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+                        <a class="btn primary xsmall" href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/xian-xing-gui-hua.html">线性规划</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/xian-xing-gui-hua.html" rel="bookmark"
-                           title="Permalink to 线性规划">线性规划</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-18T00:00:00+01:00">
-                Published: Tue 18 December 2018
-        </abbr>
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>线性优化，　线性规划，　linear programming</p>
+                        <a class="btn primary xsmall" href="/xian-xing-gui-hua.html">more ...</a>
+                </div>
+        </div>
+        <hr />
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nekoo.html">Nekoo</a>
-        </address>
-<p>In <a href="/category/math.html">Math</a>.</p>
-<p>tags: <a href="/tag/math.html">Math</a> <a href="/tag/slam.html">SLAM</a> </p>
-</footer><!-- /.post-info -->                <p>线性优化，　线性规划，　linear programming</p>
-                <a class="readmore" href="/xian-xing-gui-hua.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+        </div><!--/span-->
 
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 
-</body>
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
 </html>
