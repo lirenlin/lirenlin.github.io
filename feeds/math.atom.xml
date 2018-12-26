@@ -1,5 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-21T15:08:08+01:00</updated><entry><title>计算机求导的四种方式</title><link href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html" rel="alternate"></link><updated>2018-12-21T15:08:08+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-21:ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html</id><summary type="html">&lt;p&gt;计算机求导，有四种方法:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-26T10:25:50+01:00</updated><entry><title>线性方程组</title><link href="/xian-xing-fang-cheng-zu.html" rel="alternate"></link><updated>2018-12-26T10:25:50+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-26:xian-xing-fang-cheng-zu.html</id><summary type="html"></summary><category term="Math"></category></entry><entry><title>矩阵乘法</title><link href="/ju-zhen-cheng-fa.html" rel="alternate"></link><updated>2018-12-25T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-25:ju-zhen-cheng-fa.html</id><summary type="html">&lt;div class="math"&gt;$$C = AB, A \in \mathbb {R}^{m \times n}, b \in \mathbb {R}^{n \times l}, c \in \mathbb {R}^{m \times l}$$&lt;/div&gt;
+&lt;p&gt;For example:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+A =
+\begin{bmatrix}
+a_{11} &amp;amp; a_{12} &amp;amp; a_{13}\\
+a_{21} &amp;amp; a_{22} &amp;amp; a_{23}\\
+a_{31} &amp;amp; a_{32} &amp;amp; a_{33}
+\end{bmatrix}
+B =
+\begin{bmatrix}
+b_{11} &amp;amp; b_{12} &amp;amp; b_{13}\\
+b_{21} &amp;amp; b_{22} &amp;amp; b_{23}\\
+b_{31} &amp;amp; b_{32} &amp;amp; b_{33}
+\end{bmatrix}
+C =
+\begin{bmatrix}
+c_{11} &amp;amp; c_{12} &amp;amp; c_{13}\\
+c_{21} &amp;amp; c_{22} &amp;amp; c_{23}\\
+c_{31} &amp;amp; c_{32} &amp;amp; c_{33}
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;h1&gt;Componenet wise&lt;/h1&gt;
+&lt;div class="math"&gt;$$C_{ij} = \sum_{k=1}^{m} a_{ik} \times b_{kj}$$&lt;/div&gt;
+&lt;p&gt;
+for i = 1, ..., m and j = 1, ..., l.&lt;/p&gt;
+&lt;h1&gt;Row wise&lt;/h1&gt;
+&lt;p&gt;Row of C is the combination of rows of B&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{cases}
+c_{00} = a_{00} \times b_{00} + a_{01} \times b_{10} + a_{02} \times b_{20} \\
+c_{01} = a_{00} \times b_{01} + a_{01} \times b_{11} + a_{02} \times b_{21} \\
+c_{03} = a_{00} \times b_{02} + a_{01} \times b_{12} + a_{02} \times b_{22} \\
+\end{cases} \rightarrow
+\begin{bmatrix}
+c_{00} \\ c_{01} \\ c_{02}
+\end{bmatrix}^T =
+\begin{bmatrix}
+b_{00} \\ b_{01} \\ b_{02}
+\end{bmatrix} ^T
+\times  a_{00} +
+\begin{bmatrix}
+b_{10} \\ b_{11} \\ b_{12}
+\end{bmatrix}^T
+\times  a_{01} +
+\begin{bmatrix}
+b_{20} \\ b_{21} \\ b_{22}
+\end{bmatrix}^T
+\times  a_{02}
+$$&lt;/div&gt;
+&lt;h1&gt;Column wise&lt;/h1&gt;
+&lt;p&gt;Column of C is the combination of columns of A
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{cases}
+c_{00} = a_{00} \times b_{00} + a_{01} \times b_{10} + a_{02} \times b_{20} \\
+c_{10} = a_{10} \times b_{00} + a_{11} \times b_{10} + a_{12} \times b_{20} \\
+c_{20} = a_{20} \times b_{00} + a_{21} \times b_{10} + a_{22} \times b_{20} \\
+\end{cases} \rightarrow
+\begin{bmatrix}
+c_{00} \\ c_{10} \\ c_{20}
+\end{bmatrix} =
+\begin{bmatrix}
+a_{00} \\ a_{10} \\ a_{20}
+\end{bmatrix}
+\times  b_{00} +
+\begin{bmatrix}
+a_{01} \\ a_{11} \\ a_{21}
+\end{bmatrix}
+\times  b_{10} +
+\begin{bmatrix}
+a_{02} \\ a_{12} \\ a_{22}
+\end{bmatrix}
+\times  b_{20}
+$$&lt;/div&gt;
+&lt;h1&gt;Matrix wise&lt;/h1&gt;
+&lt;p&gt;AB is the sum of col_of(A) * row_of(B)
+&lt;/p&gt;
+&lt;div class="math"&gt;$$AB = \sum_{i=0}^l {A[:i] \times B[i:]}$$&lt;/div&gt;
+&lt;p&gt;
+where &lt;span class="math"&gt;\(a[:i] \in \mathbb {R}^{mx1}, B[i:] \in \mathbb {R}^{1xl}\)&lt;/span&gt;&lt;/p&gt;
+&lt;h1&gt;Block matrix multiplication&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Block_matrix#Block_matrix_multiplication"&gt;Wiki&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>矩阵分解</title><link href="/ju-zhen-fen-jie.html" rel="alternate"></link><updated>2018-12-25T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-25:ju-zhen-fen-jie.html</id><summary type="html">&lt;h1&gt;Simplify the computation of linear system of equations.&lt;/h1&gt;
+&lt;p&gt;Matrix factorization in the context of numerical linear algebra(NLA) generally serves the purpose of rephrasing through a series of easier subproblems a task that may be relatively difficult to solve in its original form.&lt;/p&gt;
+&lt;p&gt;For example, given the typical linear system Ax = b for &lt;span class="math"&gt;\(A \in \mathbb {R}^{n × n}\)&lt;/span&gt;, x and b &lt;span class="math"&gt;\(\in \mathbb {R}^n\)&lt;/span&gt; , a factorization of A as LU for L a unit lower triangular matrix (thus, with ones along its main diagonal) and an upper triangular U is a mechanism for characterizing what occurs in Gaussian elimination.&lt;/p&gt;
+&lt;p&gt;We replace &lt;span class="math"&gt;\(Ax = b\)&lt;/span&gt; by two (easier to solve) triangular systems:  find y so &lt;span class="math"&gt;\(Ly = b\)&lt;/span&gt; and then find x so &lt;span class="math"&gt;\(Ux = y\)&lt;/span&gt;.The point being made here is that the factorization of A as LU has no real importance in and of itself other than as a computationally convenient means for obtaining a solution to the original linear system.&lt;/p&gt;
+&lt;h1&gt;Help to understand the structure of a big data matrix.&lt;/h1&gt;
+&lt;p&gt;Typically, a matrix &lt;span class="math"&gt;\(A \in \mathbb {R}^{n × p}\)&lt;/span&gt; represents a data matrix containing numerical observations on n objects (subjects) over p attributes (variables), or possibly &lt;span class="math"&gt;\(B \in \mathbb {R}^{p × p}\)&lt;/span&gt; and the entries are some measure of proximity between attributes, such as the correlation between columns of A.&lt;/p&gt;
+&lt;p&gt;The major purpose of a matrix factorization in this context is to obtain some form of lower-rank (and therefore simplified) approximation to A (or possibly to B) for understanding the structure of the data matrix, particularly the relationship within the objects and within the attributes, and how the objects relate to the attributes. If we can further interpret the matrix factorization geometrically and actually present the results spatially through coordinates obtained from the components of the factorization, we will be able to better communicate to others what structure may be present in the original data matrix.&lt;/p&gt;
+&lt;p&gt;In any case, matrix factorizations are again directed toward the issue of simplicity, but now the actual components making up a factorization are of prime concern and not solely as a mechanism for solving another problem.&lt;/p&gt;
+&lt;h1&gt;Related concepts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)"&gt;Rank (linear algebra)秩&lt;/a&gt;&lt;blockquote&gt;
+&lt;p&gt;In linear algebra, the rank of a matrix A is the dimension of the vector space generated (or spanned) by its columns.[1] This corresponds to the maximal number of linearly independent columns of A.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Numerical_stability"&gt;Numerical stability&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Related articles&lt;/h1&gt;
+&lt;p&gt;&lt;a href="http://staff.ustc.edu.cn/~ynyang/group-meeting/2014/matrix-factorization/hubert.pdf"&gt;Two Purposes for Matrix Factorization: A Historical Appraisal&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://people.duke.edu/~ccc14/sta-663/LinearAlgebraMatrixDecompWithSolutions.html"&gt;Linear Algebra and Matrix Decompositions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.jiqizhixin.com/articles/0301"&gt;奇异值分解简介：从原理到基础机器学习应用&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>矩阵性质 (From Wiki)</title><link href="/ju-zhen-xing-zhi-from-wiki.html" rel="alternate"></link><updated>2018-12-25T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-25:ju-zhen-xing-zhi-from-wiki.html</id><summary type="html">&lt;h1&gt;Square matrix:&lt;/h1&gt;
+&lt;p&gt;In mathematics, a square matrix is a matrix with the same number of rows and columns. An n-by-n matrix is known as a square matrix of order n. Any two square matrices of the same order can be added and multiplied.&lt;/p&gt;
+&lt;p&gt;Square matrices are often used to represent simple linear transformations, such as shearing or rotation. For example, if R is a square matrix representing a rotation (rotation matrix) and v is a column vector describing the position of a point in space, the product Rv yields another column vector describing the position of that point after that rotation. If v is a row vector, the same transformation can be obtained using vRT, where RT is the transpose of R.&lt;/p&gt;
+&lt;h1&gt;Identity matrix:&lt;/h1&gt;
+&lt;p&gt;In linear algebra, the identity matrix, or sometimes ambiguously called a unit matrix, of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.  It is denoted by &lt;span class="math"&gt;\(I_n\)&lt;/span&gt;, or simply by I if the size is immaterial or can be trivially determined by the context.&lt;/p&gt;
+&lt;h1&gt;Symmetric matrix:&lt;/h1&gt;
+&lt;p&gt;In linear algebra, a symmetric matrix is a square matrix that is equal to its transpose. Formally,&lt;/p&gt;
+&lt;div class="math"&gt;$$A = A^T$$&lt;/div&gt;
+&lt;h1&gt;Diagonal matrx:&lt;/h1&gt;
+&lt;p&gt;In linear algebra, a diagonal matrix is a matrix in which the entries outside the main diagnoal are all zero. The term usually refers to square matrices.&lt;/p&gt;
+&lt;h1&gt;Triangular matrix&lt;/h1&gt;
+&lt;p&gt;In the mathematical discipline of linear algebra, a triangular matrix is a special kind of square matrix. A square matrix is called &lt;strong&gt;lower triangular&lt;/strong&gt; if all the entries above the main diagonal are zero. Similarly, a square matrix is called &lt;strong&gt;upper triangular&lt;/strong&gt; if all the entries below the main diagonal are zero. A triangular matrix is one that is either lower triangular or upper triangular. A matrix that is both upper and lower triangular is called a diagonal matrix.&lt;/p&gt;
+&lt;p&gt;Because matrix equations with triangular matrices are easier to solve, they are very important in numerical analysis. By the LU decomposition algorithm, an invertible matrix may be written as the product of a lower triangular matrix L and an upper triangular matrix U if and only if all its leading principal minors are non-zero.&lt;/p&gt;
+&lt;h1&gt;Invertible matrix&lt;/h1&gt;
+&lt;p&gt;In linear algebra, an n-by-n square matrix A is called invertible (also nonsingular or nondegenerate) if there exists an n-by-n square matrix B such that
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\mathbf {AB} =\mathbf {BA} =\mathbf {I}$$&lt;/div&gt;
+&lt;p&gt;
+where In denotes the n-by-n identity matrix and the multiplication used is ordinary matrix multiplication. If this is the case, then the matrix B is uniquely determined by A and is called the inverse of A, denoted by &lt;span class="math"&gt;\(A^{−1}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;A square matrix that is not invertible is called singular or degenerate. A square matrix is singular if and only if its determinant is 0. Singular matrices are rare in the sense that a square matrix randomly selected from a continuous uniform distribution on its entries will almost never be singular.&lt;/p&gt;
+&lt;p&gt;The set of &lt;span class="math"&gt;\(n × n\)&lt;/span&gt; invertible matrices together with the operation of matrix multiplication form a group, the general linear group of degree n.&lt;/p&gt;
+&lt;h1&gt;Positive-definite matrix&lt;/h1&gt;
+&lt;p&gt;In linear algebra, a symmetric &lt;span class="math"&gt;\(n × n\)&lt;/span&gt; real matrix &lt;span class="math"&gt;\(M\)&lt;/span&gt; is said to be positive definite if the scalar &lt;span class="math"&gt;\(z^{\textsf {T}}Mz\)&lt;/span&gt; is strictly positive for every non-zero column vector &lt;span class="math"&gt;\(z\)&lt;/span&gt; of &lt;span class="math"&gt;\(n\)&lt;/span&gt; real numbers. Here &lt;span class="math"&gt;\(z^{\textsf {T}}\)&lt;/span&gt; denotes the transpose of &lt;span class="math"&gt;\(z\)&lt;/span&gt;.&lt;/p&gt;
+&lt;h1&gt;Orthogonal matrix&lt;/h1&gt;
+&lt;p&gt;An orthogonal matrix is a square matrix whose columns and rows are orthogonal unit vectors (i.e., orthonormal vectors), i.e.
+    &lt;/p&gt;
+&lt;div class="math"&gt;$$Q^TQ=QQ^T = I$$&lt;/div&gt;
+&lt;p&gt;
+where &lt;span class="math"&gt;\(I\)&lt;/span&gt; I is the identity matrix.&lt;br /&gt;
+This leads to the equivalent characterization: a matrix Q is orthogonal if its transpose is equal to its inverse:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Q^{\mathrm {T} }=Q^{-1}$$&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+An orthogonal matrix Q is necessarily invertible (with inverse &lt;span class="math"&gt;\(Q^−1 = Q^T\)&lt;/span&gt;), unitary (&lt;span class="math"&gt;\(Q^−1 = Q^∗\)&lt;/span&gt;) and therefore normal (&lt;span class="math"&gt;\(Q^∗Q = QQ^∗\)&lt;/span&gt;) in the reals. The determinant of any orthogonal matrix is either +1 or −1. As a linear transformation, an orthogonal matrix preserves the dot product of vectors, and therefore acts as an isometry of Euclidean space, such as a rotation, reflection or rotoreflection. In other words, it is a unitary transformation.&lt;br /&gt;
+The set of n × n orthogonal matrices forms a group O(n), known as the orthogonal group. The subgroup SO(n) consisting of orthogonal matrices with determinant +1 is called the special orthogonal group, and each of its elements is a special orthogonal matrix. As a linear transformation, every special orthogonal matrix acts as a rotation. &lt;/p&gt;
+&lt;h1&gt;Unitary matrix (酉矩阵)&lt;/h1&gt;
+&lt;p&gt;In mathematics, a complex square matrix U is unitary if its conjugate transpose &lt;span class="math"&gt;\(U^*\)&lt;/span&gt; is also its inverse—that is, if
+&lt;/p&gt;
+&lt;div class="math"&gt;$$U^∗ U = U U^∗ = I$$&lt;/div&gt;
+&lt;p&gt;
+where &lt;span class="math"&gt;\(I\)&lt;/span&gt; is the identity matrix. &lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>计算机求导的四种方式</title><link href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html" rel="alternate"></link><updated>2018-12-21T15:08:08+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-21:ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html</id><summary type="html">&lt;p&gt;计算机求导，有四种方法:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;人工解析微分法（manual analytical differentiation）&lt;/li&gt;
 &lt;li&gt;数值微分法（numerical differentiation）&lt;/li&gt;

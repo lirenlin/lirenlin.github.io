@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>MLE & MAP</title>
+    <title>矩阵乘法</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -105,8 +105,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to MLE & MAP">
-                                        MLE & MAP
+                                        title="Permalink to 矩阵乘法">
+                                        矩阵乘法
                                 </a>
                         </h1>
                 </header>
@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-18T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 18 December 2018
+<abbr class="published" title="2018-12-25T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 25 December 2018
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
@@ -125,27 +125,91 @@
 
 <span class="label">Tags</span>
 	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
 </footer><!-- /.post-info -->                </div>
-                <p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
-<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-<br/>
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
-也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。</p>
-<p>MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
-Bayes rule
+                <div class="math">$$C = AB, A \in \mathbb {R}^{m \times n}, b \in \mathbb {R}^{n \times l}, c \in \mathbb {R}^{m \times l}$$</div>
+<p>For example:
 </p>
-<div class="math">$$P(\theta|x) = \frac{P(x|\theta) * p(\theta)}{p(x)}$$</div>
-<div class="math">$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$</div>
-<div class="math">$$\hat{\theta} = \mathop{arg\max}_{\theta} P(\theta|x) \propto P(x|\theta) * p(\theta)$$</div>
+<div class="math">$$
+A =
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13}\\
+a_{21} &amp; a_{22} &amp; a_{23}\\
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+B =
+\begin{bmatrix}
+b_{11} &amp; b_{12} &amp; b_{13}\\
+b_{21} &amp; b_{22} &amp; b_{23}\\
+b_{31} &amp; b_{32} &amp; b_{33}
+\end{bmatrix}
+C =
+\begin{bmatrix}
+c_{11} &amp; c_{12} &amp; c_{13}\\
+c_{21} &amp; c_{22} &amp; c_{23}\\
+c_{31} &amp; c_{32} &amp; c_{33}
+\end{bmatrix}
+$$</div>
+<h1>Componenet wise</h1>
+<div class="math">$$C_{ij} = \sum_{k=1}^{m} a_{ik} \times b_{kj}$$</div>
 <p>
-分母可以去掉，与求参数无关</p>
-<p>已知观测结果，寻找参数，使得模型输出最符合观测。</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F">全概率公式</a>
-<br/>
-<a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html">最大似然估计 （MLE） 最大后验概率（MAP）</a>
-<br/>
-<a href="https://zhuanlan.zhihu.com/p/25768606">概率与似然</a></p>
+for i = 1, ..., m and j = 1, ..., l.</p>
+<h1>Row wise</h1>
+<p>Row of C is the combination of rows of B</p>
+<div class="math">$$
+\begin{cases}
+c_{00} = a_{00} \times b_{00} + a_{01} \times b_{10} + a_{02} \times b_{20} \\
+c_{01} = a_{00} \times b_{01} + a_{01} \times b_{11} + a_{02} \times b_{21} \\
+c_{03} = a_{00} \times b_{02} + a_{01} \times b_{12} + a_{02} \times b_{22} \\
+\end{cases} \rightarrow
+\begin{bmatrix}
+c_{00} \\ c_{01} \\ c_{02}
+\end{bmatrix}^T =
+\begin{bmatrix}
+b_{00} \\ b_{01} \\ b_{02}
+\end{bmatrix} ^T
+\times  a_{00} +
+\begin{bmatrix}
+b_{10} \\ b_{11} \\ b_{12}
+\end{bmatrix}^T
+\times  a_{01} +
+\begin{bmatrix}
+b_{20} \\ b_{21} \\ b_{22}
+\end{bmatrix}^T
+\times  a_{02}
+$$</div>
+<h1>Column wise</h1>
+<p>Column of C is the combination of columns of A
+</p>
+<div class="math">$$
+\begin{cases}
+c_{00} = a_{00} \times b_{00} + a_{01} \times b_{10} + a_{02} \times b_{20} \\
+c_{10} = a_{10} \times b_{00} + a_{11} \times b_{10} + a_{12} \times b_{20} \\
+c_{20} = a_{20} \times b_{00} + a_{21} \times b_{10} + a_{22} \times b_{20} \\
+\end{cases} \rightarrow
+\begin{bmatrix}
+c_{00} \\ c_{10} \\ c_{20}
+\end{bmatrix} =
+\begin{bmatrix}
+a_{00} \\ a_{10} \\ a_{20}
+\end{bmatrix}
+\times  b_{00} +
+\begin{bmatrix}
+a_{01} \\ a_{11} \\ a_{21}
+\end{bmatrix}
+\times  b_{10} +
+\begin{bmatrix}
+a_{02} \\ a_{12} \\ a_{22}
+\end{bmatrix}
+\times  b_{20}
+$$</div>
+<h1>Matrix wise</h1>
+<p>AB is the sum of col_of(A) * row_of(B)
+</p>
+<div class="math">$$AB = \sum_{i=0}^l {A[:i] \times B[i:]}$$</div>
+<p>
+where <span class="math">\(a[:i] \in \mathbb {R}^{mx1}, B[i:] \in \mathbb {R}^{1xl}\)</span></p>
+<h1>Block matrix multiplication</h1>
+<p><a href="https://en.wikipedia.org/wiki/Block_matrix#Block_matrix_multiplication">Wiki</a></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

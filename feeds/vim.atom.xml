@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/vim.atom.xml" rel="self"></link><id>/</id><updated>2018-12-26T10:08:53+01:00</updated><entry><title>Vim: Operation on search matches using gn</title><link href="/vim-operation-on-search-matches-using-gn.html" rel="alternate"></link><updated>2018-12-26T10:08:53+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-26:vim-operation-on-search-matches-using-gn.html</id><summary type="html">&lt;p&gt;The gn command (introduced in Vim 7.4) makes it easy to operate on regions of
+text that match the current search pattern. It’s especially useful when used
+with a regex that matches text regions of variable length.&lt;/p&gt;
+&lt;p&gt;Here’s what Vim’s documentation has to say about the gn command (:help gn):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Search forward for the last used search pattern, like with n, and start
+Visual mode to select the match. If the cursor is on the match, visually
+selects it. If an operator is pending, operates on the match.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里有三个步骤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Search forward for the last used search pattern.&lt;/li&gt;
+&lt;li&gt;Visually select it. (so that operator could apply to the pattern immediately)&lt;/li&gt;
+&lt;li&gt;Apply pending operator.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一般的查找下一个(n)，只是做了第一步，如果你的查找是多个单词或者一个区域，例如 "this
+is"，正常的查找下一个不会选择全部，而是将光标移动到匹配的开始，也就是在"this"， 
+如果你要一起修改"this is", 需要再次选择"this is"，然后替换。&lt;/p&gt;
+&lt;p&gt;在没有知道这个命令之前，我都是使用q来record多个操作到寄存器。然后重复的应用到下一个匹配的搜索。&lt;/p&gt;
+&lt;p&gt;'gn'在Operator-pending mode下，可以将所有的操作融合为一个步骤，
+这样就可以使用vim的'.'dot指令进行重复，简便很多。例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;his is    &lt;span class="c1"&gt;#search block &amp;quot;this is&amp;quot;&lt;/span&gt;
+:cgn these are  &lt;span class="c1"&gt;#next match pattern, and change it into &amp;quot;these are&amp;quot;&lt;/span&gt;
+.       &lt;span class="c1"&gt;#apply the same modification to the next match&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Reference:&lt;br /&gt;
+&lt;a href="http://vimcasts.org/episodes/operating-on-search-matches-using-gn/"&gt;Operating on search matches using gn&lt;/a&gt;&lt;/p&gt;</summary><category term="Vim"></category></entry></feed>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>MLE & MAP</title>
+    <title>矩阵性质 (From Wiki)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -105,8 +105,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to MLE & MAP">
-                                        MLE & MAP
+                                        title="Permalink to 矩阵性质 (From Wiki)">
+                                        矩阵性质 (From Wiki)
                                 </a>
                         </h1>
                 </header>
@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-18T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 18 December 2018
+<abbr class="published" title="2018-12-25T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 25 December 2018
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
@@ -125,27 +125,48 @@
 
 <span class="label">Tags</span>
 	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
 </footer><!-- /.post-info -->                </div>
-                <p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
-<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-<br/>
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
-也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。</p>
-<p>MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
-Bayes rule
+                <h1>Square matrix:</h1>
+<p>In mathematics, a square matrix is a matrix with the same number of rows and columns. An n-by-n matrix is known as a square matrix of order n. Any two square matrices of the same order can be added and multiplied.</p>
+<p>Square matrices are often used to represent simple linear transformations, such as shearing or rotation. For example, if R is a square matrix representing a rotation (rotation matrix) and v is a column vector describing the position of a point in space, the product Rv yields another column vector describing the position of that point after that rotation. If v is a row vector, the same transformation can be obtained using vRT, where RT is the transpose of R.</p>
+<h1>Identity matrix:</h1>
+<p>In linear algebra, the identity matrix, or sometimes ambiguously called a unit matrix, of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.  It is denoted by <span class="math">\(I_n\)</span>, or simply by I if the size is immaterial or can be trivially determined by the context.</p>
+<h1>Symmetric matrix:</h1>
+<p>In linear algebra, a symmetric matrix is a square matrix that is equal to its transpose. Formally,</p>
+<div class="math">$$A = A^T$$</div>
+<h1>Diagonal matrx:</h1>
+<p>In linear algebra, a diagonal matrix is a matrix in which the entries outside the main diagnoal are all zero. The term usually refers to square matrices.</p>
+<h1>Triangular matrix</h1>
+<p>In the mathematical discipline of linear algebra, a triangular matrix is a special kind of square matrix. A square matrix is called <strong>lower triangular</strong> if all the entries above the main diagonal are zero. Similarly, a square matrix is called <strong>upper triangular</strong> if all the entries below the main diagonal are zero. A triangular matrix is one that is either lower triangular or upper triangular. A matrix that is both upper and lower triangular is called a diagonal matrix.</p>
+<p>Because matrix equations with triangular matrices are easier to solve, they are very important in numerical analysis. By the LU decomposition algorithm, an invertible matrix may be written as the product of a lower triangular matrix L and an upper triangular matrix U if and only if all its leading principal minors are non-zero.</p>
+<h1>Invertible matrix</h1>
+<p>In linear algebra, an n-by-n square matrix A is called invertible (also nonsingular or nondegenerate) if there exists an n-by-n square matrix B such that
 </p>
-<div class="math">$$P(\theta|x) = \frac{P(x|\theta) * p(\theta)}{p(x)}$$</div>
-<div class="math">$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$</div>
-<div class="math">$$\hat{\theta} = \mathop{arg\max}_{\theta} P(\theta|x) \propto P(x|\theta) * p(\theta)$$</div>
+<div class="math">$$\mathbf {AB} =\mathbf {BA} =\mathbf {I}$$</div>
 <p>
-分母可以去掉，与求参数无关</p>
-<p>已知观测结果，寻找参数，使得模型输出最符合观测。</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F">全概率公式</a>
-<br/>
-<a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html">最大似然估计 （MLE） 最大后验概率（MAP）</a>
-<br/>
-<a href="https://zhuanlan.zhihu.com/p/25768606">概率与似然</a></p>
+where In denotes the n-by-n identity matrix and the multiplication used is ordinary matrix multiplication. If this is the case, then the matrix B is uniquely determined by A and is called the inverse of A, denoted by <span class="math">\(A^{−1}\)</span>.</p>
+<p>A square matrix that is not invertible is called singular or degenerate. A square matrix is singular if and only if its determinant is 0. Singular matrices are rare in the sense that a square matrix randomly selected from a continuous uniform distribution on its entries will almost never be singular.</p>
+<p>The set of <span class="math">\(n × n\)</span> invertible matrices together with the operation of matrix multiplication form a group, the general linear group of degree n.</p>
+<h1>Positive-definite matrix</h1>
+<p>In linear algebra, a symmetric <span class="math">\(n × n\)</span> real matrix <span class="math">\(M\)</span> is said to be positive definite if the scalar <span class="math">\(z^{\textsf {T}}Mz\)</span> is strictly positive for every non-zero column vector <span class="math">\(z\)</span> of <span class="math">\(n\)</span> real numbers. Here <span class="math">\(z^{\textsf {T}}\)</span> denotes the transpose of <span class="math">\(z\)</span>.</p>
+<h1>Orthogonal matrix</h1>
+<p>An orthogonal matrix is a square matrix whose columns and rows are orthogonal unit vectors (i.e., orthonormal vectors), i.e.
+    </p>
+<div class="math">$$Q^TQ=QQ^T = I$$</div>
+<p>
+where <span class="math">\(I\)</span> I is the identity matrix.<br />
+This leads to the equivalent characterization: a matrix Q is orthogonal if its transpose is equal to its inverse:
+</p>
+<div class="math">$$Q^{\mathrm {T} }=Q^{-1}$$</div>
+<p><br />
+An orthogonal matrix Q is necessarily invertible (with inverse <span class="math">\(Q^−1 = Q^T\)</span>), unitary (<span class="math">\(Q^−1 = Q^∗\)</span>) and therefore normal (<span class="math">\(Q^∗Q = QQ^∗\)</span>) in the reals. The determinant of any orthogonal matrix is either +1 or −1. As a linear transformation, an orthogonal matrix preserves the dot product of vectors, and therefore acts as an isometry of Euclidean space, such as a rotation, reflection or rotoreflection. In other words, it is a unitary transformation.<br />
+The set of n × n orthogonal matrices forms a group O(n), known as the orthogonal group. The subgroup SO(n) consisting of orthogonal matrices with determinant +1 is called the special orthogonal group, and each of its elements is a special orthogonal matrix. As a linear transformation, every special orthogonal matrix acts as a rotation. </p>
+<h1>Unitary matrix (酉矩阵)</h1>
+<p>In mathematics, a complex square matrix U is unitary if its conjugate transpose <span class="math">\(U^*\)</span> is also its inverse—that is, if
+</p>
+<div class="math">$$U^∗ U = U U^∗ = I$$</div>
+<p>
+where <span class="math">\(I\)</span> is the identity matrix. </p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

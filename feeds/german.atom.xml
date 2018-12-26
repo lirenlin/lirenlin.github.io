@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/german.atom.xml" rel="self"></link><id>/</id><updated>2018-12-20T18:31:31+01:00</updated><entry><title>常用介词</title><link href="/chang-yong-jie-ci.html" rel="alternate"></link><updated>2018-12-20T18:31:31+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-20:chang-yong-jie-ci.html</id><summary type="html">&lt;p&gt;dagegen&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/german.atom.xml" rel="self"></link><id>/</id><updated>2018-12-22T12:39:19+01:00</updated><entry><title>情态动词 der Modalverb</title><link href="/qing-tai-dong-ci-der-modalverb.html" rel="alternate"></link><updated>2018-12-22T12:39:19+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-22:qing-tai-dong-ci-der-modalverb.html</id><summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;ich&lt;/th&gt;
+&lt;th&gt;du&lt;/th&gt;
+&lt;th&gt;er/sie/es&lt;/th&gt;
+&lt;th&gt;wir&lt;/th&gt;
+&lt;th&gt;ihr&lt;/th&gt;
+&lt;th&gt;sie/Sie&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;durfen&lt;/td&gt;
+&lt;td&gt;darf&lt;/td&gt;
+&lt;td&gt;darfst&lt;/td&gt;
+&lt;td&gt;darf&lt;/td&gt;
+&lt;td&gt;durfen&lt;/td&gt;
+&lt;td&gt;durft&lt;/td&gt;
+&lt;td&gt;durfen&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;konnen&lt;/td&gt;
+&lt;td&gt;kann&lt;/td&gt;
+&lt;td&gt;kannst&lt;/td&gt;
+&lt;td&gt;kann&lt;/td&gt;
+&lt;td&gt;konnen&lt;/td&gt;
+&lt;td&gt;konnt&lt;/td&gt;
+&lt;td&gt;konnen&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mogen&lt;/td&gt;
+&lt;td&gt;mochte&lt;/td&gt;
+&lt;td&gt;mochtest&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mussen&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;sollen&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;wollen&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;sein
+现在时: bin, bist, ist, sind, seid, sind
+过去时: war, warst, war, waren, wart, waren&lt;/p&gt;
+&lt;p&gt;haben
+现在时: habe, hast, hat, haben, habt, haben
+过去时: hatte, hattest, hatte, hatten, hattet, hatten&lt;/p&gt;
+&lt;p&gt;werden
+现在时: werde, wirst, wird, werden, werdet, werden&lt;/p&gt;</summary><category term="German"></category></entry><entry><title>常用介词</title><link href="/chang-yong-jie-ci.html" rel="alternate"></link><updated>2018-12-20T18:31:31+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-20:chang-yong-jie-ci.html</id><summary type="html">&lt;p&gt;dagegen&lt;/p&gt;
 &lt;p&gt;只接第三格(Dat.)的介词
 aus, von, bei, zu, mit, ab, nach, site&lt;/p&gt;</summary><category term="German"></category></entry><entry><title>常用名词</title><link href="/chang-yong-ming-ci.html" rel="alternate"></link><updated>2018-12-20T18:31:31+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-20:chang-yong-ming-ci.html</id><summary type="html">&lt;p&gt;Zuhause
 Arbeit
@@ -21,7 +97,7 @@ stehen
 stellen
 setzen
 legen
-wohen
+wohnen
 bleiben
 kommen
 gehen
@@ -81,6 +157,18 @@ Der Rotwein, der aus diser Region kommt, schmeckt besonders gut.&lt;/p&gt;
 sich (Akk.) vorstellen, 自我介绍  &lt;/p&gt;
 &lt;p&gt;die Kneipe &lt;strong&gt;an der Ecke&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;das ist alles andere als schone. 这一点也不好看&lt;/p&gt;
+&lt;p&gt;Wieder ist ein Jahr vergangen&lt;/p&gt;
+&lt;p&gt;Das Bett stellst du am besten an die Wand gegenuber dem Fenster.&lt;/p&gt;
+&lt;p&gt;Zu dieser Zeit ist er schon in ganz Europa bekannt.&lt;/p&gt;
+&lt;p&gt;Wegen der Krankheit des Vaters blieb er zu Hause. (Dat.)&lt;/p&gt;
+&lt;h1&gt;与时间相关介词&lt;/h1&gt;
+&lt;p&gt;im Jahr&lt;br /&gt;
+im Dezember&lt;br /&gt;
+im August&lt;br /&gt;
+im Ausland&lt;br /&gt;
+am Freitag, Feiertag&lt;br /&gt;
+am Abend&lt;br /&gt;
+um 6 Uhr  &lt;/p&gt;
 &lt;h1&gt;简写&lt;/h1&gt;
 &lt;p&gt;j-n: jemanden, akkusativ&lt;br /&gt;
 j-m: jemandem, dativ&lt;/p&gt;

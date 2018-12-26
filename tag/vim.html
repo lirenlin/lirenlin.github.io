@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>MLE & MAP</title>
+    <title>Yet another site - Vim</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -69,7 +69,7 @@
 						<i class="icon-folder-open icon-large"></i>German
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/math.html">
 						<i class="icon-folder-open icon-large"></i>Math
 					</a>
@@ -99,111 +99,31 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-<section id="content">
-        <article>
-                <header>
-                        <h1>
-                                <a href=""
-                                        rel="bookmark"
-                                        title="Permalink to MLE & MAP">
-                                        MLE & MAP
-                                </a>
-                        </h1>
-                </header>
-                <div class="entry-content">
-                <div class="well">
-<footer class="post-info">
+        <div class="article">
+                <h1><a href="/vim-operation-on-search-matches-using-gn.html">Vim: Operation on search matches using gn</a></h1>
+                <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-18T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 18 December 2018
+<abbr class="published" title="2018-12-26T10:08:53+01:00">
+        <i class="icon-calendar"></i>Wed 26 December 2018
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
 <span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+<a href="/category/vim.html"><i class="icon-folder-open"></i>Vim</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
-</footer><!-- /.post-info -->                </div>
-                <p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
-<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-<br/>
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
-也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。</p>
-<p>MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
-Bayes rule
-</p>
-<div class="math">$$P(\theta|x) = \frac{P(x|\theta) * p(\theta)}{p(x)}$$</div>
-<div class="math">$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$</div>
-<div class="math">$$\hat{\theta} = \mathop{arg\max}_{\theta} P(\theta|x) \propto P(x|\theta) * p(\theta)$$</div>
-<p>
-分母可以去掉，与求参数无关</p>
-<p>已知观测结果，寻找参数，使得模型输出最符合观测。</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F">全概率公式</a>
-<br/>
-<a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html">最大似然估计 （MLE） 最大后验概率（MAP）</a>
-<br/>
-<a href="https://zhuanlan.zhihu.com/p/25768606">概率与似然</a></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
+	<a href="/tag/vim.html"><i class="icon-tag"></i>Vim</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>The gn command (introduced in Vim 7.4) makes it easy to operate on regions of
+text that match the current search pattern. It’s especially useful when used
+with a regex that matches text regions of variable length.</p>
+<p>Here’s what Vim’s documentation has to say about the ...</p>
+                        <a class="btn primary xsmall" href="/vim-operation-on-search-matches-using-gn.html">more ...</a>
+                </div>
+        </div>
+        <hr />
 
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
-                </div><!-- /.entry-content -->
-        </article>
-</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">

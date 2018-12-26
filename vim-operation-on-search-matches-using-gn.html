@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>MLE & MAP</title>
+    <title>Vim: Operation on search matches using gn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -69,7 +69,7 @@
 						<i class="icon-folder-open icon-large"></i>German
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/math.html">
 						<i class="icon-folder-open icon-large"></i>Math
 					</a>
@@ -79,7 +79,7 @@
 						<i class="icon-folder-open icon-large"></i>Other
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/vim.html">
 						<i class="icon-folder-open icon-large"></i>Vim
 					</a>
@@ -105,8 +105,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to MLE & MAP">
-                                        MLE & MAP
+                                        title="Permalink to Vim: Operation on search matches using gn">
+                                        Vim: Operation on search matches using gn
                                 </a>
                         </h1>
                 </header>
@@ -114,93 +114,47 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-18T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 18 December 2018
+<abbr class="published" title="2018-12-26T10:08:53+01:00">
+        <i class="icon-calendar"></i>Wed 26 December 2018
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
 <span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+<a href="/category/vim.html"><i class="icon-folder-open"></i>Vim</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+	<a href="/tag/vim.html"><i class="icon-tag"></i>Vim</a>
 </footer><!-- /.post-info -->                </div>
-                <p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
-<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-<br/>
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
-也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。</p>
-<p>MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
-Bayes rule
-</p>
-<div class="math">$$P(\theta|x) = \frac{P(x|\theta) * p(\theta)}{p(x)}$$</div>
-<div class="math">$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$</div>
-<div class="math">$$\hat{\theta} = \mathop{arg\max}_{\theta} P(\theta|x) \propto P(x|\theta) * p(\theta)$$</div>
-<p>
-分母可以去掉，与求参数无关</p>
-<p>已知观测结果，寻找参数，使得模型输出最符合观测。</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F">全概率公式</a>
-<br/>
-<a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html">最大似然估计 （MLE） 最大后验概率（MAP）</a>
-<br/>
-<a href="https://zhuanlan.zhihu.com/p/25768606">概率与似然</a></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
+                <p>The gn command (introduced in Vim 7.4) makes it easy to operate on regions of
+text that match the current search pattern. It’s especially useful when used
+with a regex that matches text regions of variable length.</p>
+<p>Here’s what Vim’s documentation has to say about the gn command (:help gn):</p>
+<blockquote>
+<p>Search forward for the last used search pattern, like with n, and start
+Visual mode to select the match. If the cursor is on the match, visually
+selects it. If an operator is pending, operates on the match.</p>
+</blockquote>
+<p>这里有三个步骤：</p>
+<ul>
+<li>Search forward for the last used search pattern.</li>
+<li>Visually select it. (so that operator could apply to the pattern immediately)</li>
+<li>Apply pending operator.</li>
+</ul>
+<p>一般的查找下一个(n)，只是做了第一步，如果你的查找是多个单词或者一个区域，例如 "this
+is"，正常的查找下一个不会选择全部，而是将光标移动到匹配的开始，也就是在"this"， 
+如果你要一起修改"this is", 需要再次选择"this is"，然后替换。</p>
+<p>在没有知道这个命令之前，我都是使用q来record多个操作到寄存器。然后重复的应用到下一个匹配的搜索。</p>
+<p>'gn'在Operator-pending mode下，可以将所有的操作融合为一个步骤，
+这样就可以使用vim的'.'dot指令进行重复，简便很多。例如：</p>
+<div class="highlight"><pre><span></span><span class="se">\t</span>his is    <span class="c1">#search block &quot;this is&quot;</span>
+:cgn these are  <span class="c1">#next match pattern, and change it into &quot;these are&quot;</span>
+.       <span class="c1">#apply the same modification to the next match</span>
+</pre></div>
 
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
 
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+<p>Reference:<br />
+<a href="http://vimcasts.org/episodes/operating-on-search-matches-using-gn/">Operating on search matches using gn</a></p>
                 </div><!-- /.entry-content -->
         </article>
 </section>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>MLE & MAP</title>
+    <title>矩阵分解</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -105,8 +105,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to MLE & MAP">
-                                        MLE & MAP
+                                        title="Permalink to 矩阵分解">
+                                        矩阵分解
                                 </a>
                         </h1>
                 </header>
@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-18T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 18 December 2018
+<abbr class="published" title="2018-12-25T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 25 December 2018
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
@@ -125,27 +125,27 @@
 
 <span class="label">Tags</span>
 	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
 </footer><!-- /.post-info -->                </div>
-                <p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
-<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-<br/>
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
-也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。</p>
-<p>MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
-Bayes rule
-</p>
-<div class="math">$$P(\theta|x) = \frac{P(x|\theta) * p(\theta)}{p(x)}$$</div>
-<div class="math">$$P(x|y,z) = \frac{P(y|x,z)\cdot p(x|z)}{p(y|z)}$$</div>
-<div class="math">$$\hat{\theta} = \mathop{arg\max}_{\theta} P(\theta|x) \propto P(x|\theta) * p(\theta)$$</div>
-<p>
-分母可以去掉，与求参数无关</p>
-<p>已知观测结果，寻找参数，使得模型输出最符合观测。</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F">全概率公式</a>
-<br/>
-<a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html">最大似然估计 （MLE） 最大后验概率（MAP）</a>
-<br/>
-<a href="https://zhuanlan.zhihu.com/p/25768606">概率与似然</a></p>
+                <h1>Simplify the computation of linear system of equations.</h1>
+<p>Matrix factorization in the context of numerical linear algebra(NLA) generally serves the purpose of rephrasing through a series of easier subproblems a task that may be relatively difficult to solve in its original form.</p>
+<p>For example, given the typical linear system Ax = b for <span class="math">\(A \in \mathbb {R}^{n × n}\)</span>, x and b <span class="math">\(\in \mathbb {R}^n\)</span> , a factorization of A as LU for L a unit lower triangular matrix (thus, with ones along its main diagonal) and an upper triangular U is a mechanism for characterizing what occurs in Gaussian elimination.</p>
+<p>We replace <span class="math">\(Ax = b\)</span> by two (easier to solve) triangular systems:  find y so <span class="math">\(Ly = b\)</span> and then find x so <span class="math">\(Ux = y\)</span>.The point being made here is that the factorization of A as LU has no real importance in and of itself other than as a computationally convenient means for obtaining a solution to the original linear system.</p>
+<h1>Help to understand the structure of a big data matrix.</h1>
+<p>Typically, a matrix <span class="math">\(A \in \mathbb {R}^{n × p}\)</span> represents a data matrix containing numerical observations on n objects (subjects) over p attributes (variables), or possibly <span class="math">\(B \in \mathbb {R}^{p × p}\)</span> and the entries are some measure of proximity between attributes, such as the correlation between columns of A.</p>
+<p>The major purpose of a matrix factorization in this context is to obtain some form of lower-rank (and therefore simplified) approximation to A (or possibly to B) for understanding the structure of the data matrix, particularly the relationship within the objects and within the attributes, and how the objects relate to the attributes. If we can further interpret the matrix factorization geometrically and actually present the results spatially through coordinates obtained from the components of the factorization, we will be able to better communicate to others what structure may be present in the original data matrix.</p>
+<p>In any case, matrix factorizations are again directed toward the issue of simplicity, but now the actual components making up a factorization are of prime concern and not solely as a mechanism for solving another problem.</p>
+<h1>Related concepts</h1>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">Rank (linear algebra)秩</a><blockquote>
+<p>In linear algebra, the rank of a matrix A is the dimension of the vector space generated (or spanned) by its columns.[1] This corresponds to the maximal number of linearly independent columns of A.</p>
+</blockquote>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Numerical_stability">Numerical stability</a></li>
+</ul>
+<h1>Related articles</h1>
+<p><a href="http://staff.ustc.edu.cn/~ynyang/group-meeting/2014/matrix-factorization/hubert.pdf">Two Purposes for Matrix Factorization: A Historical Appraisal</a><br />
+<a href="https://people.duke.edu/~ccc14/sta-663/LinearAlgebraMatrixDecompWithSolutions.html">Linear Algebra and Matrix Decompositions</a></p>
+<p><a href="https://www.jiqizhixin.com/articles/0301">奇异值分解简介：从原理到基础机器学习应用</a></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
