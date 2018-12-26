@@ -28,10 +28,10 @@ space defined by A. In another way, a given point x will be transformed into a
 point in space defined by A. You might also want this process to be reversible,
 so that you can recover x given b and system matrix A.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;A defines the whole vector space &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;, any point x in $\mathbb {R}^n has a unique mapping b&lt;/li&gt;
-&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;, multiple points in $\mathbb {R}^n will map to the same point in space constrained by A.&lt;/li&gt;
-&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;, point b in this subspace has a unique mapping x which is in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;. Points b which is not this subspace, however in &lt;span class="math"&gt;\(\mathbb{R}^m\)&lt;/span&gt;, could not find any mapping points x&lt;/li&gt;
-&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;, point b in this subspace has more than one mapping x which is in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;. Points b which is not this subspace, however in &lt;span class="math"&gt;\(\mathbb{R}^m\)&lt;/span&gt;, could not find any mapping points x&lt;/li&gt;
+&lt;li&gt;A defines the vector space &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;, any point x in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt; has a unique mapping point b which is in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;.&lt;/li&gt;
+&lt;li&gt;A defines the vector space &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;, a subspace in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;, multiple points in $\mathbb {R}^n will map to the same point in space constrained by A.&lt;/li&gt;
+&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;, point b in this subspace has a unique mapping x which is in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;. Point b which is not this subspace, however in &lt;span class="math"&gt;\(\mathbb{R}^m\)&lt;/span&gt;, could not find any mapping points x.&lt;/li&gt;
+&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;, point b in this subspace has more than one mapping x which is in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;. Points b which is not this subspace, however in &lt;span class="math"&gt;\(\mathbb{R}^m\)&lt;/span&gt;, could not find any mapping points x.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href="https://math.stackexchange.com/a/21107"&gt;math.stackexchange: Importance of matrix rank&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://www.zhihu.com/question/21605094"&gt;知乎&lt;/a&gt;&lt;/p&gt;
