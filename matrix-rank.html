@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>线性方程组</title>
+    <title>Matrix rank</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -105,8 +105,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to 线性方程组">
-                                        线性方程组
+                                        title="Permalink to Matrix rank">
+                                        Matrix rank
                                 </a>
                         </h1>
                 </header>
@@ -114,7 +114,7 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-26T10:25:50+01:00">
+<abbr class="published" title="2018-12-26T13:07:00+01:00">
         <i class="icon-calendar"></i>Wed 26 December 2018
 </abbr>
 <span class="label">By</span>
@@ -127,28 +127,41 @@
 	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
 </footer><!-- /.post-info -->                </div>
                 <ul>
-<li>
-<p>In general, a system with fewer equations than unknowns has infinitely many
-solutions, but it may have no solution. Such a system is known as an
-underdetermined system.</p>
-</li>
-<li>
-<p>In general(not always), a system with more equations than unknowns has no solution. Such a
-system is also known as an overdetermined system.</p>
-</li>
-<li>
-<p>In general, a system with the same number of equations and unknowns has a
-single unique solution.</p>
-</li>
+<li>直观：「秩」是图像经过矩阵变换之后的空间维度</li>
+<li>定义：「秩」是列空间的维度</li>
+<li>物理意义：From an applied setting, rank of a matrix denotes the information content of
+the matrix. The lower the rank, the lower is the "information content".</li>
 </ul>
-<div class="math">\begin{align}
-Ax &amp;= b, \\
-A^{-1}Ax &amp;= A^{-1}b, \\
-x &amp;= A^{-1}b,
-\end{align}</div>
-<p>
-如果这个方程有唯一解，变换可逆，A可逆. 这意味着，从b，可以还原应用了变换之前的x。
-这个变换是可逆的。</p>
+<p>我的理解：
+</p>
+<div class="math">$$Ax = b, \quad \textrm {where} \quad A \in \mathbb {R}^{nxn}, x, b \in \mathbb {R}^{n}$$</div>
+<p>given a point (vector)x in <span class="math">\(\mathbb {R}^n\)</span>, apply the transformation, map it into another point b.
+As column of C is the combination of columns of A, this indicates point b is
+within the columns space of A.
+In other words, point b is a point inside the vector space defined by A's columns.</p>
+<p>Rank by definition from <a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">wiki</a>:</p>
+<blockquote>
+<p>in linear algebra, the rank of a matrix A is the dimension of the vector space
+generated (or spanned) by its columns.</p>
+</blockquote>
+<p>Additional if some columns inside A doesn't provide more information(constraint) to the
+space. They don't define new dimentions. They are just the combinations (scalar multiply and vector add) 
+of other 'essential' columns. The number of the 'essential' columns which defines the
+vector space is rank.</p>
+<p><img src="images/linear_solution.png" alt="Liner solution" title="linear solution" style="max-width:100%;max-height=100%"/></p>
+<p>b is any point in <span class="math">\(\mathbb {R}^m\)</span>. A defines a space with its column vectors.
+Of course, if you want this system of equation has a solution, b must be in the
+space defined by A. In another way, a given point x will be transformed into a
+point in space defined by A. You might also want this process to be reversible,
+so that you can recover x given b and system matrix A.</p>
+<ul>
+<li>A defines the whole vector space <span class="math">\(\mathbb {R}^n\)</span>, any point x in $\mathbb {R}^n has a unique mapping b</li>
+<li>A defines a subspace in <span class="math">\(\mathbb {R}^n\)</span>, multiple points in $\mathbb {R}^n will map to the same point in space constrained by A.</li>
+<li>A defines a subspace in <span class="math">\(\mathbb {R}^m\)</span>, point b in this subspace has a unique mapping x which is in <span class="math">\(\mathbb {R}^m\)</span>. Points b which is not this subspace, however in <span class="math">\(\mathbb{R}^m\)</span>, could not find any mapping points x</li>
+<li>A defines a subspace in <span class="math">\(\mathbb {R}^m\)</span>, point b in this subspace has more than one mapping x which is in <span class="math">\(\mathbb {R}^m\)</span>. Points b which is not this subspace, however in <span class="math">\(\mathbb{R}^m\)</span>, could not find any mapping points x</li>
+</ul>
+<p><a href="https://math.stackexchange.com/a/21107">math.stackexchange: Importance of matrix rank</a><br />
+<a href="https://www.zhihu.com/question/21605094">知乎</a></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

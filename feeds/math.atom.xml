@@ -1,5 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-26T10:25:50+01:00</updated><entry><title>线性方程组</title><link href="/xian-xing-fang-cheng-zu.html" rel="alternate"></link><updated>2018-12-26T10:25:50+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-26:xian-xing-fang-cheng-zu.html</id><summary type="html"></summary><category term="Math"></category></entry><entry><title>矩阵乘法</title><link href="/ju-zhen-cheng-fa.html" rel="alternate"></link><updated>2018-12-25T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-25:ju-zhen-cheng-fa.html</id><summary type="html">&lt;div class="math"&gt;$$C = AB, A \in \mathbb {R}^{m \times n}, b \in \mathbb {R}^{n \times l}, c \in \mathbb {R}^{m \times l}$$&lt;/div&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-26T13:07:00+01:00</updated><entry><title>Matrix rank</title><link href="/matrix-rank.html" rel="alternate"></link><updated>2018-12-26T13:07:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-26:matrix-rank.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;直观：「秩」是图像经过矩阵变换之后的空间维度&lt;/li&gt;
+&lt;li&gt;定义：「秩」是列空间的维度&lt;/li&gt;
+&lt;li&gt;物理意义：From an applied setting, rank of a matrix denotes the information content of
+the matrix. The lower the rank, the lower is the "information content".&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我的理解：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Ax = b, \quad \textrm {where} \quad A \in \mathbb {R}^{nxn}, x, b \in \mathbb {R}^{n}$$&lt;/div&gt;
+&lt;p&gt;given a point (vector)x in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;, apply the transformation, map it into another point b.
+As column of C is the combination of columns of A, this indicates point b is
+within the columns space of A.
+In other words, point b is a point inside the vector space defined by A's columns.&lt;/p&gt;
+&lt;p&gt;Rank by definition from &lt;a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)"&gt;wiki&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;in linear algebra, the rank of a matrix A is the dimension of the vector space
+generated (or spanned) by its columns.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Additional if some columns inside A doesn't provide more information(constraint) to the
+space. They don't define new dimentions. They are just the combinations (scalar multiply and vector add) 
+of other 'essential' columns. The number of the 'essential' columns which defines the
+vector space is rank.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/linear_solution.png" alt="Liner solution" title="linear solution" style="max-width:100%;max-height=100%"/&gt;&lt;/p&gt;
+&lt;p&gt;b is any point in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;. A defines a space with its column vectors.
+Of course, if you want this system of equation has a solution, b must be in the
+space defined by A. In another way, a given point x will be transformed into a
+point in space defined by A. You might also want this process to be reversible,
+so that you can recover x given b and system matrix A.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A defines the whole vector space &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;, any point x in $\mathbb {R}^n has a unique mapping b&lt;/li&gt;
+&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^n\)&lt;/span&gt;, multiple points in $\mathbb {R}^n will map to the same point in space constrained by A.&lt;/li&gt;
+&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;, point b in this subspace has a unique mapping x which is in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;. Points b which is not this subspace, however in &lt;span class="math"&gt;\(\mathbb{R}^m\)&lt;/span&gt;, could not find any mapping points x&lt;/li&gt;
+&lt;li&gt;A defines a subspace in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;, point b in this subspace has more than one mapping x which is in &lt;span class="math"&gt;\(\mathbb {R}^m\)&lt;/span&gt;. Points b which is not this subspace, however in &lt;span class="math"&gt;\(\mathbb{R}^m\)&lt;/span&gt;, could not find any mapping points x&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://math.stackexchange.com/a/21107"&gt;math.stackexchange: Importance of matrix rank&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://www.zhihu.com/question/21605094"&gt;知乎&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>线性方程组</title><link href="/xian-xing-fang-cheng-zu.html" rel="alternate"></link><updated>2018-12-26T10:25:50+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-26:xian-xing-fang-cheng-zu.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In general, a system with fewer equations than unknowns has infinitely many
+solutions, but it may have no solution. Such a system is known as an
+underdetermined system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In general(not always), a system with more equations than unknowns has no solution. Such a
+system is also known as an overdetermined system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In general, a system with the same number of equations and unknowns has a
+single unique solution.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;\begin{align}
+Ax &amp;amp;= b, \\
+A^{-1}Ax &amp;amp;= A^{-1}b, \\
+x &amp;amp;= A^{-1}b,
+\end{align}&lt;/div&gt;
+&lt;p&gt;
+如果这个方程有唯一解，变换可逆，A可逆. 这意味着，从b，可以还原应用了变换之前的x。
+这个变换是可逆的。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>矩阵乘法</title><link href="/ju-zhen-cheng-fa.html" rel="alternate"></link><updated>2018-12-25T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-25:ju-zhen-cheng-fa.html</id><summary type="html">&lt;div class="math"&gt;$$C = AB, A \in \mathbb {R}^{m \times n}, b \in \mathbb {R}^{n \times l}, c \in \mathbb {R}^{m \times l}$$&lt;/div&gt;
 &lt;p&gt;For example:
 &lt;/p&gt;
 &lt;div class="math"&gt;$$
