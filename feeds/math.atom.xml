@@ -1,5 +1,546 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2018-12-26T13:07:00+01:00</updated><entry><title>Matrix rank</title><link href="/matrix-rank.html" rel="alternate"></link><updated>2018-12-26T13:07:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-26:matrix-rank.html</id><summary type="html">&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2019-01-11T18:03:09+01:00</updated><entry><title>Pseudo Inverse</title><link href="/pseudo-inverse.html" rel="alternate"></link><updated>2019-01-11T18:03:09+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-11:pseudo-inverse.html</id><summary type="html">&lt;p&gt;In mathematics, and in particular linear algebra, a pseudoinverse A+ of a matrix
+A is a generalization of the inverse matrix. The most widely known type of
+matrix pseudoinverse is the Moore–Penrose inverse, which was independently
+described by E. H. Moore in 1920, Arne Bjerhammar in 1951, and Roger Penrose in
+1955. Earlier, Erik Ivar Fredholm had introduced the concept of a pseudoinverse
+of integral operators in 1903. When referring to a matrix, the term
+pseudoinverse, without further specification, is often used to indicate the
+Moore–Penrose inverse. The term generalized inverse is sometimes used as a
+synonym for pseudoinverse.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A common use of the pseudoinverse is to compute a 'best fit' (least squares)
+solution to a system of linear equations that lacks a unique solution
+(see below under § Applications). Another use is to find the minimum
+(Euclidean) norm solution to a system of linear equations with multiple
+solutions. The pseudoinverse facilitates the statement and proof of results in
+linear algebra.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The pseudoinverse is defined and unique for all matrices whose entries are real
+or complex numbers. It can be computed using the singular value decomposition. &lt;/p&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>线性变换的理解</title><link href="/xian-xing-bian-huan-de-li-jie.html" rel="alternate"></link><updated>2019-01-10T23:13:22+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-10:xian-xing-bian-huan-de-li-jie.html</id><summary type="html">&lt;p&gt;给定一个向量x
+[数值] = [坐标] x [坐标系统基]&lt;/p&gt;
+&lt;p&gt;linear transformation可以理解成坐标系统的改变.
+例如将x变换到以[v1, v2, ... vn]为basis的系统下，&lt;/p&gt;
+&lt;div class="math"&gt;\begin{aligned}
+X &amp;amp;= c_{1}v_{1} + c_{2}v_{2} + ... c_{n}v_{n} \\
+X &amp;amp;= [v_{1} v_{2} ... v_{n}] [c_{1} c_{2} ...]^{T} \\
+X &amp;amp;= WC  (1)\\
+C &amp;amp;= W^{-1}X (2)
+\end{aligned}&lt;/div&gt;
+&lt;p&gt;(2) 为变换，C为X变换后，在新的坐标系下的坐标. &lt;span class="math"&gt;\(W^{-1]\)&lt;/span&gt;为变换矩阵。
+(1) 为逆变换，在给定C后，恢复在原始坐标系下的数据&lt;/p&gt;
+&lt;p&gt;所以对于一个好的变换矩阵，需要有下面两个特征&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;快速的矩阵乘法与求逆，这样才可以快速进行运算。例如使用傅里叶变化矩阵的快速傅里叶变换与Wavelet变换矩阵&lt;/li&gt;
+&lt;li&gt;好的压缩特性，尽量少的坐标轴包含尽量多的信息。这样可以忽略不重要的信息，进行降维，实现压缩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=vGkn-3NFGck&amp;amp;t=1709s"&gt;Lec 31 | MIT 18.06 Linear Algebra, Spring 2005&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>SVD</title><link href="/svd.html" rel="alternate"></link><updated>2019-01-10T16:21:16+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-10:svd.html</id><summary type="html">&lt;h1&gt;特征值分解&lt;/h1&gt;
+&lt;p&gt;要求: 方阵
+线性代数中，特征分解（Eigendecomposition），又称谱分解（Spectral decomposition）
+是将矩阵分解为由其特征值和特征向量表示的矩阵之积的方法。
+需要注意只有对可对角化矩阵才可以施以特征分解.&lt;/p&gt;
+&lt;p&gt;令 A 是一个 N×N 的方阵，且有 N 个线性无关的特征向量 &lt;span class="math"&gt;\(q_{i}\,\,(i=1,\dots ,N)\)&lt;/span&gt;。
+这样， A 可以被分解为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\mathbf {A} =\mathbf {Q} \mathbf {\Lambda } \mathbf {Q} ^{-1}$$&lt;/div&gt;
+&lt;p&gt;
+其中 Q 是N×N方阵，且其第 i列为 A 的特征向量 &lt;span class="math"&gt;\(q_{i}\)&lt;/span&gt;。 Λ 是对角矩阵，
+其对角线上的元素为对应的特征值，也即 &lt;span class="math"&gt;\(\Lambda_{ii}=\lambda_{i}\)&lt;/span&gt;。这里需要注意
+只有可对角化矩阵才可以作特征分解。 比如
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{bmatrix}1&amp;amp;1\\0&amp;amp;1\\\end{bmatrix}$$&lt;/div&gt;
+&lt;p&gt;
+不能被对角化，也就不能特征分解。&lt;/p&gt;
+&lt;p&gt;一般来说，特征向量 &lt;span class="math"&gt;\( q_{i}\,\,(i=1,\dots ,N)\)&lt;/span&gt; 一般被单位化（但这不是必须的）。
+未被单位化的特征向量组 &lt;span class="math"&gt;\( v_{i}\,\,(i=1,\dots ,N)\)&lt;/span&gt;, 也可以作为 Q 的列向量。
+这一事实可以这样理解： Q 中向量的长度都被&lt;span class="math"&gt;\(Q^{−1}\)&lt;/span&gt;抵消了。&lt;/p&gt;
+&lt;h1&gt;谱分解&lt;/h1&gt;
+&lt;p&gt;要求: 正规矩阵&lt;/p&gt;
+&lt;h1&gt;奇异值分解Singular Value Decomposition&lt;/h1&gt;
+&lt;h2&gt;定义&lt;/h2&gt;
+&lt;p&gt;奇异值分解是一个能适用于任意的矩阵的一种分解的方法
+SVD 分解说的是：假设 M 是一个 m×n 的矩阵，其中的元素全部属于数域 𝕂
+（实数域 ℝ 或复数域 ℂ）。那么，存在 m×m 的酉矩阵 U 和 n×n 的酉矩阵 V
+使得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\mathbf M = \mathbf U\mathbf\Sigma\mathbf V^{\mathsf H}$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 是 m×n 的非负实数对角矩阵；并且&lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 对角线上的元素
+&lt;span class="math"&gt;\(\Sigma_{i,i}\)&lt;/span&gt; 是 M 的奇异值。
+一般来说，我们偏好将这些奇异值按从大到小的顺序排列，这样一来 Σ 就由 M 唯一确定了。
+另一方面，因为 U 和 V 都是酉矩阵，所以 U 和 V 的列向量分别张成 𝕂m 和 𝕂n 的一组标
+准正交基。我们将 U 的列向量记作 u⃗ i,1⩽i⩽m；将 V 的列向量记作 v⃗ j,1⩽j⩽n；同时，
+将 Σ 对角线上的第 i 个元素记作 σk,1⩽k⩽min(m,n)。那么，SVD 分解实际可以将矩阵 M
+写作一个求和形式
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\mathbf M = \sum_{i = 1}^{\min(m, n)}\Sigma_i\vec u_i\vec v_i^{\mathsf T}$$&lt;/div&gt;
+&lt;h2&gt;SVD计算&lt;/h2&gt;
+&lt;h2&gt;SVD分解几何解释&lt;/h2&gt;
+&lt;div class="math"&gt;$$\mathbf M = \mathbf U\mathbf\Sigma\mathbf V^{\mathsf H}$$&lt;/div&gt;
+&lt;p&gt;
+旋转, 缩放, 旋转&lt;/p&gt;
+&lt;p&gt;U 和 V 都是旋转矩阵 (标准正交基)&lt;/p&gt;
+&lt;h2&gt;SVD应用&lt;/h2&gt;
+&lt;p&gt;SVD分解至少有两方面作用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分析了解原矩阵的主要特征和携带的信息（取若干最大的奇异值），这引出了主成分分析（PCA）；&lt;/li&gt;
+&lt;li&gt;丢弃忽略原矩阵的次要特征和携带的次要信息（丢弃若干较小的奇异值），这引出了信息有损压缩、矩阵低秩近似等话题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;奇异向量的现实意义&lt;/h2&gt;
+&lt;p&gt;SVD也可以得到协方差矩阵XTX最大的d个特征向量张成的矩阵，但是SVD有个好处，有一些SVD的实现算法可以不求先求出协方差矩阵XTX，也能求出我们的右奇异矩阵V&lt;/p&gt;
+&lt;h1&gt;参考整理来源&lt;/h1&gt;
+&lt;p&gt;https://www.zhihu.com/question/22237507&lt;br /&gt;
+https://liam.page/2017/11/22/SVD-for-Human-Beings/&lt;br /&gt;
+https://www.cnblogs.com/pinard/p/6251584.html  &lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>"美"的矩阵</title><link href="/mei-de-ju-zhen.html" rel="alternate"></link><updated>2019-01-09T16:56:43+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-09:mei-de-ju-zhen.html</id><summary type="html">&lt;p&gt;"美"的矩阵形式&lt;/p&gt;
+&lt;h1&gt;identity matrix 单位矩阵&lt;/h1&gt;
+&lt;h1&gt;Unitary matrix 酉矩阵&lt;/h1&gt;
+&lt;h1&gt;Normal matrix 正规矩阵&lt;/h1&gt;
+&lt;h1&gt;Orthogonal matrix&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
+&lt;p&gt;An orthogonal matrix is a square matrix whose columns and rows are orthogonal
+unit vectors (i.e., orthonormal vectors), i.e.
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Q^{T} Q = Q Q^{T} = I$$&lt;/div&gt;
+&lt;p&gt;
+where &lt;span class="math"&gt;\(I\)&lt;/span&gt; is the identity matrix.
+This leads to the equivalent characterization: a matrix Q is orthogonal if
+its transpose is equal to its inverse:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Q^{T} = Q^{−1}. $$&lt;/div&gt;
+&lt;p&gt;An orthogonal matrix Q is necessarily invertible (with inverse &lt;span class="math"&gt;\(Q^{−1} = Q^{T}\)&lt;/span&gt;),
+unitary (&lt;span class="math"&gt;\(Q^{−1} = Q^{∗}\)&lt;/span&gt;) and therefore normal (&lt;span class="math"&gt;\(Q^{∗}Q = QQ^{∗}\)&lt;/span&gt;) in the reals.
+The determinant of any orthogonal matrix is either +1 or −1. As a linear
+transformation, an orthogonal matrix preserves the dot product of vectors, and
+therefore acts as an isometry of Euclidean space, such as a rotation, reflection
+or rotoreflection. In other words, it is a unitary transformation.&lt;/p&gt;
+&lt;p&gt;The set of n × n orthogonal matrices forms a group &lt;span class="math"&gt;\(O(n)\)&lt;/span&gt;, known as
+the orthogonal group. The subgroup &lt;span class="math"&gt;\(SO(n)\)&lt;/span&gt; consisting of orthogonal
+matrices with determinant +1 is called the special orthogonal
+group, and each of its elements is a special orthogonal matrix. As
+a linear transformation, every special orthogonal matrix acts as a
+rotation.&lt;/p&gt;
+&lt;h2&gt;Decompositions&lt;/h2&gt;
+&lt;p&gt;A number of important matrix decompositions (Golub &amp;amp; Van Loan 1996) involve
+orthogonal matrices, including especially:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QR decomposition&lt;br /&gt;
+    M = QR, Q orthogonal, R upper triangular&lt;/li&gt;
+&lt;li&gt;Singular value decomposition&lt;br /&gt;
+    M = UΣVT, U and V orthogonal, Σ diagonal matrix&lt;/li&gt;
+&lt;li&gt;Eigendecomposition of a symmetric matrix (decomposition according to the spectral theorem)&lt;br /&gt;
+    S = QΛQT, S symmetric, Q orthogonal, Λ diagonal&lt;/li&gt;
+&lt;li&gt;Polar decomposition&lt;br /&gt;
+    M = QS, Q orthogonal, S symmetric non-negative definite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;diagonal matrix&lt;/h1&gt;
+&lt;h2&gt;diagonal matrix with eigenvalue&lt;/h2&gt;
+&lt;h1&gt;orthonormal matrix&lt;/h1&gt;
+&lt;h1&gt;symmetric matrix:&lt;/h1&gt;
+&lt;p&gt;A symmetric matrix is a square matrix that is equal to its transpose. Formally,
+&lt;/p&gt;
+&lt;div class="math"&gt;$$A^{T} = A$$&lt;/div&gt;
+&lt;p&gt;
+A nxn symmetric matrix A not only has a nice structure, but it also satisfies
+the following (can be diagonaized, S = QΛQT, S symmetric, Q orthogonal, Λ diagonal):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A has exactly n (not necessarily distinct) eigenvalues&lt;/li&gt;
+&lt;li&gt;There exists a set of n eigenvectors, one for each eigenvalue, that are mututally orthogonal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thus, the situation encountered with the matrix D in the example above cannot
+happen with a symmetric matrix: A symmetric matrix has n eigenvalues and there
+exist n linearly independent eigenvectors (because of orthogonality) even if
+the eigenvalues are not distinct.&lt;/p&gt;
+&lt;p&gt;Proof of eigenvalue properties of the real symmetric matrix&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;矩阵的相似变换可以把一个比较丑的矩阵变成一个比较美的矩阵，而保证这两个矩阵都是描述了同一个线性变换。至于什么样的矩阵是“美”的，什么样的是“丑”的，我们说对角阵是美的。在线性代数中，我们会看到，如果把复杂的矩阵变换成对角矩阵，作用完了之后再变换回来，这种转换很有用处，比如求解矩阵的n次幂！而学了矩阵论之后你会发现，矩阵的n次幂是工程中非常常见的运算。这里顺便说一句，将矩阵对角化在控制工程和机械振动领域具有将复杂方程解耦的妙用！总而言之，相似变换是为了简化计算！&lt;/p&gt;
+&lt;p&gt;从另一个角度理解矩阵就是：矩阵主对角线上的元素表示自身和自身的关系，其他位置的元素aij表示i位置和j位置元素之间的相互关系。那么好，特征值问题其实就是选取了一组很好的基，就把矩阵 i位置和j位置元素之间的相互关系消除了。而且因为是相似变换，并没有改变矩阵本身的特性。因此矩阵对角化才如此的重要！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;similar matrix:&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;have same eigenvalues&lt;/li&gt;
+&lt;li&gt;matrices represent the same thing in different basis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;projection matrix:&lt;/h1&gt;
+&lt;p&gt;In linear algebra and functional analysis, a projection is a linear
+transformation P from a vector space to itself such that &lt;span class="math"&gt;\(P^2 = P\)&lt;/span&gt;. That is,
+whenever P is applied twice to any value, it gives the same
+result as if it were applied once (idempotent). It leaves its
+image unchanged.[1] Though abstract, this definition of
+"projection" formalizes and generalizes the idea of graphical
+projection. One can also consider the effect of a projection on
+a geometrical object by examining the effect of the projection
+on points in the object.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Orthogonal_matrix &amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;http://farside.ph.utexas.edu/teaching/336k/Newton/node66.html&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>Positive definite matrix</title><link href="/positive-definite-matrix.html" rel="alternate"></link><updated>2019-01-09T16:03:03+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-09:positive-definite-matrix.html</id><summary type="html">&lt;h1&gt;Definition&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
+&lt;p&gt;In linear algebra, a &lt;strong&gt;symmetric&lt;/strong&gt; &lt;span class="math"&gt;\(n \times n\)&lt;/span&gt; real matrix &lt;span class="math"&gt;\(M\)&lt;/span&gt; is said to be
+positive definite if the scalar &lt;span class="math"&gt;\(z^{T}Mz\)&lt;/span&gt; is strictly positive for every
+non-zero column vector &lt;span class="math"&gt;\(z\)&lt;/span&gt; of &lt;span class="math"&gt;\(n\)&lt;/span&gt; real numbers. Here &lt;span class="math"&gt;\(z^{\textsf {T}}\)&lt;/span&gt; denotes
+the transpose of &lt;span class="math"&gt;\(z\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;More generally, an &lt;span class="math"&gt;\(n \times n\)&lt;/span&gt; Hermitian matrix &lt;span class="math"&gt;\(M\)&lt;/span&gt; is said to be positive
+definite if the scalar &lt;span class="math"&gt;\(z^{*}Mz\)&lt;/span&gt; is strictly positive for every non-zero column
+vector &lt;span class="math"&gt;\(z\)&lt;/span&gt; of &lt;span class="math"&gt;\(n\)&lt;/span&gt; complex numbers. Here &lt;span class="math"&gt;\(z^{*}\)&lt;/span&gt; denotes the conjugate transpose
+of &lt;span class="math"&gt;\(z\)&lt;/span&gt;. Note that &lt;span class="math"&gt;\(z^{∗} M z\)&lt;/span&gt; is automatically real since &lt;span class="math"&gt;\(M\)&lt;/span&gt; is Hermitian.&lt;/p&gt;
+&lt;h1&gt;与Diagonalization, eigenvalues和eigenvectorg关系&lt;/h1&gt;
+&lt;h1&gt;Quadratic forms, convexity, optimization&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
+&lt;p&gt;The (purely) quadratic form associated with a real &lt;span class="math"&gt;\(n\times n\)&lt;/span&gt; matrix M is the
+function &lt;span class="math"&gt;\(Q : \mathbb {R}^n \to \mathbb R\)&lt;/span&gt; such that &lt;span class="math"&gt;\(Q(x)=x^{T}Mx\)&lt;/span&gt; for all
+&lt;span class="math"&gt;\(x\)&lt;/span&gt;. &lt;span class="math"&gt;\(M\)&lt;/span&gt; can be assumed symmetric by replacing it with  &lt;span class="math"&gt;\(1/2(M+M^{T})\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;A symmetric matrix &lt;span class="math"&gt;\(M\)&lt;/span&gt; is positive definite if and only if its quadratic form
+is a strictly &lt;strong&gt;convex&lt;/strong&gt; function.&lt;/p&gt;
+&lt;p&gt;More generally, any quadratic function from &lt;span class="math"&gt;\(\mathbb {R}^{n}\)&lt;/span&gt; to &lt;span class="math"&gt;\(\mathbb {R}\)&lt;/span&gt;
+can be written as &lt;span class="math"&gt;\( x^{T}Mx+x^{T}b+c\)&lt;/span&gt; where &lt;span class="math"&gt;\(M\)&lt;/span&gt; is a symmetric &lt;span class="math"&gt;\(n\times n\)&lt;/span&gt;
+matrix, &lt;span class="math"&gt;\(b\)&lt;/span&gt; is a real &lt;span class="math"&gt;\(n\)&lt;/span&gt;-vector, and &lt;span class="math"&gt;\(c\)&lt;/span&gt; a real constant. This quadratic
+function is strictly convex, and hence has a unique finite global minimum, if
+and only if &lt;span class="math"&gt;\(M\)&lt;/span&gt; is positive definite. For this reason, positive definite
+matrices play an important role in optimization problems.&lt;/p&gt;
+&lt;h1&gt;Additional information:&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://stats.stackexchange.com/questions/224005/why-are-symmetric-positive-definite-spd-matrices-so-important"&gt;StackExchange: Why are symmetric positive definite (SPD) matrices so important?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://setosa.io/ev/eigenvectors-and-eigenvalues/"&gt;Eigenvectors and Eigenvalues: Explained Visually&lt;/a&gt;&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Definiteness_of_a_matrix&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category><category term="Optimization"></category></entry><entry><title>EigenValue EigenVector</title><link href="/eigenvalue-eigenvector.html" rel="alternate"></link><updated>2019-01-06T17:22:56+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-06:eigenvalue-eigenvector.html</id><summary type="html">&lt;p&gt;我们知道，矩阵乘法对应了一个变换，是把任意一个向量变成另一个方向或长度都大多不同的新向量。在这个变换的过程中，原向量主要发生旋转、伸缩的变化。如果矩阵对某一个向量或某些向量只发生伸缩变换，不对这些向量产生旋转的效果，那么这些向量就称为这个矩阵的特征向量，伸缩的比例就是特征值。&lt;/p&gt;
+&lt;p&gt;特征值eigenvalue和特征向量eigenvector的一大应用是用于大量数据的降维
+压缩，简化计算
+相似矩阵&lt;/p&gt;
+&lt;p&gt;https://zhuanlan.zhihu.com/p/31003468&lt;/p&gt;
+&lt;p&gt;http://setosa.io/ev/eigenvectors-and-eigenvalues/&lt;/p&gt;
+&lt;p&gt;https://www.zhihu.com/question/21874816&lt;/p&gt;
+&lt;p&gt;http://mlwiki.org/index.php/Eigendecomposition&lt;/p&gt;
+&lt;p&gt;https://blog.csdn.net/dongtinghong/article/details/14216139&lt;/p&gt;
+&lt;p&gt;https://stats.stackexchange.com/questions/224005/why-are-symmetric-positive-definite-spd-matrices-so-important&lt;/p&gt;
+&lt;p&gt;Still, it is important to know what determinants are, and their basic properties. In 18.06, we mainly use determinants as a conceptual tool to help us understand eigenvalues via the characteristic polynomial — although, again, this is not a practical computational tool for eigenvalues, which are nowadays computed by very different methods.&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Singular matrix</title><link href="/singular-matrix.html" rel="alternate"></link><updated>2019-01-05T12:26:08+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-05:singular-matrix.html</id><summary type="html">&lt;p&gt;Singular Matrix or Noninvertible Matrix&lt;/p&gt;
+&lt;p&gt;A square matrix which does not have an inverse. A matrix is singular if and only if its determinant is zero.&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Normal Equation</title><link href="/normal-equation.html" rel="alternate"></link><updated>2019-01-04T18:08:16+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-04:normal-equation.html</id><summary type="html">&lt;p&gt;从MIT公开课Linear Algebra从了解到，这里做了很好的总结.
+在线性方程组条件下，Normal equation解法与梯度下降法一样，梯度下降法一次迭代就可以稳定。可以证明，与正规方程解法意义相同。同时，正规方程解法具有几何意义.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/u013802188/article/details/40181601"&gt;CSDN:正规方程组(The normal equations)&lt;/a&gt;
+&lt;a href="http://mlwiki.org/index.php/Normal_Equation"&gt;ML Wiki: Normal equation&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Interpolation</title><link href="/interpolation.html" rel="alternate"></link><updated>2019-01-03T23:32:10+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-03:interpolation.html</id><summary type="html">&lt;p&gt;In the mathematical field of numerical analysis, interpolation is a method of
+constructing new data points within the range of a discrete set of known data
+points.&lt;/p&gt;
+&lt;p&gt;In engineering and science, one often has a number of data points, obtained by
+sampling or experimentation, which represent the values of a function for a
+limited number of values of the independent variable. It is often required to
+interpolate, i.e., estimate the value of that function for an intermediate
+value of the independent variable.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;linear interpolation.
+Linear interpolation is quick and easy, but&lt;ul&gt;
+&lt;li&gt;It is not very precise.&lt;/li&gt;
+&lt;li&gt;The interpolant is not differentiable at the point &lt;span class="math"&gt;\(x_k\)&lt;/span&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Polynomial interpolation
+Overcomes most of the problems of linear interpolation. (error, differentiable)
+However, polynomial interpolation also has some disadvantages.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Calculating the interpolating polynomial is computationally expensive
+compared to linear interpolation.&lt;/li&gt;
+&lt;li&gt;polynomial interpolation may exhibit oscillatory artifacts,
+  especially at the end points (see Runge's phenomenon).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spline interpolation&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;smaller error than linear interpolation&lt;/li&gt;
+&lt;li&gt;interpolant is smoother.&lt;/li&gt;
+&lt;li&gt;the interpolant is easier to evaluate than the high-degree polynomials used
+in polynomial interpolation&lt;/li&gt;
+&lt;li&gt;However, the global nature of the basis functions leads to
+ill-conditioning. This is completely mitigated by using splines of compact
+support, such as are implemented in Boost.Math and discussed in Kress.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A simple (well behaved) differentiable interpolation is the Cubic
+Hermite Spline&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Interpolation#Polynomial_interpolation"&gt;Wiki: Interpolation&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>Matrix rank</title><link href="/matrix-rank.html" rel="alternate"></link><updated>2018-12-26T13:07:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-26:matrix-rank.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;直观：「秩」是图像经过矩阵变换之后的空间维度&lt;/li&gt;
 &lt;li&gt;定义：「秩」是列空间的维度&lt;/li&gt;
 &lt;li&gt;物理意义：From an applied setting, rank of a matrix denotes the information content of
@@ -483,6 +1024,7 @@ where &lt;span class="math"&gt;\(I\)&lt;/span&gt; is the identity matrix. &lt;/p
 &lt;p&gt;&lt;img src="images/differentiation.jpeg" alt="Automatic differentiation in
 machine learning: a survey" title="differentiation" style="max-width: 100%; max-height: 100%;"/&gt;&lt;/p&gt;
 &lt;p&gt;参考:&lt;br /&gt;
+&lt;a href="http://ceres-solver.org/derivatives.html"&gt;Ceres Derivatives&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://toutiao.io/posts/a5qqmj/preview"&gt;计算机求导的四种方式&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://arxiv.org/abs/1502.05767"&gt;Automatic differentiation in machine learning: a survey&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>line search</title><link href="/line-search.html" rel="alternate"></link><updated>2018-12-19T22:23:31+00:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:line-search.html</id><summary type="html">&lt;p&gt;From &lt;a href="https://en.wikipedia.org/wiki/Line_search"&gt;Wiki&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -676,13 +1218,241 @@ It describes the &lt;strong&gt;tangent line/plane&lt;/strong&gt; over that point
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</title><link href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html" rel="alternate"></link><updated>2018-12-19T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html</id><summary type="html">&lt;ul&gt;
+&lt;/script&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</title><link href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html" rel="alternate"></link><updated>2018-12-19T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-19:xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html</id><summary type="html">&lt;h2&gt;对比&lt;/h2&gt;
+&lt;ul&gt;
 &lt;li&gt;平滑插值&lt;/li&gt;
 &lt;li&gt;紧凑&lt;/li&gt;
 &lt;li&gt;无奇异性&lt;/li&gt;
 &lt;li&gt;内存和运算速度更优。内存上，一个四元数只占四个浮点数；在四元数相乘时可以直接在这四个数上进行加减乘的基本运算，比旋转向量转换成旋转矩阵相乘后再转换回旋转向量要高效得多（Rodrigues 变换还涉及除法和三角函数等高级运算）。这些在嵌入式平台上是不小的优势。何况，浮点数运算总是会有误差的，运算越多，误差累计越多，所以理论上四元数相乘也有精度上的优势。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href="https://blog.csdn.net/EliminatedAcmer/article/details/81407176"&gt;CSDN总结&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>Bayes and Kalman Filter</title><link href="/bayes-and-kalman-filter.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bayes-and-kalman-filter.html</id><summary type="html">&lt;p&gt;SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.&lt;br/&gt;
+&lt;h2&gt;transforms axis–angle coordinates to versors (unit quaternions):&lt;/h2&gt;
+&lt;p&gt;the following expression transforms axis–angle coordinates to versors (unit quaternions):
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Q=\left(\cos {\tfrac {\theta }{2}},{\boldsymbol {\omega }}\sin {\tfrac {\theta }{2}}\right)$$&lt;/div&gt;
+&lt;h2&gt;Recovering the axis-angle representation&lt;/h2&gt;
+&lt;p&gt;Two rotation quaternions can be combined into one equivalent quaternion by the relation:
+&lt;span class="math"&gt;\(\mathbf {q} '=\mathbf {q} _{2}\mathbf {q} _{1}\)&lt;/span&gt;,
+in which q′ corresponds to the rotation q1 followed by the rotation q2.
+(Note that quaternion multiplication is not commutative.)&lt;/p&gt;
+&lt;p&gt;The expression &lt;span class="math"&gt;\(\mathbf {q} \mathbf {p} \mathbf {q} ^{-1}\)&lt;/span&gt; rotates any vector
+quaternion &lt;span class="math"&gt;\(\mathbf {p}\)&lt;/span&gt; around an axis given by the vector a &lt;span class="math"&gt;\(\mathbf {a}\)&lt;/span&gt; by
+the angle &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;, where a &lt;span class="math"&gt;\(\mathbf {a}\)&lt;/span&gt; and &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; depends on the
+quaternion &lt;span class="math"&gt;\(\mathbf {q} =q_{r}+q_{i}\mathbf {i} +q_{j}\mathbf {j} +q_{k}\mathbf {k}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\mathbf {a}\)&lt;/span&gt; and &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; can be found from the following equations:
+    &lt;/p&gt;
+&lt;div class="math"&gt;$$ (a_{x},a_{y},a_{z})\ =\ {\frac {(q_{i},q_{j},q_{k})}{\sqrt {q_{i}^{2}+q_{j}^{2}+q_{k}^{2}}}}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$ \theta \ =\ 2\operatorname {atan2} \left({\sqrt {q_{i}^{2}+q_{j}^{2}+q_{k}^{2}}},q_{r}\right)$$&lt;/div&gt;
+&lt;p&gt;
+where &lt;span class="math"&gt;\(\mathrm {atan2}\)&lt;/span&gt; is the two-argument arctangent. Care should be taken when the quaternion approaches a scalar, since due to degeneracy the axis of an identity rotation is not well-defined&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/EliminatedAcmer/article/details/81407176"&gt;CSDN总结&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;quaternion to axis–angle coordinates&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;inline&lt;/span&gt; &lt;span class="n"&gt;Eigen&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Vector3d&lt;/span&gt; &lt;span class="n"&gt;toAngleAxis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Eigen&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Quaterniond&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;quaterd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;angle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Eigen&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Quaterniond&lt;/span&gt; &lt;span class="n"&gt;unit_quaternion&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;quaterd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalized&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;norm&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;squared_w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="c1"&gt;// Atan-based log thanks to&lt;/span&gt;
+    &lt;span class="c1"&gt;//&lt;/span&gt;
+    &lt;span class="c1"&gt;// C. Hertzberg et al.:&lt;/span&gt;
+    &lt;span class="c1"&gt;// &amp;quot;Integrating Generic Sensor Fusion Algorithms with Sound State&lt;/span&gt;
+    &lt;span class="c1"&gt;// Representation through Encapsulation of Manifolds&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;// Information Fusion, 2011&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;SMALL_EPS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// If quaternion is normalized and n=1, then w should be 1;&lt;/span&gt;
+        &lt;span class="c1"&gt;// w=0 should never happen here!&lt;/span&gt;
+        &lt;span class="n"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fabs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;SMALL_EPS&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;squared_w&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fabs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;SMALL_EPS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;M_PI&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="k"&gt;else&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;M_PI&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;atan&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;angle&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;angle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;inline&lt;/span&gt; &lt;span class="n"&gt;Eigen&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Quaterniond&lt;/span&gt; &lt;span class="n"&gt;toQuaterniond&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Eigen&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Vector3d&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;v3d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;angle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;theta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v3d&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;norm&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;angle&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;angle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;half_theta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;imag_factor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;real_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;half_theta&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;SMALL_EPS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;theta_sq&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;theta_po4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;theta_sq&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta_sq&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;imag_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.0208333&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta_sq&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;0.000260417&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta_po4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;sin_half_theta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;half_theta&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;imag_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin_half_theta&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Eigen&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Quaterniond&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;real_factor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;imag_factor&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;v3d&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+            &lt;span class="n"&gt;imag_factor&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;v3d&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+            &lt;span class="n"&gt;imag_factor&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;v3d&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;SOPHUS_FUNC&lt;/span&gt; &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;SO3&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;expAndTheta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Tangent&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;SOPHUS_ENSURE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;must not be nullptr.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;theta_sq&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;squaredNorm&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theta_sq&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;half_theta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;imag_factor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;real_factor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;Constants&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;theta_po4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;theta_sq&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;theta_sq&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;imag_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;48.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;theta_sq&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+            &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;3840.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;theta_po4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;real_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;8.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;theta_sq&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+            &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;384.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;theta_po4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;sin_half_theta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;half_theta&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;imag_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin_half_theta&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;real_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;half_theta&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;SO3&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unit_quaternion_nonconst&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
+        &lt;span class="n"&gt;QuaternionMember&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;real_factor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;imag_factor&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+                &lt;span class="n"&gt;imag_factor&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;imag_factor&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="n"&gt;SOPHUS_ENSURE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;squaredNorm&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;
+            &lt;span class="n"&gt;Sophus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Constants&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;SO3::exp failed! omega: %, real: %, img: %&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transpose&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;real_factor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;imag_factor&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;SOPHUS_FUNC&lt;/span&gt; &lt;span class="n"&gt;TangentAndTheta&lt;/span&gt; &lt;span class="n"&gt;logAndTheta&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;TangentAndTheta&lt;/span&gt; &lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;atan&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;squared_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;squaredNorm&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;squared_n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+    &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Atan-based log thanks to&lt;/span&gt;
+    &lt;span class="c1"&gt;//&lt;/span&gt;
+    &lt;span class="c1"&gt;// C. Hertzberg et al.:&lt;/span&gt;
+    &lt;span class="c1"&gt;// &amp;quot;Integrating Generic Sensor Fusion Algorithms with Sound State&lt;/span&gt;
+    &lt;span class="c1"&gt;// Representation through Encapsulation of Manifolds&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;// Information Fusion, 2011&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;Constants&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// If quaternion is normalized and n=0, then w should be 1;&lt;/span&gt;
+        &lt;span class="c1"&gt;// w=0 should never happen here!&lt;/span&gt;
+        &lt;span class="n"&gt;SOPHUS_ENSURE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;Constants&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+                &lt;span class="s"&gt;&amp;quot;Quaternion (%) should be normalized!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;transpose&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+        &lt;span class="n"&gt;Scalar&lt;/span&gt; &lt;span class="n"&gt;squared_w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
+            &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;squared_n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;squared_w&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;Constants&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Constants&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Constants&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Scalar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;atan&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;theta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tangent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;two_atan_nbyw_by_n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;unit_quaternion&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>Bayes and Kalman Filter</title><link href="/bayes-and-kalman-filter.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:bayes-and-kalman-filter.html</id><summary type="html">&lt;p&gt;SLAM位姿与地图估计问题有两种方式，一种是滤波，一种是优化.&lt;br/&gt;
 暂时搜集到的一些信息，没有自己整理&lt;/p&gt;
 &lt;p&gt;Bayes Filter推导(&lt;span style="color:red"&gt;基于Bayes公式与Markov assumption&lt;/span&gt;)&lt;br/&gt;
 &lt;img src="images/bayes-1.png" alt="Bayes" title="bayes" style="width:50%"/&gt;&lt;/p&gt;

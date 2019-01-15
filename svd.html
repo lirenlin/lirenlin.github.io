@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SVD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to SVD">
+                                        SVD
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-10T16:21:16+01:00">
+        <i class="icon-calendar"></i>Thu 10 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info -->                </div>
+                <h1>特征值分解</h1>
+<p>要求: 方阵
+线性代数中，特征分解（Eigendecomposition），又称谱分解（Spectral decomposition）
+是将矩阵分解为由其特征值和特征向量表示的矩阵之积的方法。
+需要注意只有对可对角化矩阵才可以施以特征分解.</p>
+<p>令 A 是一个 N×N 的方阵，且有 N 个线性无关的特征向量 <span class="math">\(q_{i}\,\,(i=1,\dots ,N)\)</span>。
+这样， A 可以被分解为
+</p>
+<div class="math">$$\mathbf {A} =\mathbf {Q} \mathbf {\Lambda } \mathbf {Q} ^{-1}$$</div>
+<p>
+其中 Q 是N×N方阵，且其第 i列为 A 的特征向量 <span class="math">\(q_{i}\)</span>。 Λ 是对角矩阵，
+其对角线上的元素为对应的特征值，也即 <span class="math">\(\Lambda_{ii}=\lambda_{i}\)</span>。这里需要注意
+只有可对角化矩阵才可以作特征分解。 比如
+</p>
+<div class="math">$$\begin{bmatrix}1&amp;1\\0&amp;1\\\end{bmatrix}$$</div>
+<p>
+不能被对角化，也就不能特征分解。</p>
+<p>一般来说，特征向量 <span class="math">\( q_{i}\,\,(i=1,\dots ,N)\)</span> 一般被单位化（但这不是必须的）。
+未被单位化的特征向量组 <span class="math">\( v_{i}\,\,(i=1,\dots ,N)\)</span>, 也可以作为 Q 的列向量。
+这一事实可以这样理解： Q 中向量的长度都被<span class="math">\(Q^{−1}\)</span>抵消了。</p>
+<h1>谱分解</h1>
+<p>要求: 正规矩阵</p>
+<h1>奇异值分解Singular Value Decomposition</h1>
+<h2>定义</h2>
+<p>奇异值分解是一个能适用于任意的矩阵的一种分解的方法
+SVD 分解说的是：假设 M 是一个 m×n 的矩阵，其中的元素全部属于数域 𝕂
+（实数域 ℝ 或复数域 ℂ）。那么，存在 m×m 的酉矩阵 U 和 n×n 的酉矩阵 V
+使得
+</p>
+<div class="math">$$\mathbf M = \mathbf U\mathbf\Sigma\mathbf V^{\mathsf H}$$</div>
+<p>
+其中 <span class="math">\(\Sigma\)</span> 是 m×n 的非负实数对角矩阵；并且<span class="math">\(\Sigma\)</span> 对角线上的元素
+<span class="math">\(\Sigma_{i,i}\)</span> 是 M 的奇异值。
+一般来说，我们偏好将这些奇异值按从大到小的顺序排列，这样一来 Σ 就由 M 唯一确定了。
+另一方面，因为 U 和 V 都是酉矩阵，所以 U 和 V 的列向量分别张成 𝕂m 和 𝕂n 的一组标
+准正交基。我们将 U 的列向量记作 u⃗ i,1⩽i⩽m；将 V 的列向量记作 v⃗ j,1⩽j⩽n；同时，
+将 Σ 对角线上的第 i 个元素记作 σk,1⩽k⩽min(m,n)。那么，SVD 分解实际可以将矩阵 M
+写作一个求和形式
+</p>
+<div class="math">$$\mathbf M = \sum_{i = 1}^{\min(m, n)}\Sigma_i\vec u_i\vec v_i^{\mathsf T}$$</div>
+<h2>SVD计算</h2>
+<h2>SVD分解几何解释</h2>
+<div class="math">$$\mathbf M = \mathbf U\mathbf\Sigma\mathbf V^{\mathsf H}$$</div>
+<p>
+旋转, 缩放, 旋转</p>
+<p>U 和 V 都是旋转矩阵 (标准正交基)</p>
+<h2>SVD应用</h2>
+<p>SVD分解至少有两方面作用：</p>
+<ul>
+<li>分析了解原矩阵的主要特征和携带的信息（取若干最大的奇异值），这引出了主成分分析（PCA）；</li>
+<li>丢弃忽略原矩阵的次要特征和携带的次要信息（丢弃若干较小的奇异值），这引出了信息有损压缩、矩阵低秩近似等话题。</li>
+</ul>
+<h2>奇异向量的现实意义</h2>
+<p>SVD也可以得到协方差矩阵XTX最大的d个特征向量张成的矩阵，但是SVD有个好处，有一些SVD的实现算法可以不求先求出协方差矩阵XTX，也能求出我们的右奇异矩阵V</p>
+<h1>参考整理来源</h1>
+<p>https://www.zhihu.com/question/22237507<br />
+https://liam.page/2017/11/22/SVD-for-Human-Beings/<br />
+https://www.cnblogs.com/pinard/p/6251584.html  </p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>ceres
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

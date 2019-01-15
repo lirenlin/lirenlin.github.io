@@ -65,6 +65,16 @@
             <ul class="nav">
                           <li class="divider-vertical"></li>
                   <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/german.html">
 						<i class="icon-folder-open icon-large"></i>German
 					</a>
@@ -77,6 +87,16 @@
                   <li >
                     <a href="/category/other.html">
 						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
 					</a>
                   </li>
                   <li >
@@ -127,13 +147,241 @@
 	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
 	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
 </footer><!-- /.post-info -->                </div>
-                <ul>
+                <h2>对比</h2>
+<ul>
 <li>平滑插值</li>
 <li>紧凑</li>
 <li>无奇异性</li>
 <li>内存和运算速度更优。内存上，一个四元数只占四个浮点数；在四元数相乘时可以直接在这四个数上进行加减乘的基本运算，比旋转向量转换成旋转矩阵相乘后再转换回旋转向量要高效得多（Rodrigues 变换还涉及除法和三角函数等高级运算）。这些在嵌入式平台上是不小的优势。何况，浮点数运算总是会有误差的，运算越多，误差累计越多，所以理论上四元数相乘也有精度上的优势。</li>
 </ul>
+<h2>transforms axis–angle coordinates to versors (unit quaternions):</h2>
+<p>the following expression transforms axis–angle coordinates to versors (unit quaternions):
+</p>
+<div class="math">$$Q=\left(\cos {\tfrac {\theta }{2}},{\boldsymbol {\omega }}\sin {\tfrac {\theta }{2}}\right)$$</div>
+<h2>Recovering the axis-angle representation</h2>
+<p>Two rotation quaternions can be combined into one equivalent quaternion by the relation:
+<span class="math">\(\mathbf {q} '=\mathbf {q} _{2}\mathbf {q} _{1}\)</span>,
+in which q′ corresponds to the rotation q1 followed by the rotation q2.
+(Note that quaternion multiplication is not commutative.)</p>
+<p>The expression <span class="math">\(\mathbf {q} \mathbf {p} \mathbf {q} ^{-1}\)</span> rotates any vector
+quaternion <span class="math">\(\mathbf {p}\)</span> around an axis given by the vector a <span class="math">\(\mathbf {a}\)</span> by
+the angle <span class="math">\(\theta\)</span>, where a <span class="math">\(\mathbf {a}\)</span> and <span class="math">\(\theta\)</span> depends on the
+quaternion <span class="math">\(\mathbf {q} =q_{r}+q_{i}\mathbf {i} +q_{j}\mathbf {j} +q_{k}\mathbf {k}\)</span></p>
+<p><span class="math">\(\mathbf {a}\)</span> and <span class="math">\(\theta\)</span> can be found from the following equations:
+    </p>
+<div class="math">$$ (a_{x},a_{y},a_{z})\ =\ {\frac {(q_{i},q_{j},q_{k})}{\sqrt {q_{i}^{2}+q_{j}^{2}+q_{k}^{2}}}}$$</div>
+<div class="math">$$ \theta \ =\ 2\operatorname {atan2} \left({\sqrt {q_{i}^{2}+q_{j}^{2}+q_{k}^{2}}},q_{r}\right)$$</div>
+<p>
+where <span class="math">\(\mathrm {atan2}\)</span> is the two-argument arctangent. Care should be taken when the quaternion approaches a scalar, since due to degeneracy the axis of an identity rotation is not well-defined</p>
 <p><a href="https://blog.csdn.net/EliminatedAcmer/article/details/81407176">CSDN总结</a></p>
+<p>quaternion to axis–angle coordinates</p>
+<div class="highlight"><pre><span></span><span class="kr">inline</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="n">toAngleAxis</span><span class="p">(</span><span class="k">const</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span><span class="o">&amp;</span> <span class="n">quaterd</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">angle</span><span class="o">=</span><span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span> <span class="n">unit_quaternion</span> <span class="o">=</span> <span class="n">quaterd</span><span class="p">.</span><span class="n">normalized</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">n</span> <span class="o">=</span> <span class="n">unit_quaternion</span><span class="p">.</span><span class="n">vec</span><span class="p">().</span><span class="n">norm</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">w</span> <span class="o">=</span> <span class="n">unit_quaternion</span><span class="p">.</span><span class="n">w</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">squared_w</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">w</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">two_atan_nbyw_by_n</span><span class="p">;</span>
+    <span class="c1">// Atan-based log thanks to</span>
+    <span class="c1">//</span>
+    <span class="c1">// C. Hertzberg et al.:</span>
+    <span class="c1">// &quot;Integrating Generic Sensor Fusion Algorithms with Sound State</span>
+    <span class="c1">// Representation through Encapsulation of Manifolds&quot;</span>
+    <span class="c1">// Information Fusion, 2011</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">SMALL_EPS</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// If quaternion is normalized and n=1, then w should be 1;</span>
+        <span class="c1">// w=0 should never happen here!</span>
+        <span class="n">assert</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">&gt;</span><span class="n">SMALL_EPS</span><span class="p">);</span>
+
+        <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">/</span><span class="n">w</span> <span class="o">-</span> <span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">squared_w</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">&lt;</span><span class="n">SMALL_EPS</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span> <span class="n">M_PI</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span> <span class="o">-</span><span class="n">M_PI</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">atan</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">w</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">angle</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">)</span> <span class="o">*</span><span class="n">angle</span> <span class="o">=</span> <span class="n">two_atan_nbyw_by_n</span><span class="o">*</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">two_atan_nbyw_by_n</span> <span class="o">*</span> <span class="n">unit_quaternion</span><span class="p">.</span><span class="n">vec</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kr">inline</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span> <span class="n">toQuaterniond</span><span class="p">(</span><span class="k">const</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span> <span class="n">v3d</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">angle</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">v3d</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">angle</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="o">*</span><span class="n">angle</span> <span class="o">=</span> <span class="n">theta</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">half_theta</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">theta</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">imag_factor</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">real_factor</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">half_theta</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">theta</span><span class="o">&lt;</span><span class="n">SMALL_EPS</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">theta_sq</span> <span class="o">=</span> <span class="n">theta</span><span class="o">*</span><span class="n">theta</span><span class="p">;</span>
+        <span class="kt">double</span> <span class="n">theta_po4</span> <span class="o">=</span> <span class="n">theta_sq</span><span class="o">*</span><span class="n">theta_sq</span><span class="p">;</span>
+        <span class="n">imag_factor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">-</span><span class="mf">0.0208333</span><span class="o">*</span><span class="n">theta_sq</span><span class="o">+</span><span class="mf">0.000260417</span><span class="o">*</span><span class="n">theta_po4</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">sin_half_theta</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">half_theta</span><span class="p">);</span>
+        <span class="n">imag_factor</span> <span class="o">=</span> <span class="n">sin_half_theta</span><span class="o">/</span><span class="n">theta</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span><span class="p">(</span><span class="n">real_factor</span><span class="p">,</span>
+            <span class="n">imag_factor</span><span class="o">*</span><span class="n">v3d</span><span class="p">.</span><span class="n">x</span><span class="p">(),</span>
+            <span class="n">imag_factor</span><span class="o">*</span><span class="n">v3d</span><span class="p">.</span><span class="n">y</span><span class="p">(),</span>
+            <span class="n">imag_factor</span><span class="o">*</span><span class="n">v3d</span><span class="p">.</span><span class="n">z</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="n">SOPHUS_FUNC</span> <span class="k">static</span> <span class="n">SO3</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;</span> <span class="n">expAndTheta</span><span class="p">(</span><span class="n">Tangent</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">omega</span><span class="p">,</span>
+        <span class="n">Scalar</span><span class="o">*</span> <span class="n">theta</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SOPHUS_ENSURE</span><span class="p">(</span><span class="n">theta</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">,</span> <span class="s">&quot;must not be nullptr.&quot;</span><span class="p">);</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">;</span>
+    <span class="n">Scalar</span> <span class="n">theta_sq</span> <span class="o">=</span> <span class="n">omega</span><span class="p">.</span><span class="n">squaredNorm</span><span class="p">();</span>
+    <span class="o">*</span><span class="n">theta</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">theta_sq</span><span class="p">);</span>
+    <span class="n">Scalar</span> <span class="n">half_theta</span> <span class="o">=</span> <span class="n">Scalar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">*</span><span class="n">theta</span><span class="p">);</span>
+
+    <span class="n">Scalar</span> <span class="n">imag_factor</span><span class="p">;</span>
+    <span class="n">Scalar</span> <span class="n">real_factor</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Constants</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">Scalar</span> <span class="n">theta_po4</span> <span class="o">=</span> <span class="n">theta_sq</span> <span class="o">*</span> <span class="n">theta_sq</span><span class="p">;</span>
+        <span class="n">imag_factor</span> <span class="o">=</span> <span class="n">Scalar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">Scalar</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">48.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta_sq</span> <span class="o">+</span>
+            <span class="n">Scalar</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3840.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta_po4</span><span class="p">;</span>
+        <span class="n">real_factor</span> <span class="o">=</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">Scalar</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">8.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta_sq</span> <span class="o">+</span>
+            <span class="n">Scalar</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">384.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta_po4</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">Scalar</span> <span class="n">sin_half_theta</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">half_theta</span><span class="p">);</span>
+        <span class="n">imag_factor</span> <span class="o">=</span> <span class="n">sin_half_theta</span> <span class="o">/</span> <span class="p">(</span><span class="o">*</span><span class="n">theta</span><span class="p">);</span>
+        <span class="n">real_factor</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">half_theta</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">SO3</span> <span class="n">q</span><span class="p">;</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">unit_quaternion_nonconst</span><span class="p">()</span> <span class="o">=</span>
+        <span class="n">QuaternionMember</span><span class="p">(</span><span class="n">real_factor</span><span class="p">,</span> <span class="n">imag_factor</span> <span class="o">*</span> <span class="n">omega</span><span class="p">.</span><span class="n">x</span><span class="p">(),</span>
+                <span class="n">imag_factor</span> <span class="o">*</span> <span class="n">omega</span><span class="p">.</span><span class="n">y</span><span class="p">(),</span> <span class="n">imag_factor</span> <span class="o">*</span> <span class="n">omega</span><span class="p">.</span><span class="n">z</span><span class="p">());</span>
+    <span class="n">SOPHUS_ENSURE</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">unit_quaternion</span><span class="p">().</span><span class="n">squaredNorm</span><span class="p">()</span> <span class="o">-</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span>
+            <span class="n">Sophus</span><span class="o">::</span><span class="n">Constants</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">(),</span>
+            <span class="s">&quot;SO3::exp failed! omega: %, real: %, img: %&quot;</span><span class="p">,</span>
+            <span class="n">omega</span><span class="p">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">real_factor</span><span class="p">,</span> <span class="n">imag_factor</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">q</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">SOPHUS_FUNC</span> <span class="n">TangentAndTheta</span> <span class="n">logAndTheta</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="n">TangentAndTheta</span> <span class="n">J</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">atan</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">;</span>
+    <span class="n">Scalar</span> <span class="n">squared_n</span> <span class="o">=</span> <span class="n">unit_quaternion</span><span class="p">().</span><span class="n">vec</span><span class="p">().</span><span class="n">squaredNorm</span><span class="p">();</span>
+    <span class="n">Scalar</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">squared_n</span><span class="p">);</span>
+    <span class="n">Scalar</span> <span class="n">w</span> <span class="o">=</span> <span class="n">unit_quaternion</span><span class="p">().</span><span class="n">w</span><span class="p">();</span>
+
+    <span class="n">Scalar</span> <span class="n">two_atan_nbyw_by_n</span><span class="p">;</span>
+
+    <span class="c1">// Atan-based log thanks to</span>
+    <span class="c1">//</span>
+    <span class="c1">// C. Hertzberg et al.:</span>
+    <span class="c1">// &quot;Integrating Generic Sensor Fusion Algorithms with Sound State</span>
+    <span class="c1">// Representation through Encapsulation of Manifolds&quot;</span>
+    <span class="c1">// Information Fusion, 2011</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">Constants</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">())</span> <span class="p">{</span>
+        <span class="c1">// If quaternion is normalized and n=0, then w should be 1;</span>
+        <span class="c1">// w=0 should never happen here!</span>
+        <span class="n">SOPHUS_ENSURE</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Constants</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">(),</span>
+                <span class="s">&quot;Quaternion (%) should be normalized!&quot;</span><span class="p">,</span>
+                <span class="n">unit_quaternion</span><span class="p">().</span><span class="n">coeffs</span><span class="p">().</span><span class="n">transpose</span><span class="p">());</span>
+        <span class="n">Scalar</span> <span class="n">squared_w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">w</span><span class="p">;</span>
+        <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span>
+            <span class="n">Scalar</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">w</span> <span class="o">-</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">squared_n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">squared_w</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Constants</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">&gt;</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span> <span class="n">Constants</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;::</span><span class="n">pi</span><span class="p">()</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span> <span class="o">-</span><span class="n">Constants</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;::</span><span class="n">pi</span><span class="p">()</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">two_atan_nbyw_by_n</span> <span class="o">=</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">atan</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">J</span><span class="p">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">two_atan_nbyw_by_n</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="n">J</span><span class="p">.</span><span class="n">tangent</span> <span class="o">=</span> <span class="n">two_atan_nbyw_by_n</span> <span class="o">*</span> <span class="n">unit_quaternion</span><span class="p">().</span><span class="n">vec</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">J</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                 </div><!-- /.entry-content -->
         </article>
 </section>
@@ -147,6 +395,16 @@
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>ceres
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
 <a href="/category/german.html">
     <i class="icon-folder-open icon-large"></i>German
 </a>
@@ -159,6 +417,16 @@
 <li>
 <a href="/category/other.html">
     <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
 </a>
 </li>
 <li>

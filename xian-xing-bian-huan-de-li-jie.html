@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>线性变换的理解</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to 线性变换的理解">
+                                        线性变换的理解
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-10T23:13:22+01:00">
+        <i class="icon-calendar"></i>Thu 10 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info -->                </div>
+                <p>给定一个向量x
+[数值] = [坐标] x [坐标系统基]</p>
+<p>linear transformation可以理解成坐标系统的改变.
+例如将x变换到以[v1, v2, ... vn]为basis的系统下，</p>
+<div class="math">\begin{aligned}
+X &amp;= c_{1}v_{1} + c_{2}v_{2} + ... c_{n}v_{n} \\
+X &amp;= [v_{1} v_{2} ... v_{n}] [c_{1} c_{2} ...]^{T} \\
+X &amp;= WC  (1)\\
+C &amp;= W^{-1}X (2)
+\end{aligned}</div>
+<p>(2) 为变换，C为X变换后，在新的坐标系下的坐标. <span class="math">\(W^{-1]\)</span>为变换矩阵。
+(1) 为逆变换，在给定C后，恢复在原始坐标系下的数据</p>
+<p>所以对于一个好的变换矩阵，需要有下面两个特征</p>
+<ul>
+<li>快速的矩阵乘法与求逆，这样才可以快速进行运算。例如使用傅里叶变化矩阵的快速傅里叶变换与Wavelet变换矩阵</li>
+<li>好的压缩特性，尽量少的坐标轴包含尽量多的信息。这样可以忽略不重要的信息，进行降维，实现压缩</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=vGkn-3NFGck&amp;t=1709s">Lec 31 | MIT 18.06 Linear Algebra, Spring 2005</a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>ceres
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

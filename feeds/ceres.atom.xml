@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/ceres.atom.xml" rel="self"></link><id>/</id><updated>2019-01-13T22:04:03+01:00</updated><entry><title>Ceres local parameterization</title><link href="/ceres-local-parameterization.html" rel="alternate"></link><updated>2019-01-13T22:04:03+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-13:ceres-local-parameterization.html</id><summary type="html">&lt;p&gt;Parameterization
+使用一个表达方式去表达一个另一个系统.&lt;/p&gt;
+&lt;h1&gt;Local Parameterization&lt;/h1&gt;
+&lt;p&gt;In many cases, some parameters lie on a manifold other than Euclidean space, e.g., rotation matrices. In such cases, the user can specify the geometry of the local tangent space by specifying a LocalParameterization object.&lt;/p&gt;
+&lt;p&gt;https://groups.google.com/forum/#!topic/ceres-solver/7HfF6DnCv7o&lt;/p&gt;</summary><category term="ceres"></category></entry></feed>

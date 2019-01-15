@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Positive definite matrix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Positive definite matrix">
+                                        Positive definite matrix
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-09T16:03:03+01:00">
+        <i class="icon-calendar"></i>Wed 09 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/optimization.html"><i class="icon-tag"></i>Optimization</a>
+</footer><!-- /.post-info -->                </div>
+                <h1>Definition<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></h1>
+<p>In linear algebra, a <strong>symmetric</strong> <span class="math">\(n \times n\)</span> real matrix <span class="math">\(M\)</span> is said to be
+positive definite if the scalar <span class="math">\(z^{T}Mz\)</span> is strictly positive for every
+non-zero column vector <span class="math">\(z\)</span> of <span class="math">\(n\)</span> real numbers. Here <span class="math">\(z^{\textsf {T}}\)</span> denotes
+the transpose of <span class="math">\(z\)</span>.</p>
+<p>More generally, an <span class="math">\(n \times n\)</span> Hermitian matrix <span class="math">\(M\)</span> is said to be positive
+definite if the scalar <span class="math">\(z^{*}Mz\)</span> is strictly positive for every non-zero column
+vector <span class="math">\(z\)</span> of <span class="math">\(n\)</span> complex numbers. Here <span class="math">\(z^{*}\)</span> denotes the conjugate transpose
+of <span class="math">\(z\)</span>. Note that <span class="math">\(z^{∗} M z\)</span> is automatically real since <span class="math">\(M\)</span> is Hermitian.</p>
+<h1>与Diagonalization, eigenvalues和eigenvectorg关系</h1>
+<h1>Quadratic forms, convexity, optimization<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></h1>
+<p>The (purely) quadratic form associated with a real <span class="math">\(n\times n\)</span> matrix M is the
+function <span class="math">\(Q : \mathbb {R}^n \to \mathbb R\)</span> such that <span class="math">\(Q(x)=x^{T}Mx\)</span> for all
+<span class="math">\(x\)</span>. <span class="math">\(M\)</span> can be assumed symmetric by replacing it with  <span class="math">\(1/2(M+M^{T})\)</span>.</p>
+<p>A symmetric matrix <span class="math">\(M\)</span> is positive definite if and only if its quadratic form
+is a strictly <strong>convex</strong> function.</p>
+<p>More generally, any quadratic function from <span class="math">\(\mathbb {R}^{n}\)</span> to <span class="math">\(\mathbb {R}\)</span>
+can be written as <span class="math">\( x^{T}Mx+x^{T}b+c\)</span> where <span class="math">\(M\)</span> is a symmetric <span class="math">\(n\times n\)</span>
+matrix, <span class="math">\(b\)</span> is a real <span class="math">\(n\)</span>-vector, and <span class="math">\(c\)</span> a real constant. This quadratic
+function is strictly convex, and hence has a unique finite global minimum, if
+and only if <span class="math">\(M\)</span> is positive definite. For this reason, positive definite
+matrices play an important role in optimization problems.</p>
+<h1>Additional information:</h1>
+<p><a href="https://stats.stackexchange.com/questions/224005/why-are-symmetric-positive-definite-spd-matrices-so-important">StackExchange: Why are symmetric positive definite (SPD) matrices so important?</a></p>
+<p><a href="http://setosa.io/ev/eigenvectors-and-eigenvalues/">Eigenvectors and Eigenvalues: Explained Visually</a></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>https://en.wikipedia.org/wiki/Definiteness_of_a_matrix&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>ceres
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>"美"的矩阵</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to "美"的矩阵">
+                                        "美"的矩阵
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-09T16:56:43+01:00">
+        <i class="icon-calendar"></i>Wed 09 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info -->                </div>
+                <p>"美"的矩阵形式</p>
+<h1>identity matrix 单位矩阵</h1>
+<h1>Unitary matrix 酉矩阵</h1>
+<h1>Normal matrix 正规矩阵</h1>
+<h1>Orthogonal matrix<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></h1>
+<p>An orthogonal matrix is a square matrix whose columns and rows are orthogonal
+unit vectors (i.e., orthonormal vectors), i.e.
+</p>
+<div class="math">$$Q^{T} Q = Q Q^{T} = I$$</div>
+<p>
+where <span class="math">\(I\)</span> is the identity matrix.
+This leads to the equivalent characterization: a matrix Q is orthogonal if
+its transpose is equal to its inverse:
+</p>
+<div class="math">$$Q^{T} = Q^{−1}. $$</div>
+<p>An orthogonal matrix Q is necessarily invertible (with inverse <span class="math">\(Q^{−1} = Q^{T}\)</span>),
+unitary (<span class="math">\(Q^{−1} = Q^{∗}\)</span>) and therefore normal (<span class="math">\(Q^{∗}Q = QQ^{∗}\)</span>) in the reals.
+The determinant of any orthogonal matrix is either +1 or −1. As a linear
+transformation, an orthogonal matrix preserves the dot product of vectors, and
+therefore acts as an isometry of Euclidean space, such as a rotation, reflection
+or rotoreflection. In other words, it is a unitary transformation.</p>
+<p>The set of n × n orthogonal matrices forms a group <span class="math">\(O(n)\)</span>, known as
+the orthogonal group. The subgroup <span class="math">\(SO(n)\)</span> consisting of orthogonal
+matrices with determinant +1 is called the special orthogonal
+group, and each of its elements is a special orthogonal matrix. As
+a linear transformation, every special orthogonal matrix acts as a
+rotation.</p>
+<h2>Decompositions</h2>
+<p>A number of important matrix decompositions (Golub &amp; Van Loan 1996) involve
+orthogonal matrices, including especially:</p>
+<ul>
+<li>QR decomposition<br />
+    M = QR, Q orthogonal, R upper triangular</li>
+<li>Singular value decomposition<br />
+    M = UΣVT, U and V orthogonal, Σ diagonal matrix</li>
+<li>Eigendecomposition of a symmetric matrix (decomposition according to the spectral theorem)<br />
+    S = QΛQT, S symmetric, Q orthogonal, Λ diagonal</li>
+<li>Polar decomposition<br />
+    M = QS, Q orthogonal, S symmetric non-negative definite</li>
+</ul>
+<h1>diagonal matrix</h1>
+<h2>diagonal matrix with eigenvalue</h2>
+<h1>orthonormal matrix</h1>
+<h1>symmetric matrix:</h1>
+<p>A symmetric matrix is a square matrix that is equal to its transpose. Formally,
+</p>
+<div class="math">$$A^{T} = A$$</div>
+<p>
+A nxn symmetric matrix A not only has a nice structure, but it also satisfies
+the following (can be diagonaized, S = QΛQT, S symmetric, Q orthogonal, Λ diagonal):</p>
+<ul>
+<li>A has exactly n (not necessarily distinct) eigenvalues</li>
+<li>There exists a set of n eigenvectors, one for each eigenvalue, that are mututally orthogonal.</li>
+</ul>
+<p>Thus, the situation encountered with the matrix D in the example above cannot
+happen with a symmetric matrix: A symmetric matrix has n eigenvalues and there
+exist n linearly independent eigenvectors (because of orthogonality) even if
+the eigenvalues are not distinct.</p>
+<p>Proof of eigenvalue properties of the real symmetric matrix<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>.</p>
+<blockquote>
+<p>矩阵的相似变换可以把一个比较丑的矩阵变成一个比较美的矩阵，而保证这两个矩阵都是描述了同一个线性变换。至于什么样的矩阵是“美”的，什么样的是“丑”的，我们说对角阵是美的。在线性代数中，我们会看到，如果把复杂的矩阵变换成对角矩阵，作用完了之后再变换回来，这种转换很有用处，比如求解矩阵的n次幂！而学了矩阵论之后你会发现，矩阵的n次幂是工程中非常常见的运算。这里顺便说一句，将矩阵对角化在控制工程和机械振动领域具有将复杂方程解耦的妙用！总而言之，相似变换是为了简化计算！</p>
+<p>从另一个角度理解矩阵就是：矩阵主对角线上的元素表示自身和自身的关系，其他位置的元素aij表示i位置和j位置元素之间的相互关系。那么好，特征值问题其实就是选取了一组很好的基，就把矩阵 i位置和j位置元素之间的相互关系消除了。而且因为是相似变换，并没有改变矩阵本身的特性。因此矩阵对角化才如此的重要！</p>
+</blockquote>
+<h1>similar matrix:</h1>
+<ul>
+<li>have same eigenvalues</li>
+<li>matrices represent the same thing in different basis</li>
+</ul>
+<h1>projection matrix:</h1>
+<p>In linear algebra and functional analysis, a projection is a linear
+transformation P from a vector space to itself such that <span class="math">\(P^2 = P\)</span>. That is,
+whenever P is applied twice to any value, it gives the same
+result as if it were applied once (idempotent). It leaves its
+image unchanged.[1] Though abstract, this definition of
+"projection" formalizes and generalizes the idea of graphical
+projection. One can also consider the effect of a projection on
+a geometrical object by examining the effect of the projection
+on points in the object.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>https://en.wikipedia.org/wiki/Orthogonal_matrix &#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>http://farside.ph.utexas.edu/teaching/336k/Newton/node66.html&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>ceres
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

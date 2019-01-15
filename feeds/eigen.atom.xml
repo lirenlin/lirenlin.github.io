@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/eigen.atom.xml" rel="self"></link><id>/</id><updated>2019-01-14T15:34:46+01:00</updated><entry><title>Eigen</title><link href="/eigen.html" rel="alternate"></link><updated>2019-01-14T15:34:46+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-14:eigen.html</id><summary type="html">&lt;p&gt;Operator *在Eigen中被重载，可以直接使用一个四元数乘以一个向量来计算来旋转后的向量。
+例如：
+https://stackoverflow.com/questions/50507665/eigen-rotate-a-vector3d-with-a-quaternion&lt;/p&gt;</summary><category term="Eigen"></category></entry></feed>
