@@ -241,14 +241,18 @@ algebra计算。
 在更新T参数时，需要变换到SE(3)下。对于路标位置，可以直接更新。
 这个使用ceres solver里面的LocalParameterization实现，重载plus成员函数。</p>
 <p>从李代数到Transform matrix的转换在《视觉slam十四讲》李代数章节讲的很清楚。</p>
+<p>so(3)李代数实际上由旋转向量组成，所以转换遵循Angle-Aix, Rotation matrix, Quaternion变换关系。</p>
 <h1>代码备注</h1>
 <p>Eigen库里面有大量的运算符重载，例如四元数表示的旋转可以直接与三维坐标想成得到旋转后的向量。
 在数学上是不行的。</p>
+<h1>继续学习</h1>
+<p>李群，李代数的数学意义，manifold tangent space目前还是不清楚。</p>
 <h1>参考资料</h1>
 <ul>
 <li>《视觉slam十四讲》  </li>
 <li><a href="/pdfs/Visual_SLAM_Tutorial_Bundle_Adjustment.pdf">Visual SLAM Tutorial: Bundle Adjustment</a>  </li>
 <li><a href="https://github.com/lirenlin/ba_demo_ceres">github source code fork</a>  </li>
+<li><a href="https://mp.weixin.qq.com/s/sVjy9kr-8qc9W9VN78JoDQ">李代数讲解</a></li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

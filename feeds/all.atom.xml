@@ -94,14 +94,18 @@ algebra计算。
 在更新T参数时，需要变换到SE(3)下。对于路标位置，可以直接更新。
 这个使用ceres solver里面的LocalParameterization实现，重载plus成员函数。&lt;/p&gt;
 &lt;p&gt;从李代数到Transform matrix的转换在《视觉slam十四讲》李代数章节讲的很清楚。&lt;/p&gt;
+&lt;p&gt;so(3)李代数实际上由旋转向量组成，所以转换遵循Angle-Aix, Rotation matrix, Quaternion变换关系。&lt;/p&gt;
 &lt;h1&gt;代码备注&lt;/h1&gt;
 &lt;p&gt;Eigen库里面有大量的运算符重载，例如四元数表示的旋转可以直接与三维坐标想成得到旋转后的向量。
 在数学上是不行的。&lt;/p&gt;
+&lt;h1&gt;继续学习&lt;/h1&gt;
+&lt;p&gt;李群，李代数的数学意义，manifold tangent space目前还是不清楚。&lt;/p&gt;
 &lt;h1&gt;参考资料&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;《视觉slam十四讲》  &lt;/li&gt;
 &lt;li&gt;&lt;a href="/pdfs/Visual_SLAM_Tutorial_Bundle_Adjustment.pdf"&gt;Visual SLAM Tutorial: Bundle Adjustment&lt;/a&gt;  &lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/lirenlin/ba_demo_ceres"&gt;github source code fork&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mp.weixin.qq.com/s/sVjy9kr-8qc9W9VN78JoDQ"&gt;李代数讲解&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
