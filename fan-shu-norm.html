@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Yet another site - Vim</title>
+    <title>范数Norm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -84,7 +84,7 @@
 						<i class="icon-folder-open icon-large"></i>German
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/math.html">
 						<i class="icon-folder-open icon-large"></i>Math
 					</a>
@@ -124,31 +124,60 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="/vim-operation-on-search-matches-using-gn.html">Vim: Operation on search matches using gn</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to 范数Norm">
+                                        范数Norm
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-26T10:08:53+01:00">
-        <i class="icon-calendar"></i>Wed 26 December 2018
+<abbr class="published" title="2019-01-15T15:47:30+01:00">
+        <i class="icon-calendar"></i>Tue 15 January 2019
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
 <span class="label">Category</span>
-<a href="/category/vim.html"><i class="icon-folder-open"></i>Vim</a>.
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/vim.html"><i class="icon-tag"></i>Vim</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>The gn command (introduced in Vim 7.4) makes it easy to operate on regions of
-text that match the current search pattern. It’s especially useful when used
-with a regex that matches text regions of variable length.</p>
-<p>Here’s what Vim’s documentation has to say about the ...</p>
-                        <a class="btn primary xsmall" href="/vim-operation-on-search-matches-using-gn.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info -->                </div>
+                <h1>向量范数(norm)</h1>
+<p>From wiki:</p>
+<blockquote>
+<p>In linear algebra, functional analysis, and related areas of mathematics,
+a norm is a function that assigns a strictly positive length or size to
+each vector in a vector space—except for the zero vector, which is
+assigned a length of zero.</p>
+</blockquote>
+<h1>矩阵范数</h1>
+<p>From wiki:</p>
+<blockquote>
+<p>In mathematics, a matrix norm is a vector norm in a vector space whose elements
+(vectors) are matrices (of given dimensions).</p>
+</blockquote>
+<p>可以从函数、几何与矩阵的角度去理解范数。</p>
+<p>我们都知道，函数与几何图形往往是有对应关系的，这个很好想象，特别是在三维以下的空间内，函数是几何图像的数学概括，而几何图像是函数的高度形象化，比如一个函数对应几何空间上若干点组成的图形。
+但当函数与几何超出三维空间时，就难以获得较好的想象，于是就有了映射的概念，映射表达的就是一个集合通过某种关系转为另外一个集合。通常数学书是先说映射，然后再讨论函数，这是因为函数是映射的一个特例。
+为了更好的在数学上表达这种映射关系，（这里特指线性关系）于是就引进了矩阵。这里的矩阵就是表征上述空间映射的线性关系。而通过向量来表示上述映射中所说的这个集合，而我们通常所说的基，就是这个集合的最一般关系。于是，我们可以这样理解，一个集合（向量），通过一种映射关系（矩阵），得到另外一个集合（另外一个向量）。
+那么向量的范数表示这个原有集合的大小。
+矩阵的范数表示这个变化过程的大小的一个度量。
+简单说：0范数表示向量中非零元素的个数（即为其稀疏度）。1范数表示为，绝对值之和。而2范数则指模。</p>
+<p>具体向量范数与矩阵范数参见
+<a href="https://www.zhihu.com/question/20473040">知乎：0 范数、1 范数、2 范数有什么区别？</a><br />
+<a href="http://mathworld.wolfram.com/VectorNorm.html">mathworld: Vector Norm</a></p>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">

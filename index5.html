@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Yet another site - Vim</title>
+    <title>Yet another site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -125,29 +125,74 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/vim-operation-on-search-matches-using-gn.html">Vim: Operation on search matches using gn</a></h1>
+                <h1><a href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html">Variance, gradient, Jacobian and Hessian matrix 记忆</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-26T10:08:53+01:00">
-        <i class="icon-calendar"></i>Wed 26 December 2018
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
 <span class="label">Category</span>
-<a href="/category/vim.html"><i class="icon-folder-open"></i>Vim</a>.
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/vim.html"><i class="icon-tag"></i>Vim</a>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>The gn command (introduced in Vim 7.4) makes it easy to operate on regions of
-text that match the current search pattern. It’s especially useful when used
-with a regex that matches text regions of variable length.</p>
-<p>Here’s what Vim’s documentation has to say about the ...</p>
-                        <a class="btn primary xsmall" href="/vim-operation-on-search-matches-using-gn.html">more ...</a>
+                <div class="summary"><p>Jacobian矩阵　用于一阶梯度下降法<br/>
+Hessian矩阵，用于二阶牛顿法<br/>
+高斯牛顿法，使用J<sup>T</sup>J作为牛顿法中二阶Hessian矩阵的近似，　从而省略了计算Ｈ的过程<br/>
+<a href="http://jacoxu.com/jacobian%E7%9F%A9%E9%98%B5%E5%92%8Chessian%E7%9F%A9%E9%98%B5/">下面这个文章介绍了Jacobian与Hessian矩阵的关系用途</a></p>
+<p>Hessian是对称矩阵<br/>
+<a href="https://blog.csdn.net/dsbatigol/article/details/12558891">jacobian, Hassian and gradient关系</a></p>
+<p>covariance,协方差：<br/>
+</p>
+<div class="math">$$cov(X,Y) = E((X-\mu)(Y-\nu)) = E(X \cdot Y) - \mu\nu$$</div>
+<p>variance, 方差：　二阶矩<br/>
+ 一个随机变量的方差描述的是它的离散程度，也就是该变量离其期望值的距离, <span class="math">\(\mu=E[X]\)</span>
+</p>
+<div class="math">$$Var(X) = cov(X, X)$$</div>
+<div class="math">$$Var(X) = E[(X-\mu)^2 ...</div>
+                        <a class="btn primary xsmall" href="/variance-gradient-jacobian-and-hessian-matrix-ji-yi.html">more ...</a>
                 </div>
         </div>
         <hr />
+        <div class="article">
+                <h1><a href="/xian-xing-gui-hua.html">线性规划</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-18T00:00:00+01:00">
+        <i class="icon-calendar"></i>Tue 18 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>线性优化，　线性规划，　linear programming</p>
+                        <a class="btn primary xsmall" href="/xian-xing-gui-hua.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
+        <div class="pagination">
+        <ul>
+                        <li class="prev"><a href="/index4.html">&larr; Previous</a></li>
+                        <li class=""><a href="/index.html">1</a></li>
+                        <li class=""><a href="/index2.html">2</a></li>
+                        <li class=""><a href="/index3.html">3</a></li>
+                        <li class=""><a href="/index4.html">4</a></li>
+                        <li class="active"><a href="/index5.html">5</a></li>
+                        <li class="next disabled"><a href="#">&rarr; Next</a></li>
+        </ul>
+        </div>
 
         </div><!--/span-->
 

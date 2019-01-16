@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2019-01-11T18:03:09+01:00</updated><entry><title>Pseudo Inverse</title><link href="/pseudo-inverse.html" rel="alternate"></link><updated>2019-01-11T18:03:09+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-11:pseudo-inverse.html</id><summary type="html">&lt;p&gt;In mathematics, and in particular linear algebra, a pseudoinverse A+ of a matrix
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2019-01-16T12:19:15+01:00</updated><entry><title>约束优化</title><link href="/yue-shu-you-hua.html" rel="alternate"></link><updated>2019-01-16T12:19:15+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-16:yue-shu-you-hua.html</id><summary type="html">&lt;p&gt;&lt;a href="https://blog.csdn.net/touristman5/article/details/57418552"&gt;等式约束，不等式约束问题&lt;/a&gt;
+&lt;a href="https://en.wikipedia.org/wiki/Constrained_optimization"&gt;wiki: constrained optimization&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>范数Norm</title><link href="/fan-shu-norm.html" rel="alternate"></link><updated>2019-01-15T15:47:30+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-15:fan-shu-norm.html</id><summary type="html">&lt;h1&gt;向量范数(norm)&lt;/h1&gt;
+&lt;p&gt;From wiki:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In linear algebra, functional analysis, and related areas of mathematics,
+a norm is a function that assigns a strictly positive length or size to
+each vector in a vector space—except for the zero vector, which is
+assigned a length of zero.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;矩阵范数&lt;/h1&gt;
+&lt;p&gt;From wiki:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In mathematics, a matrix norm is a vector norm in a vector space whose elements
+(vectors) are matrices (of given dimensions).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可以从函数、几何与矩阵的角度去理解范数。&lt;/p&gt;
+&lt;p&gt;我们都知道，函数与几何图形往往是有对应关系的，这个很好想象，特别是在三维以下的空间内，函数是几何图像的数学概括，而几何图像是函数的高度形象化，比如一个函数对应几何空间上若干点组成的图形。
+但当函数与几何超出三维空间时，就难以获得较好的想象，于是就有了映射的概念，映射表达的就是一个集合通过某种关系转为另外一个集合。通常数学书是先说映射，然后再讨论函数，这是因为函数是映射的一个特例。
+为了更好的在数学上表达这种映射关系，（这里特指线性关系）于是就引进了矩阵。这里的矩阵就是表征上述空间映射的线性关系。而通过向量来表示上述映射中所说的这个集合，而我们通常所说的基，就是这个集合的最一般关系。于是，我们可以这样理解，一个集合（向量），通过一种映射关系（矩阵），得到另外一个集合（另外一个向量）。
+那么向量的范数表示这个原有集合的大小。
+矩阵的范数表示这个变化过程的大小的一个度量。
+简单说：0范数表示向量中非零元素的个数（即为其稀疏度）。1范数表示为，绝对值之和。而2范数则指模。&lt;/p&gt;
+&lt;p&gt;具体向量范数与矩阵范数参见
+&lt;a href="https://www.zhihu.com/question/20473040"&gt;知乎：0 范数、1 范数、2 范数有什么区别？&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://mathworld.wolfram.com/VectorNorm.html"&gt;mathworld: Vector Norm&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Pseudo Inverse</title><link href="/pseudo-inverse.html" rel="alternate"></link><updated>2019-01-11T18:03:09+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-11:pseudo-inverse.html</id><summary type="html">&lt;p&gt;In mathematics, and in particular linear algebra, a pseudoinverse A+ of a matrix
 A is a generalization of the inverse matrix. The most widely known type of
 matrix pseudoinverse is the Moore–Penrose inverse, which was independently
 described by E. H. Moore in 1920, Arne Bjerhammar in 1951, and Roger Penrose in
@@ -653,6 +677,8 @@ x &amp;amp;= A^{-1}b,
 &lt;p&gt;
 如果这个方程有唯一解，变换可逆，A可逆. 这意味着，从b，可以还原应用了变换之前的x。
 这个变换是可逆的。&lt;/p&gt;
+&lt;p&gt;方程组个数大于变量数，无确定解，但是找到一个近似系统描述, 常见为拟合
+方程组有无数解，还需要满足一个目标函数，使其最大或者最小, 优化&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1047,7 +1073,8 @@ direction and then a step size.&lt;/p&gt;
 Newtone method, 二阶偏导, Hessian matrix&lt;br/&gt;
 Guass-Newton method, 使用Jacobian matrix近似Hessian matrix &lt;span class="math"&gt;\(\mathbf {H} \approx 2\mathbf {J_r^T} \mathbf{J_r}\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Gradient_descent"&gt;Wiki: gradient descent&lt;/a&gt;&lt;br/&gt;
-&lt;a href="https://zhuanlan.zhihu.com/p/32709034"&gt;【最优化】一文搞懂最速下降法&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://zhuanlan.zhihu.com/p/32709034"&gt;【最优化】一文搞懂最速下降法&lt;/a&gt;
+&lt;a href="https://zhuanlan.zhihu.com/p/33413665"&gt;知乎：非线性优化&lt;/a&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
