@@ -1,5 +1,354 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2019-01-16T12:19:15+01:00</updated><entry><title>约束优化</title><link href="/yue-shu-you-hua.html" rel="alternate"></link><updated>2019-01-16T12:19:15+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-16:yue-shu-you-hua.html</id><summary type="html">&lt;p&gt;&lt;a href="https://blog.csdn.net/touristman5/article/details/57418552"&gt;等式约束，不等式约束问题&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2019-01-23T17:16:15+01:00</updated><entry><title>floating point</title><link href="/floating-point.html" rel="alternate"></link><updated>2019-01-23T17:16:15+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-23:floating-point.html</id><summary type="html">&lt;h1&gt;Floating point&lt;/h1&gt;
+&lt;p&gt;In computing, floating-point arithmetic (FP) is arithmetic using formulaic
+representation of real numbers as an approximation so as to support a trade-off
+between range and precision. For this reason, floating-point computation is
+often found in systems which include very small and very large real numbers,
+which require fast processing times. A number is, in general, represented
+approximately to a fixed number of significant digits (the significand)
+and scaled using an exponent in some fixed base; the base for the scaling
+is normally two, ten, or sixteen. A number that can be represented exactly
+is of the following form:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$significand \times base^{exponent}$$&lt;/div&gt;
+&lt;p&gt;The term floating point refers to the fact that a number's radix point (decimal
+point, or, more commonly in computers, binary point) can "float"; that is, it
+can be placed anywhere relative to the significant digits of the number. This
+position is indicated as the exponent component, and thus the floating-point
+representation can be thought of as a kind of scientific notation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;IEEE 16-bit binary float&lt;br /&gt;
+1 sign bit: s&lt;br /&gt;
+5 bit for exponent: u.
+11 bits for significand: m, (one bit is implicit, 10 bits are explicitly stored.)
+bias: 15&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IEEE 32-bit binary float&lt;br /&gt;
+1 sign bit: s&lt;br /&gt;
+8 bit for exponent: u&lt;br /&gt;
+24 bits for significand: m, (one bit is implicit, 23 bits are explicitly
+                 stored.)
+bias: 127&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IEEE 64-bit binary float&lt;br /&gt;
+1 sign bit: s&lt;br /&gt;
+11 for exponent: u&lt;br /&gt;
+53 bits for significand: m, (one bit is implicit, 52 bit are explicitly stored)
+bias: 1023  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IEEE 128-bit binary float&lt;br /&gt;
+1 sign bit: s&lt;br /&gt;
+15 for exponent: u&lt;br /&gt;
+113 bits for significand: m, (one bit is implicit, 112 bit are explicitly stored)
+bias: 16383  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some combinations of exponent and significant pattern are preserved for
+specially number, e.g. 0, infinity, NaN.
+&lt;/p&gt;
+&lt;div class="math"&gt;\begin{align*}
+e &amp;amp;= u - bias\\
+significant &amp;amp;= 1(implicit) + m_1*2^{-1} + m_2*2^{-2} + ... m_m2^{-m}\\
+val &amp;amp;= significant * 2 ^ {e}\\
+\end{align*}&lt;/div&gt;
+&lt;p&gt;For example, for number 216:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;float32_mem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;216&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;view&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uint32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;float32_mem&lt;/span&gt;
+&lt;span class="mi"&gt;1129840640&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;float32_mem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;0b1000011010110000000000000000000&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;#sign bit(31-bit): 0  &lt;/span&gt;
+&lt;span class="c1"&gt;#exponent bit pattern(30-23bit): 0b10000110 (134)&lt;/span&gt;
+&lt;span class="c1"&gt;#significand bit pattern(22-0bit): 0b10110000000000000000000&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b10000110&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;127&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt;
+&lt;span class="mf"&gt;1.6875&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;
+&lt;span class="mf"&gt;216.0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Another example with rounding error:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;float32_mem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16777216&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;view&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uint32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;float32_mem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;0b1001011100000000000000000000000&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b10010111&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;127&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;
+&lt;span class="mf"&gt;16777216.0&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;float32_mem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16777217&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;view&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uint32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;float32_mem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;0b1001011100000000000000000000000&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b10010111&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;127&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;
+&lt;span class="mf"&gt;16777216.0&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**-&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;significant&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;
+&lt;span class="mf"&gt;16777218.0&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+&lt;span class="mi"&gt;24&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;ULP, unit in th last place&lt;/h1&gt;
+&lt;p&gt;given a normalized representation in float point
+&lt;/p&gt;
+&lt;div class="math"&gt;$$d_1.d_2...d_p \times \beta^e$$&lt;/div&gt;
+&lt;p&gt;
+&lt;span class="math"&gt;\(d_1\)&lt;/span&gt; is not zero. the ULP value is defined as:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$ulp(e, p) \to \beta^{e-(p-1)}$$&lt;/div&gt;
+&lt;p&gt;
+For example:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$1.625 * 10^{-4}; \; \beta=10, e = -4, p = 4$$&lt;/div&gt;
+&lt;div class="math"&gt;$$ulp(10, 3) = 1 * 10^{-(p-1)} * 10^e = 10^{e-(p-1)} = 10^{-7}$$&lt;/div&gt;
+&lt;p&gt;In general, if the floating-point number &lt;span class="math"&gt;\(d.d...d ×\beta^{e}\)&lt;/span&gt; is used to represent z,
+then it is in error by &lt;span class="math"&gt;\(|d.d...d - (z/\beta^{e})|\beta^{p-1}\)&lt;/span&gt; units in the last place&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html"&gt;What Every Computer Scientist Should Know About Floating-Point Arithmetic&lt;/a&gt;&lt;/h1&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Programming"></category></entry><entry><title>Numerical stability</title><link href="/numerical-stability.html" rel="alternate"></link><updated>2019-01-23T14:27:51+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-23:numerical-stability.html</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Numerical_stability"&gt;Wiki: numerical stability&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html"&gt;What Every Computer Scientist Should Know About Floating-Point Arithmetic&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>cholesky decomposition</title><link href="/cholesky-decomposition.html" rel="alternate"></link><updated>2019-01-22T16:48:47+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-22:cholesky-decomposition.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Linear least squares, the solution is to solve this system of linear
+equations: &lt;span class="math"&gt;\(A^TAx = TX = A^Tb\)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Non-linear least squares problem via iterative method&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gauss-Newton Method, solve &lt;span class="math"&gt;\((J_x^T J_x)\Delta = T\Delta = -J_x^Tf(x)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Levenberg-Marquardt Algorithm, solve &lt;span class="math"&gt;\((J_x^T J_x + \lambda D)\Delta = T\delta = -J_x^Tf(x)\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在上面所有的T都是symmetric矩阵，可以使用Cholesky decomposition来解决。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;减少计算量, 即使有额外的中间步骤需要计算&lt;/li&gt;
+&lt;li&gt;the amount of fill-in which occours when computing a matrix decomposition of a sparse matrix&lt;/li&gt;
+&lt;li&gt;stable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cholesky decomposition &lt;span class="math"&gt;\(A = LL^T\)&lt;/span&gt;. This is stable even without
+pivoting, and hence extremely simple to implement.
+It is the standard decomposition method for almost all unconstrained optimization
+problems including bundle adjustment, as the Hessian is positive definite near
+a non-degenerate cost minimum (and in the Gauss-Newton approximation, almost
+everywhere else, too). If A is symmetric but only positive semidefinite,
+diagonally pivoted Cholesky decomposition can be used.&lt;/p&gt;
+&lt;p&gt;Another notable method is that based on QR decomposition, which is up to a
+factor of two slower than the normal equations, but much less sensitive to
+ill-conditioning in J.&lt;/p&gt;
+&lt;p&gt;The triangular factor L and a solution to a corresponding linear system may not
+be accurate enough because of machine arithmetic. In order to refine the
+solution, a number of iterative methods (for example, the conjugate
+ gradient method) can be employed using the &lt;span class="math"&gt;\(LL^T\)&lt;/span&gt; decomposition as a
+preconditioner.  The memory saving is the main reason to use an incomplete or
+inaccurate decomposition as a preconditioner.&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;https://algowiki-project.org/en/Cholesky_method&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>ill-conditioned Matrices</title><link href="/ill-conditioned-matrices.html" rel="alternate"></link><updated>2019-01-21T14:50:04+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-21:ill-conditioned-matrices.html</id><summary type="html">&lt;h1&gt;What is an ill-conditioned matrix?&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
+&lt;p&gt;A matrix can represent a mapping from one space to another space. The
+conditioning number of a matrix gives us the ratio of how crazy this mapping
+can be. The conditioning number is the ratio of the largest singular value to
+the smallest singular value.&lt;/p&gt;
+&lt;p&gt;A matrix is ill-conditioned if the conditioning number is very high. What this
+means is that calculations using this matrix are prone to introduce numerical
+errors that can overwhelm your calculation. Computers cannot hold an infinite
+amount of information. Numbers in a floating point representation can only hold
+so much precision.&lt;/p&gt;
+&lt;p&gt;For example if 𝐴 is ill-conditioned and I try to solve 𝐴𝑥=𝑏
+using Gauss-Jordan elimination I will quickly pick up numerical errors, and
+then those numerical errors are used on the next step which creates even larger
+errors, which are used on the next step and so on.&lt;/p&gt;
+&lt;p&gt;So what do you do when you have an ill-conditioned matrix? You reformulate
+your problem by doing something called preconditioning. This allows you to work
+in a space where your transformations aren’t as badly behaved and errors can be
+kept under control.&lt;/p&gt;
+&lt;h1&gt;Poorly conditioned Hessian matrix&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
+&lt;p&gt;Condition number of a matrix is the ratio of the largest singular value to the
+smallest singular value. A matrix is ill-conditioned if the condition number is
+very high, usually indicating that (i) the lowest singular value is orders of
+magnitude smaller than the highest one, and (ii) columns/rows of the matrix are
+heavily correlated with each other leading to redundancies and a matrix that is
+pretending to be of a higher rank than it truly is.&lt;/p&gt;
+&lt;p&gt;Hessian encodes the second derivatives of a function with respect to all pairs
+of variables. So, if there are n inputs to a function, the gradient is 𝑛
+-dimensional and the Hessian is 𝑛x𝑛-dimensional. In machine learning, the inputs
+are usually the features and the function is usually a loss function we are
+trying to minimize. When the Hessian is ill-conditioned, it means the basins of
+the loss function have contours that are very long “ellipsoids” rather than being close to “circular”.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/ic-1.gif" alt="01" title="01" style="max-width:80%;max-height:80%"/&gt;&lt;/p&gt;
+&lt;p&gt;This causes problems for first-order optimization methods like gradient descent
+(𝑤=𝑤−𝜂∇𝑤) which need to follow a very zigzag path to the minimum. The first
+figure below shows the gradient directions at various points on a straight line
+through the parameter space. Notice how the directions away from the center are
+nearly orthogonal to the useful direction of descent. The second figure shows
+the zigzag path gradient descent has to take if the Hessian is ill-conditioned,
+the function contours are stretched out, and the gradients often point to directions
+that might not be the best way to descend to the minimum.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/ic-2.png" alt="02" title="02" style="max-width:80%;max-height:80%"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/ic-3.png" alt="03" title="03" style="max-width:80%;max-height:80%"/&gt;&lt;/p&gt;
+&lt;p&gt;You would think that second-order optimization would solve this problem. It sort
+of does if the Hessian is not too ill-conditioned. However, a poorly conditioned
+Hessian is problematic because a typical second-order optimization requires
+inversion of a Hessian: 𝑤=𝑤−𝜂𝐻−1∇𝑤 (First-order optimization methods therefore
+assume 𝐻=𝐼, the identity matrix i.e. the problem is ideally conditioned for
+gradient descent-like methods.) Inverse of 𝐻with SVD decomposition 𝐻=𝑈Σ𝑉𝑇 is
+given as 𝐻−1=𝑈Σ−1𝑉𝑇. Here Σ is a diagonal matrix with singular values on the
+diagonal. Note, if the Hessian is ill-conditioned, the inverse can be numerically
+unstable since the smallest singular values blow up on inversion. A singular
+value of 10−6 appears as 106 in Σ−1. Thus, the more ill-conditioned the Hessian
+is, the more numerically unstable its inverse. Any noise in computing the Hessian
+such as that introduced by using stochastic versions of descent updates or using
+minibatches amplifies tremendously when the Hessian is inverted. Methods likes
+L-BFGS get around this by maintaining a low-rank approximation of the (inverse)
+Hessian which is better suited for ill-conditioned problems as well as saves
+computation and space required to implement second-order optimization.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://ece.uwaterloo.ca/~dwharder/NumericalAnalysis/04LinearAlgebra/illconditioned/"&gt;uwaterloo: Numerical Analysis: ill conditioned matrices&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Numerical_stability"&gt;Wiki: numerical stability&lt;/a&gt;&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;https://www.quora.com/What-is-an-ill-conditioned-matrix&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;https://www.quora.com/What-does-it-mean-to-have-a-poorly-conditioned-Hessian-matrix&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary><category term="Math"></category></entry><entry><title>一阶二阶优化方法</title><link href="/yi-jie-er-jie-you-hua-fang-fa.html" rel="alternate"></link><updated>2019-01-21T11:15:42+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-21:yi-jie-er-jie-you-hua-fang-fa.html</id><summary type="html">&lt;p&gt;1, 计算量, Hessian矩阵
+2, 收敛迭代次数, 更少的迭代次数，但是每次计算量更大
+3, 问题数值精度
+4, 数值稳定性, 算法更复杂&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>ill-conditioned problem</title><link href="/ill-conditioned-problem.html" rel="alternate"></link><updated>2019-01-18T15:09:54+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-18:ill-conditioned-problem.html</id><summary type="html">&lt;p&gt;在SLAM，BA中，经常提到ill conditioned problems，需要转换矩阵形式，提供reliable,
+robust and efficient的系统结果。而这些在系统行为又在相关应用中尤为重要，
+所以需要细心的学习。&lt;/p&gt;
+&lt;p&gt;文章中建议到:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;unless you are familiar with these issues, it is advisable to use profession-
+ally designed methods
+但是至少我们要知道这个事情的存在，与相关考虑的必要性。&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="Math"></category></entry><entry><title>约束优化</title><link href="/yue-shu-you-hua.html" rel="alternate"></link><updated>2019-01-16T12:19:15+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-16:yue-shu-you-hua.html</id><summary type="html">&lt;p&gt;&lt;a href="https://blog.csdn.net/touristman5/article/details/57418552"&gt;等式约束，不等式约束问题&lt;/a&gt;
 &lt;a href="https://en.wikipedia.org/wiki/Constrained_optimization"&gt;wiki: constrained optimization&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Lattice</title><link href="/lattice.html" rel="alternate"></link><updated>2019-01-16T12:08:46+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-16:lattice.html</id><summary type="html">&lt;p&gt;&lt;a href="/pdfs/E-DFA-using-lattices-small.pdf"&gt;DFA using lattices&lt;/a&gt;
 &lt;a href="/pdfs/static2.pdf"&gt;Lattice Theory Control Flow Graphs Control Flow Graphs Dataflow Analysis Dataflow Analysis&lt;/a&gt;&lt;/p&gt;</summary><category term="Compile"></category></entry><entry><title>范数Norm</title><link href="/fan-shu-norm.html" rel="alternate"></link><updated>2019-01-15T15:47:30+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-15:fan-shu-norm.html</id><summary type="html">&lt;h1&gt;向量范数(norm)&lt;/h1&gt;
 &lt;p&gt;From wiki:&lt;/p&gt;
@@ -846,8 +1195,12 @@ x &amp;amp;= A^{-1}b,
 &lt;p&gt;
 如果这个方程有唯一解，变换可逆，A可逆. 这意味着，从b，可以还原应用了变换之前的x。
 这个变换是可逆的。&lt;/p&gt;
-&lt;p&gt;方程组个数大于变量数，无确定解，但是找到一个近似系统描述, 常见为拟合
-方程组有无数解，还需要满足一个目标函数，使其最大或者最小, 优化&lt;/p&gt;
+&lt;p&gt;通常有两个形式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;方程组个数大于变量数，无确定解，但是找到一个近似系统描述, 常见为拟合&lt;/li&gt;
+&lt;li&gt;方程组有无数解，在满足一定条件的约束下，给定一个目标函数，使其最大或者最小, 优化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;线性 or 非线性系统？&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

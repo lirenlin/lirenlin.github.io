@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>线性方程组</title>
+    <title>floating point</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Nekoo">
@@ -84,7 +84,7 @@
 						<i class="icon-folder-open icon-large"></i>German
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/math.html">
 						<i class="icon-folder-open icon-large"></i>Math
 					</a>
@@ -94,7 +94,7 @@
 						<i class="icon-folder-open icon-large"></i>Other
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/programming.html">
 						<i class="icon-folder-open icon-large"></i>Programming
 					</a>
@@ -130,8 +130,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to 线性方程组">
-                                        线性方程组
+                                        title="Permalink to floating point">
+                                        floating point
                                 </a>
                         </h1>
                 </header>
@@ -139,47 +139,134 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2018-12-26T10:25:50+01:00">
-        <i class="icon-calendar"></i>Wed 26 December 2018
+<abbr class="published" title="2019-01-23T17:16:15+01:00">
+        <i class="icon-calendar"></i>Wed 23 January 2019
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
 <span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+<a href="/category/programming.html"><i class="icon-folder-open"></i>Programming</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/programming.html"><i class="icon-tag"></i>Programming</a>
 </footer><!-- /.post-info -->                </div>
-                <ul>
-<li>
-<p>In general, a system with fewer equations than unknowns has infinitely many
-solutions, but it may have no solution. Such a system is known as an
-underdetermined system.</p>
-</li>
-<li>
-<p>In general(not always), a system with more equations than unknowns has no solution. Such a
-system is also known as an overdetermined system.</p>
-</li>
-<li>
-<p>In general, a system with the same number of equations and unknowns has a
-single unique solution.</p>
-</li>
-</ul>
-<div class="math">\begin{align}
-Ax &amp;= b, \\
-A^{-1}Ax &amp;= A^{-1}b, \\
-x &amp;= A^{-1}b,
-\end{align}</div>
-<p>
-如果这个方程有唯一解，变换可逆，A可逆. 这意味着，从b，可以还原应用了变换之前的x。
-这个变换是可逆的。</p>
-<p>通常有两个形式：</p>
+                <h1>Floating point</h1>
+<p>In computing, floating-point arithmetic (FP) is arithmetic using formulaic
+representation of real numbers as an approximation so as to support a trade-off
+between range and precision. For this reason, floating-point computation is
+often found in systems which include very small and very large real numbers,
+which require fast processing times. A number is, in general, represented
+approximately to a fixed number of significant digits (the significand)
+and scaled using an exponent in some fixed base; the base for the scaling
+is normally two, ten, or sixteen. A number that can be represented exactly
+is of the following form:
+</p>
+<div class="math">$$significand \times base^{exponent}$$</div>
+<p>The term floating point refers to the fact that a number's radix point (decimal
+point, or, more commonly in computers, binary point) can "float"; that is, it
+can be placed anywhere relative to the significant digits of the number. This
+position is indicated as the exponent component, and thus the floating-point
+representation can be thought of as a kind of scientific notation.</p>
 <ul>
-<li>方程组个数大于变量数，无确定解，但是找到一个近似系统描述, 常见为拟合</li>
-<li>方程组有无数解，在满足一定条件的约束下，给定一个目标函数，使其最大或者最小, 优化</li>
+<li>
+<p>IEEE 16-bit binary float<br />
+1 sign bit: s<br />
+5 bit for exponent: u.
+11 bits for significand: m, (one bit is implicit, 10 bits are explicitly stored.)
+bias: 15</p>
+</li>
+<li>
+<p>IEEE 32-bit binary float<br />
+1 sign bit: s<br />
+8 bit for exponent: u<br />
+24 bits for significand: m, (one bit is implicit, 23 bits are explicitly
+                 stored.)
+bias: 127</p>
+</li>
+<li>
+<p>IEEE 64-bit binary float<br />
+1 sign bit: s<br />
+11 for exponent: u<br />
+53 bits for significand: m, (one bit is implicit, 52 bit are explicitly stored)
+bias: 1023  </p>
+</li>
+<li>
+<p>IEEE 128-bit binary float<br />
+1 sign bit: s<br />
+15 for exponent: u<br />
+113 bits for significand: m, (one bit is implicit, 112 bit are explicitly stored)
+bias: 16383  </p>
+</li>
 </ul>
-<p>线性 or 非线性系统？</p>
+<p>Some combinations of exponent and significant pattern are preserved for
+specially number, e.g. 0, infinity, NaN.
+</p>
+<div class="math">\begin{align*}
+e &amp;= u - bias\\
+significant &amp;= 1(implicit) + m_1*2^{-1} + m_2*2^{-2} + ... m_m2^{-m}\\
+val &amp;= significant * 2 ^ {e}\\
+\end{align*}</div>
+<p>For example, for number 216:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">float32_mem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">float32_mem</span>
+<span class="mi">1129840640</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">bin</span><span class="p">(</span><span class="n">float32_mem</span><span class="p">)</span>
+<span class="s1">&#39;0b1000011010110000000000000000000&#39;</span>
+<span class="c1">#sign bit(31-bit): 0  </span>
+<span class="c1">#exponent bit pattern(30-23bit): 0b10000110 (134)</span>
+<span class="c1">#significand bit pattern(22-0bit): 0b10110000000000000000000</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="mb">0b10000110</span> <span class="o">-</span><span class="mi">127</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span>
+<span class="mi">7</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**-</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**-</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**-</span><span class="mi">4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span>
+<span class="mf">1.6875</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="n">e</span>
+<span class="mf">216.0</span>
+</pre></div>
+
+
+<p>Another example with rounding error:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">float32_mem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mi">16777216</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">bin</span><span class="p">(</span><span class="n">float32_mem</span><span class="p">)</span>
+<span class="s1">&#39;0b1001011100000000000000000000000&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="mb">0b10010111</span> <span class="o">-</span> <span class="mi">127</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">e</span>
+<span class="mf">16777216.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">float32_mem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mi">16777217</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">bin</span><span class="p">(</span><span class="n">float32_mem</span><span class="p">)</span>
+<span class="s1">&#39;0b1001011100000000000000000000000&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="mb">0b10010111</span> <span class="o">-</span> <span class="mi">127</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">e</span>
+<span class="mf">16777216.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**-</span><span class="mi">23</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">significant</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">e</span>
+<span class="mf">16777218.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span>
+<span class="mi">24</span>
+</pre></div>
+
+
+<h1>ULP, unit in th last place</h1>
+<p>given a normalized representation in float point
+</p>
+<div class="math">$$d_1.d_2...d_p \times \beta^e$$</div>
+<p>
+<span class="math">\(d_1\)</span> is not zero. the ULP value is defined as:
+</p>
+<div class="math">$$ulp(e, p) \to \beta^{e-(p-1)}$$</div>
+<p>
+For example:
+</p>
+<div class="math">$$1.625 * 10^{-4}; \; \beta=10, e = -4, p = 4$$</div>
+<div class="math">$$ulp(10, 3) = 1 * 10^{-(p-1)} * 10^e = 10^{e-(p-1)} = 10^{-7}$$</div>
+<p>In general, if the floating-point number <span class="math">\(d.d...d ×\beta^{e}\)</span> is used to represent z,
+then it is in error by <span class="math">\(|d.d...d - (z/\beta^{e})|\beta^{p-1}\)</span> units in the last place</p>
+<h1><a href="https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></h1>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
