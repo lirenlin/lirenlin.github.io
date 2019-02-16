@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ICP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>Ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/compiler.html">
+						<i class="icon-folder-open icon-large"></i>Compiler
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to ICP">
+                                        ICP
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-07T17:54:55+01:00">
+        <i class="icon-calendar"></i>Thu 07 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info -->                </div>
+                <p>Iterative Closest Point Algorithm主要由两部分组成<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<ul>
+<li>Data Association<ul>
+<li>Closest-Point Matching<br />
+Kd-trees</li>
+<li>Normal Shooting<br />
+Slightly better convergence results than closest point for smooth structures,
+worse for noisy or complex structures</li>
+</ul>
+</li>
+<li>Error Metric:<ul>
+<li>point to point<br />
+  SVD解法</li>
+<li>point to plane<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup><br />
+Each iteratrion generally slower than the point-to-point versin, however, often
+significantly better convergence rates.<br />
+solved using standard linear least-squares problem</li>
+</ul>
+</li>
+</ul>
+<h2>基于k-d tree的ICP算法计算分析</h2>
+<p>使用k-d tree来加速整个过程的计算。总体计算花销分为两方面:</p>
+<ul>
+<li><span style="color:red"> 从参考点云建立k-d树需要花销 </span></li>
+<li><span style="color:red"> k-d tree 查找的花销，其中主要是三个步骤，DFS查找，
+ball-within-bounds test和backtracking. </span></li>
+<li><span style="color:red"> 同时，因为使用了kd-tree数据结构，那么tree的平衡性，
+会对整个查找复杂度有很大影响 </span></li>
+</ul>
+<p>在SLAM中，得到t时刻与t+1时刻的两幅环境的稀疏扫描点云，需要point
+registreation来计算两个时刻间，机器人的位姿(pose)变换(rotation + translation)。
+这当中包含一次k-d tree的简历，与许多次的ICP迭代，每次迭代，都需要对每一个query
+point进行k-d tree的查找。</p>
+<p>有很多的优化方法，让r-d tree的建立，查找操作都更加快速。这些优化对于点云的拓扑结构
+有一些假设。这些假设，在机器人应用场景下，不一定成立。大多时候，场景通过机器人的
+传感器稀疏采样的。</p>
+<h3>cached k-d tree search for ICP algorithms<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup></h3>
+<p>在论文中，作者有如下评论</p>
+<blockquote>
+<p><span style="color:red">
+However, these state of the art ICP variants all assume that the input data is
+given as a mesh.  In many application scenarios a mesh is not available, e.g.,
+3D data in robotics. Here, measurements contain in addition to Gaussian noise so
+called salt-and-pepper noise. Furthermore, in robotics the scenes are often
+sparsely sampled by the sensor. For these two reasons, simple meshing methods
+based on the topology of the acquired points cannot be applied and roboticists
+stick to using the raw point clouds. In this case the point-to-point metric,
+cf. Eq. (1), and closest point search have to be used.
+</span></p>
+</blockquote>
+<p>所以传统的point-to-point error metric, k-d tree based closed point
+search还是主流。目前我还没有阅读其他论文，所以无法评论作者观点是否正确。但是如果
+真的这样，就只能在机器人场景下，，使用比较传统的方式。但是，r-d
+tree的构建，查找还是可以利用硬件特性，例如GPU进行加速。</p>
+<p>在这篇论文中，作者改进了backtracking的思路，减少DFS搜索次数，同时使得backtracking
+操作大致constant time。这是利用ICP的迭代算法特性，因为如果整个过程收敛，越到后面，
+变换矩阵会越来越小，通过记录上一个iteration，查询点在r-d
+tree中大致的位置，可以在当前iteration中大致估计，也会在差不多的位置。所以，不同于从
+root开始重新查找一遍，这次从上一次的leaf node开始，反向查找。</p>
+<p>作者给出了性能比较，整体性能提升很明显。在这里，bucket size对性能也有影响。
+通常对于k-d tree的讲解资料中，bucket size是1。在作者给出的性能对比中，cached
+kd-tree在bucket size为1的时候提升最大。同时值得注意的是，bucket size
+为1的时候，整体性能是最差的。所以为了寻求绝对性能的最大，还是要尝试不同的bucket
+size。</p>
+<p>在文中，作者同时提到</p>
+<blockquote>
+<p><span style="color:red">
+The overall performance of the ICP algorithm depends
+both on the search time and on the construction time
+of the tree. However, the construction time of the trees
+seems to be negligible.
+</span></p>
+</blockquote>
+<p>在他的测量中，kd-tree的建立花销对整体性能影响不大，这也需要自己实际去测量。</p>
+<p>cached kd-tree需要一块内存在缓存上一迭代的结构，同时因为需要回溯的缘故，
+每一个树节点需要保存一个父节点的指针。所以它会有额外的存储花销<span class="math">\(O(N_d) +
+O(N_m)\)</span>, <span class="math">\(N_m\)</span>为reference data cloud point点数，<span class="math">\(N_d\)</span>为待匹配点云点数。</p>
+<h3>kd-tree construction optimization</h3>
+<p>普通情况下，需要寻找以当前划分坐标轴为衡量标准的所有点的中位数(median)，在naive
+的算法里, median-finding algorithm复杂度为<span class="math">\(O(n)\)</span>，使用排序的方法的话，
+可以优化到<span class="math">\(nO(log\;n)\)</span></p>
+<p>具体可参考<a href="https://en.wikipedia.org/wiki/K-d_tree#Complexity">wiki, ICP Complexity</a></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>http://ais.informatik.uni-freiburg.de/teaching/ss10/robotics/slides/17-icp.pdf&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="/pdfs/Cachedk-d_tree_search_for_ICP_algorithms.pdf">Cached k-d tree search for ICP algorithms</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>https://www.comp.nus.edu.sg/~lowkl/publications/lowk_point-to-plane_icp_techrep.pdf&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>Ceres
+</a>
+</li>
+<li>
+<a href="/category/compiler.html">
+    <i class="icon-folder-open icon-large"></i>Compiler
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

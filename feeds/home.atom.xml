@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/home.atom.xml" rel="self"></link><id>/</id><updated>2019-01-29T14:54:31+01:00</updated><entry><title>智能家具设计</title><link href="/zhi-neng-jia-ju-she-ji.html" rel="alternate"></link><updated>2019-01-29T14:54:31+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-29:zhi-neng-jia-ju-she-ji.html</id><summary type="html">&lt;p&gt;无线控制开关，使用继电器(relay)
+bistable(latching) relay可以在没有控制信号的时候保持状态&lt;/p&gt;
+&lt;p&gt;RF控制，需要直接对着
+蓝牙控制, 需要控制mcu
+网络控制, 需要控制mcu&lt;/p&gt;</summary><category term="Home"></category></entry></feed>

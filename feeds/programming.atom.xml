@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/programming.atom.xml" rel="self"></link><id>/</id><updated>2019-01-23T17:16:15+01:00</updated><entry><title>floating point</title><link href="/floating-point.html" rel="alternate"></link><updated>2019-01-23T17:16:15+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-23:floating-point.html</id><summary type="html">&lt;h1&gt;Floating point&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/programming.atom.xml" rel="self"></link><id>/</id><updated>2019-02-09T15:51:09+01:00</updated><entry><title>Header-only library</title><link href="/header-only-library.html" rel="alternate"></link><updated>2019-02-09T15:51:09+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-09:header-only-library.html</id><summary type="html">&lt;h2&gt;Function definition in the header&lt;/h2&gt;
+&lt;p&gt;The preprocessor will literally copy the content of header into the including
+file. The &lt;code&gt;ifdef&lt;/code&gt; guard makes sure, for a given file, the same header file is
+only included once.&lt;/p&gt;
+&lt;p&gt;It is fine that a function is defined in the header. The compiler(in this
+sense, it doesn't include the assembler or linker part) won't complains any
+thing. The C source file will be compiled into an object with symbol
+information. When it comes to the linking stage, if there are multiple object
+files have the same symbol definition in their symbol table, the linker will
+throw error, something like "multiple definition".&lt;/p&gt;
+&lt;p&gt;One way the circumvent this is to add &lt;code&gt;inline&lt;/code&gt; attribute to every function
+definition in the header. So that no symbol will be created. The other possible
+solution is to add &lt;code&gt;static&lt;/code&gt; attribute to the function definition.&lt;/p&gt;
+&lt;h2&gt;Function definition inside class definition&lt;/h2&gt;
+&lt;p&gt;A member function that is defined inside its class member list is called an
+inline member function.&lt;/p&gt;
+&lt;p&gt;Once can also declare the function as &lt;code&gt;inline&lt;/code&gt;, and define it outside of class
+definition.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;inline&lt;/code&gt; attribute is merely a hint to the compiler. So it won't always give
+the same effect as macro.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The main (only?) use for the inline keyword nowadays it to allow functions to
+be defined in the header and not generate multiple definition link errors
+(which has nothing to do with inlining really).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Template class&lt;/h2&gt;
+&lt;p&gt;template libs must be provided as head-only form. The compiler need to know the
+the parameter types as well as the library code at the time.&lt;/p&gt;
+&lt;h2&gt;Advantage/Disadvantage of head-only library&lt;/h2&gt;
+&lt;p&gt;In theory, the compiler could do better optimization when the definition is
+visible to it. But nowadays, the compiler could do optimization across compilation
+unit. And because of other complications like linker optimization, hardware
+features, the benefit is not always observable.&lt;/p&gt;
+&lt;p&gt;It is best to measure the code size and performance change with specific use
+case. And code maintainability is also an import aspect to consider.&lt;/p&gt;
+&lt;h2&gt;Link&lt;/h2&gt;
+&lt;p&gt;https://stackoverflow.com/questions/16679709/defining-member-functions-inside-the-class-definition&lt;/p&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Header-only&lt;/p&gt;
+&lt;p&gt;https://softwareengineering.stackexchange.com/questions/305618/are-header-only-libraries-more-efficient&lt;/p&gt;</summary><category term="Programming"></category></entry><entry><title>floating point</title><link href="/floating-point.html" rel="alternate"></link><updated>2019-01-23T17:16:15+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-23:floating-point.html</id><summary type="html">&lt;h1&gt;Floating point&lt;/h1&gt;
 &lt;p&gt;In computing, floating-point arithmetic (FP) is arithmetic using formulaic
 representation of real numbers as an approximation so as to support a trade-off
 between range and precision. For this reason, floating-point computation is

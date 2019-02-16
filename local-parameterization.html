@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Local parameterization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>Ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/compiler.html">
+						<i class="icon-folder-open icon-large"></i>Compiler
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Local parameterization">
+                                        Local parameterization
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-13T22:04:03+01:00">
+        <i class="icon-calendar"></i>Sun 13 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/ceres.html"><i class="icon-folder-open"></i>Ceres</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/ceres.html"><i class="icon-tag"></i>Ceres</a>
+</footer><!-- /.post-info -->                </div>
+                <p>Parameterization
+使用一个表达方式去表达同一个系统的状态/参数.</p>
+<h2>Ceres Local Parameterization</h2>
+<p>In many cases, some parameters lie on a manifold other than Euclidean space, e.g.,
+rotation matrices. In such cases, the user can specify the geometry of the local 
+tangent space by specifying a LocalParameterization object.</p>
+<p>https://groups.google.com/forum/#!topic/ceres-solver/7HfF6DnCv7o</p>
+<h2>参数化</h2>
+<p>在迭代优化方法中，例如高斯牛顿，每一次迭代有如下 变量更新:
+</p>
+<div class="math">$$ X = X + \Delta X$$</div>
+<p>
+如果X的参数空间没有定义加法，例如旋转矩阵R, 变换矩阵T，或者简单的旋转向量。这就涉及到两个问题，</p>
+<ol>
+<li>如何定义局部参数来表示<span class="math">\(\Delta X\)</span>，也就是所谓的local parameterization。</li>
+<li>定义<span class="math">\(\boxplus\)</span>运算符，用来更新变量。 <span class="math">\( X = X \boxplus \Delta X\)</span>。</li>
+</ol>
+<h3>状态变量<span class="math">\(X\)</span>参数化</h3>
+<p>X的参数化与<span class="math">\(\Delta X\)</span>的参数化会不一样。它们有各自的要求。
+对于待估计状态参数X，因为需要直接用于计算误差，所以X的表示方式，如果可以有利于计算的表达，
+可以减少计算的复杂度。例如位姿的变化，可以表示直接成旋转矩阵乘法。如果是其他的compact的旋转表示方法，
+需要每次进行变化，然后应用在坐标上。通常对于最小二乘法，有很多项误差需要计算，
+转换本身就这会是一个非常大的运算花销。</p>
+<p>同时X的参数会取决于误差函数的定义, 不同的误差函数，会使用参数的不同形式进行计算。
+总之，X的参数化，要尽量的减少它在计算误差时的计算量。</p>
+<h3>更新变量<span class="math">\(\Delta X\)</span>参数化</h3>
+<p>另一方面，<span class="math">\(\Delta X\)</span>的参数化，有不同的要求。<span class="math">\(\Delta X\)</span>的参数话，要求</p>
+<ol>
+<li>其所在的解空间平滑可导数。<br />
+<strong>这个性质对于优化方法的收敛速度非常重要。平滑可导，无奇异，使的在寻找增量的时候可以按照最优
+的方向寻找。</strong></li>
+<li>最小化代表信息。<ol>
+<li>因为<span class="math">\(\Delta X\)</span>是优化方法求导的目标，其维度越小，Jacobian matrix的
+列越少，相应计算越少。</li>
+<li>有时候利用冗余的信息代表参数，可以简化计算，但是内部参数之间有一定的
+约束关系。如果这个约束关系在优化求解过程当中没有表示出来，很可能产生不合理的解。
+例如三维旋转矩阵有9个维度。</li>
+</ol>
+</li>
+</ol>
+<h3>计算数值稳定性</h3>
+<p>在计算过程当中，有很多信息累加的过程，每个累加，都会有数值计算的误差，这些误差会不断积累。
+最后会造成数值的不稳定。</p>
+<p>例如用四元数表示旋转。如果用角度来参数化，那么每次需要求解正弦余弦值，然后不断累计乘法。得到最后旋转的叠加。
+相反，在四元数参数化中，旋转角度的累积是加法，最后只需要做一次转换，然后求得的最终旋转后的结果。整个过程数值
+计算更稳定，也能减少很多的计算量。</p>
+<h2><span class="math">\(\boxplus\)</span> 用途</h2>
+<p>在上面提到的，<span class="math">\(\boxplus\)</span>运算符，供优化框架使用，来实现迭代过程中状态变量的更新。
+它用来连接<span class="math">\(X\)</span>与<span class="math">\(\Delta X\)</span>两个不同的参数化空间。</p>
+<p>这个运算符还有另一个功能，自动求导框架需要使用此运算符来对参数求导。当然你可以提供手动解析求导方式。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>Ceres
+</a>
+</li>
+<li>
+<a href="/category/compiler.html">
+    <i class="icon-folder-open icon-large"></i>Compiler
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

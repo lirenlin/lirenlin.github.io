@@ -1,6 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/ceres.atom.xml" rel="self"></link><id>/</id><updated>2019-01-13T22:04:03+01:00</updated><entry><title>Ceres local parameterization</title><link href="/ceres-local-parameterization.html" rel="alternate"></link><updated>2019-01-13T22:04:03+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-13:ceres-local-parameterization.html</id><summary type="html">&lt;p&gt;Parameterization
-使用一个表达方式去表达一个另一个系统.&lt;/p&gt;
-&lt;h1&gt;Local Parameterization&lt;/h1&gt;
-&lt;p&gt;In many cases, some parameters lie on a manifold other than Euclidean space, e.g., rotation matrices. In such cases, the user can specify the geometry of the local tangent space by specifying a LocalParameterization object.&lt;/p&gt;
-&lt;p&gt;https://groups.google.com/forum/#!topic/ceres-solver/7HfF6DnCv7o&lt;/p&gt;</summary><category term="ceres"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/ceres.atom.xml" rel="self"></link><id>/</id><updated>2019-01-13T22:04:03+01:00</updated><entry><title>Local parameterization</title><link href="/local-parameterization.html" rel="alternate"></link><updated>2019-01-13T22:04:03+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-13:local-parameterization.html</id><summary type="html">&lt;p&gt;Parameterization
+使用一个表达方式去表达同一个系统的状态/参数.&lt;/p&gt;
+&lt;h2&gt;Ceres Local Parameterization&lt;/h2&gt;
+&lt;p&gt;In many cases, some parameters lie on a manifold other than Euclidean space, e.g.,
+rotation matrices. In such cases, the user can specify the geometry of the local 
+tangent space by specifying a LocalParameterization object.&lt;/p&gt;
+&lt;p&gt;https://groups.google.com/forum/#!topic/ceres-solver/7HfF6DnCv7o&lt;/p&gt;
+&lt;h2&gt;参数化&lt;/h2&gt;
+&lt;p&gt;在迭代优化方法中，例如高斯牛顿，每一次迭代有如下 变量更新:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$ X = X + \Delta X$$&lt;/div&gt;
+&lt;p&gt;
+如果X的参数空间没有定义加法，例如旋转矩阵R, 变换矩阵T，或者简单的旋转向量。这就涉及到两个问题，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如何定义局部参数来表示&lt;span class="math"&gt;\(\Delta X\)&lt;/span&gt;，也就是所谓的local parameterization。&lt;/li&gt;
+&lt;li&gt;定义&lt;span class="math"&gt;\(\boxplus\)&lt;/span&gt;运算符，用来更新变量。 &lt;span class="math"&gt;\( X = X \boxplus \Delta X\)&lt;/span&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;状态变量&lt;span class="math"&gt;\(X\)&lt;/span&gt;参数化&lt;/h3&gt;
+&lt;p&gt;X的参数化与&lt;span class="math"&gt;\(\Delta X\)&lt;/span&gt;的参数化会不一样。它们有各自的要求。
+对于待估计状态参数X，因为需要直接用于计算误差，所以X的表示方式，如果可以有利于计算的表达，
+可以减少计算的复杂度。例如位姿的变化，可以表示直接成旋转矩阵乘法。如果是其他的compact的旋转表示方法，
+需要每次进行变化，然后应用在坐标上。通常对于最小二乘法，有很多项误差需要计算，
+转换本身就这会是一个非常大的运算花销。&lt;/p&gt;
+&lt;p&gt;同时X的参数会取决于误差函数的定义, 不同的误差函数，会使用参数的不同形式进行计算。
+总之，X的参数化，要尽量的减少它在计算误差时的计算量。&lt;/p&gt;
+&lt;h3&gt;更新变量&lt;span class="math"&gt;\(\Delta X\)&lt;/span&gt;参数化&lt;/h3&gt;
+&lt;p&gt;另一方面，&lt;span class="math"&gt;\(\Delta X\)&lt;/span&gt;的参数化，有不同的要求。&lt;span class="math"&gt;\(\Delta X\)&lt;/span&gt;的参数话，要求&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;其所在的解空间平滑可导数。&lt;br /&gt;
+&lt;strong&gt;这个性质对于优化方法的收敛速度非常重要。平滑可导，无奇异，使的在寻找增量的时候可以按照最优
+的方向寻找。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;最小化代表信息。&lt;ol&gt;
+&lt;li&gt;因为&lt;span class="math"&gt;\(\Delta X\)&lt;/span&gt;是优化方法求导的目标，其维度越小，Jacobian matrix的
+列越少，相应计算越少。&lt;/li&gt;
+&lt;li&gt;有时候利用冗余的信息代表参数，可以简化计算，但是内部参数之间有一定的
+约束关系。如果这个约束关系在优化求解过程当中没有表示出来，很可能产生不合理的解。
+例如三维旋转矩阵有9个维度。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;计算数值稳定性&lt;/h3&gt;
+&lt;p&gt;在计算过程当中，有很多信息累加的过程，每个累加，都会有数值计算的误差，这些误差会不断积累。
+最后会造成数值的不稳定。&lt;/p&gt;
+&lt;p&gt;例如用四元数表示旋转。如果用角度来参数化，那么每次需要求解正弦余弦值，然后不断累计乘法。得到最后旋转的叠加。
+相反，在四元数参数化中，旋转角度的累积是加法，最后只需要做一次转换，然后求得的最终旋转后的结果。整个过程数值
+计算更稳定，也能减少很多的计算量。&lt;/p&gt;
+&lt;h2&gt;&lt;span class="math"&gt;\(\boxplus\)&lt;/span&gt; 用途&lt;/h2&gt;
+&lt;p&gt;在上面提到的，&lt;span class="math"&gt;\(\boxplus\)&lt;/span&gt;运算符，供优化框架使用，来实现迭代过程中状态变量的更新。
+它用来连接&lt;span class="math"&gt;\(X\)&lt;/span&gt;与&lt;span class="math"&gt;\(\Delta X\)&lt;/span&gt;两个不同的参数化空间。&lt;/p&gt;
+&lt;p&gt;这个运算符还有另一个功能，自动求导框架需要使用此运算符来对参数求导。当然你可以提供手动解析求导方式。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Ceres"></category></entry></feed>

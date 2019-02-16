@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Leventberg-Marquardt Algorithm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>Ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/compiler.html">
+						<i class="icon-folder-open icon-large"></i>Compiler
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Leventberg-Marquardt Algorithm">
+                                        Leventberg-Marquardt Algorithm
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-25T12:31:55+01:00">
+        <i class="icon-calendar"></i>Fri 25 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info -->                </div>
+                <p>最近想弄懂LM算法，看了一些介绍。 虽然不重要，但是对于它到底是使用line search和trust region算法感到困惑。</p>
+<blockquote>
+<p>Levenberg (1944) and later Marquardt (1963) suggested to use a
+damped Gauss-Newton method, cf Section 2.4.  The step <span class="math">\(h_{lm}\)</span> is defined by the
+following modification to (3.9),<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>
+<div class="math">$$(J^TJ + \lambda I)h_{lm} = -g \;with\; g = J^Tf \;and\; \lambda \geqslant 0$$</div>
+</p>
+</blockquote>
+<p>所以，最初LM算法的提出是以一种damped Gauss-Newton的方式， 而没有使用trust
+region的概念。</p>
+<blockquote>
+<p>The above algorithm has the disadv antage that if the value of <span class="math">\(lambda\)</span> is large,
+the calculated Hessian matrix is not used at all.  We can deri ve some advantage
+out of the second deri vative even in such cases by scaling each component of
+the gradient according to the curv ature.  This should result in lar ger movement
+along the directions where the gradient is smaller so that the classic
+“error valley” problem does not occur any more.  This crucial insight was
+provided by Marquardt.  He replaced the identity matrix in (7) with the diagonal
+of the Hessian resulting in the Levenberg-Marquardt update rule.  <sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>
+<div class="math">$$(H + \lambda diag[H])h_{lm} = -g \;with\; g = J^Tf \;and\; \lambda \geqslant 0$$</div>
+</p>
+</blockquote>
+<p>同时它是一个基于经验(heuristic)的算法, 是从gradient
+descent和Gauss-Newton算法总观察改进而来。</p>
+<ul>
+<li>gradient descent一阶算法简单, 快速，但是有各种收敛问题,
+  确定的方向，但是更新步长没有根据梯度变化而调整。</li>
+<li>同时牛顿法为二阶，使用second derivative。从几何上说，牛顿法就是用一个二次曲面
+去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，
+通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的
+最优下降路径。由于精确的Hessian矩阵求解计算量大，可以使用: <span class="math">\(H \approx J^TJ\)</span>
+近似Hessian矩阵，这就是Gauss-Newton算法。但是高斯牛顿算法有一个问题在于，对于初始点比较敏感。</li>
+</ul>
+<p>结合二者的优缺点，提出的LM算法，根据<span class="math">\(\lambda\)</span>的值相对大小，
+LM算法体现出梯度下降或者高斯牛顿算法的特征，同时根据误差计算，调整damping factor
+<span class="math">\(\lambda\)</span>大小。</p>
+<p><strong>但是，这个经验公式在实际问题中，却非常有效。因为它跟基于trust region的高斯牛顿
+法得到的迭代公式完全一样。所以有了优化的理论根据！</strong></p>
+<h1>LM算法基本流程</h1>
+<h1>基于信赖域的Gauss-Newton法推导</h1>
+<h2>non-linear least squares problem</h2>
+<p>总是把对不同函数的求导弄混，这里重写写一遍，加深理解。
+</p>
+<div class="math">$$\newcommand{\xv}{\mathbf{x}}
+\xv^{*} = argmin_{\xv}\{F(\xv)\}$$</div>
+<p>
+where
+</p>
+<div class="math">$$\newcommand{\xv}{\mathbf{x}} \newcommand{\fv}{\mathbf{f}}
+F(\xv)=\frac{1}{2}\sum_{i=1}^{m}(f_{i}(x))^2\;=\;
+\frac{1}{2}\Vert \fv(\xv) \Vert^2\;=\;
+\frac{1}{2}\fv(\xv)^{T}\fv(\xv)$$</div>
+<p>根据泰勒展开：
+</p>
+<div class="math">$$\newcommand{\xv}{\mathbf{x}} \newcommand{\hv}{\mathbf{h}}
+\newcommand{\fv}{\mathbf{f}}
+\fv(\xv+\hv) \;=\; \fv(\xv) + \mathbf{J}(\xv)\hv + O(\Vert \hv \Vert )^2 $$</div>
+<p>
+这里<span class="math">\(\mathbf{J}\)</span>为<span class="math">\(\mathbf{f}(\mathbf{x})\)</span>的Jacobian矩阵(不是<span class="math">\(F(\mathbf{x})\)</span>)。
+</p>
+<div class="math">$$\newcommand{\xv}{\mathbf{x}} \newcommand{\fv}{\mathbf{f}}
+\def\pdiff#1#2{\frac{\partial #1}{\partial #2}}
+\pdiff{F}{x_j}(\xv) \;=\; \sum_{i=1}^{m}f_{i}(\xv)\pdiff{f_i}{x_j}(\xv) \\
+F^{'}(\xv) \;=\; J(\xv)^{T}\fv(\xv)$$</div>
+<p>对<span class="math">\(\mathbf{f}\)</span>泰勒展开
+</p>
+<div class="math">$$\newcommand{\xv}{\mathbf{x}} \newcommand{\hv}{\mathbf{h}}
+\newcommand{\fv}{\mathbf{f}} \newcommand{\jv}{\mathbf{J}}
+\fv(\xv + \hv) \;=\; \ell(\hv) \approx \fv(\xv) + \mathbf{J}(\xv)\hv \\
+F(\xv+\hv) \;=\; L(\hv) \;=\; \frac{1}{2}\ell(\hv)^{T}\ell(\hv) \\
+=\; \frac{1}{2}{\fv}^T\fv + {\hv}^T\jv\fv + \frac{1}{2}{\hv}^T{\jv}^T\hv \\
+=\; F(\xv) + {\hv}^T{\jv}^T\fv + \frac{1}{2}\hv^T{\jv}^T\jv\hv
+=\; F(\xv) + {\fv}^T{\jv}\hv + \frac{1}{2}\hv^T{\jv}^T\jv\hv
+$$</div>
+<p>
+<span class="math">\(L\)</span>的gradient与Hessian为:
+</p>
+<div class="math">$$\newcommand{\xv}{\mathbf{x}} \newcommand{\hv}{\mathbf{h}}
+\newcommand{\fv}{\mathbf{f}} \newcommand{\jv}{\mathbf{J}}
+L^{'} \;=\; \jv^T\fv + \jv^T\jv\hv, ;\ L^{''} \;=\; \jv^T\jv$$</div>
+<p>
+对于高斯牛顿法，求<span class="math">\(\mathbf{h}_{gn}\)</span>使得<span class="math">\(L(\mathbf{h})\)</span>最小：
+</p>
+<div class="math">$$\newcommand{\hv}{\mathbf{h}}
+\newcommand{\jv}{\mathbf{J}}
+\newcommand{\fv}{\mathbf{f}}
+\hv_{gn} \;=\; argmin_{\hv}{L(\hv)} \\
+L^{'}(\hv) \;=\; 0 \\
+({\jv}^T\jv)\hv_{gn} \;=\; -{\jv}^T\fv
+$$</div>
+<h2>基于信赖域的Gauss-Newton法推导</h2>
+<div class="math">$$L({\Delta x_k}) = F(x_k + \Delta x_k) \approx f(x_k) + J_{x_k}{\Delta x_k} + \frac{1}{2}{\Delta x_k}H_{x_k}{\Delta x_k}$$</div>
+<p>
+求解子问题：
+</p>
+<div class="math">$$argmin_{\Delta x_k} L({\Delta x_k}), \; s.t. \Vert D\Delta x_k \Vert^2 \leq \mu \; (1)$$</div>
+<p>
+信赖域法的核心问题是一个不等式约束问题，可以通过Lagrange将它转换成一个无约束问题。
+</p>
+<div class="math">$$argmin_{\Delta x_k} L({\Delta x_k}) \;+\; \frac{\lambda}{2}\Vert D\Delta x_k \Vert^2\; (2)$$</div>
+<p>
+<span class="math">\(\lambda\)</span>为Lagrange乘子。展开得：
+</p>
+<div class="math">$$(H + \lambda D^TD)\Delta x_k \;=\; -g \;with\; g = J^Tf$$</div>
+<p>
+当去D为单位矩阵I时，得到的更新求解公式与之前的经验公式一样。
+<a href="http://pages.mtu.edu/~msgocken/ma5630spring2003/lectures/tr/tr/node2.html">The trust region subproblem</a></p>
+<h1>注意点</h1>
+<ul>
+<li><span class="math">\(lambda\)</span>取值要使得<span class="math">\((\mathbf{J}^T\mathbf{J} + \lambda I)\)</span>为正定矩阵positive
+definit, 这样<span class="math">\(\Delta x_k\)</span>才是<span class="math">\(L\)</span>的minimizer.</li>
+<li>关于D的选取，有的选取为单位矩阵，有的选取为Hessian矩阵对角元素</li>
+<li>$(H + \lambda diag H) 的condition number可能会很大<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>。或者因为精度问题，导致H对
+角线上元素为0. 对这个表达式进行矩阵分解求解方程的时候，需要注意算法的stability.
+(可能考虑使用QR decomposition<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>)</li>
+</ul>
+<p>这里有个一LM的算法实现，注意上面提到的两点
+https://gist.github.com/lirenlin/ce6159058348efa1a9f7c8d621c1e768</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="orbit.dtu.dk/files/2721358/imm3215.pdf">methods for non-linear least squares problems</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="http://ananth.in/docs/lmtut.pdf">The Levenberg-Marquardt Algorithm </a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>https://sites.math.washington.edu/~reu/papers/2009/mark/REU%20Final%20Paper.pdf&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>https://mathoverflow.net/questions/106277/levenberg-marquadt-near-the-minima-for-non-zero-residual-problems://mathoverflow.net/questions/106277/levenberg-marquadt-near-the-minima-for-non-zero-residual-problems/ &#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>Ceres
+</a>
+</li>
+<li>
+<a href="/category/compiler.html">
+    <i class="icon-folder-open icon-large"></i>Compiler
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

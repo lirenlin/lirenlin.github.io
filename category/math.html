@@ -66,7 +66,7 @@
                           <li class="divider-vertical"></li>
                   <li >
                     <a href="/category/ceres.html">
-						<i class="icon-folder-open icon-large"></i>ceres
+						<i class="icon-folder-open icon-large"></i>Ceres
 					</a>
                   </li>
                   <li >
@@ -82,6 +82,11 @@
                   <li >
                     <a href="/category/german.html">
 						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
 					</a>
                   </li>
                   <li class="active">
@@ -124,6 +129,216 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="/icp.html">ICP</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-07T17:54:55+01:00">
+        <i class="icon-calendar"></i>Thu 07 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>Iterative Closest Point Algorithm主要由两部分组成<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<ul>
+<li>Data Association<ul>
+<li>Closest-Point Matching<br />
+Kd-trees</li>
+<li>Normal Shooting<br />
+Slightly better convergence results than closest point for smooth structures,
+worse for noisy or complex structures</li>
+</ul>
+</li>
+<li>Error Metric:<ul>
+<li>point to point<br />
+  SVD解法</li>
+<li>point to plane<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup><br />
+Each iteratrion generally slower than the point-to-point versin, however, often
+significantly better ...</li></ul></li></ul>
+                        <a class="btn primary xsmall" href="/icp.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/robust-regression.html">Robust regression</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-01T01:06:33+01:00">
+        <i class="icon-calendar"></i>Fri 01 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最小二乘法对于outlier比较敏感</p>
+<p>对于高斯噪声，最大似然等同于最小二乘
+https://www.jianshu.com/p/d0ea25071c57</p>
+<p>So for least squares to have a useful statistical interpretation, the Wi should 
+be chosen to approximate the inverse measurement covariance of z i.
+Even for non-Gaussian noise with this mean and covariance, the Gauss-Markov
+theorem [37, 11] states that if ...</p>
+                        <a class="btn primary xsmall" href="/robust-regression.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/qia-er-man-lu-bo-zui-da-si-ran-zui-xiao-er-cheng.html">卡尔曼滤波，最大似然，最小二乘</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-28T23:33:07+01:00">
+        <i class="icon-calendar"></i>Mon 28 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最小二乘估计：不考虑数据的统计特性，如期望，方差等，直接用最小二乘法得到最优估计。
+最小二乘估计只保证测量值与估计值的平方和最小，不保证估计误差的方差最小。最小二乘估计不需要随机变量V的任何统计信息。</p>
+<p>测量误差（测量）服从高斯分布的情况下， 最小二乘法等价于极大似然估计。(负对数)</p>
+<p>卡尔曼误差高斯分布后验概率推导
+http://www.cnblogs.com/ycwang16/p/5999034.html</p>
+<p>卡尔曼最小均方差推导
+卡尔曼滤波就是递推最小二乘法的一种特殊情况，卡尔曼滤波也是去通过最小化方差来求得最优的估计值。</p>
+<p><a href="https://blog.csdn.net/ethan_guo/article/details/80568254">最大似然估计,最小二乘估计,卡尔曼滤波,三者的相互关系</a>
+<a href="https://blog.csdn.net/qinruiyan/article/details/50793114">SLAM学习笔记2：Kalman Filter(卡尔曼滤波) 与Least Square(最小二乘法) 的比较</a></p>
+                        <a class="btn primary xsmall" href="/qia-er-man-lu-bo-zui-da-si-ran-zui-xiao-er-cheng.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/hessian.html">Hessian</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-27T15:13:19+01:00">
+        <i class="icon-calendar"></i>Sun 27 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>Hessian</h1>
+<h1>Hessian positive semidefinite</h1>
+<h1>Hessian ill conditioned, eigen value</h1>
+<ul>
+<li>convergence rate</li>
+<li>numeric statibility</li>
+</ul>
+<p>https://www.zhihu.com/question/56977045
+这里有一个知乎问答 <a href="https://www.zhihu.com/question/24623031">Hessian 矩阵的特征值有什么含义</a></p>
+<h1>Hessian approximation</h1>
+<p>高斯牛顿</p>
+                        <a class="btn primary xsmall" href="/hessian.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/quadratic-forms.html">Quadratic forms</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-27T13:47:50+01:00">
+        <i class="icon-calendar"></i>Sun 27 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最近在凸优化<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>一书中，steepest descent相关章节看到quadratic norm(9.4)，
+gradient descent与steepest descent的却别就在于不同范数(norm)的选取</p>
+<blockquote>
+<p>
+<div class="math">$$\Delta_{nsd}=argmin_v(\nabla f(x)^Tv\mid \|v\|&lt;=1)$$</div>
+i.e.  , as the direction in the unit ball of ‖·‖ that extends farthest in the
+direction <span class="math">\(-\nabla f(x)\)</span><br />
+Steepest descent for quadratic norm<br />
+We consider the ...</p></blockquote>
+                        <a class="btn primary xsmall" href="/quadratic-forms.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/geometric-operations.html">Geometric Operations</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-26T17:49:37+01:00">
+        <i class="icon-calendar"></i>Sat 26 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>Translation</h1>
+<h1>Rotation</h1>
+<h1>Affine transformation</h1>
+<p>线性变换+平移, 6 DOF</p>
+<h1>Rigid transformation (Euclidean transform, SE(3))</h1>
+<p>Any Euclidean transformation is an affine transformation. But not the other way
+around, for example, Reflections, Shear transformation.</p>
+<p>6 Degrees Of Freedom
+Transformation matrix = rotation + translation.</p>
+<h1>仿射函数与线性函数区别</h1>
+<blockquote>
+<p>A linear function fixes the origin, whereas an affine ...</p></blockquote>
+                        <a class="btn primary xsmall" href="/geometric-operations.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/leventberg-marquardt-algorithm.html">Leventberg-Marquardt Algorithm</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-25T12:31:55+01:00">
+        <i class="icon-calendar"></i>Fri 25 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最近想弄懂LM算法，看了一些介绍。 虽然不重要，但是对于它到底是使用line search和trust region算法感到困惑。</p>
+<blockquote>
+<p>Levenberg (1944) and later Marquardt (1963) suggested to use a
+damped Gauss-Newton method, cf Section 2.4.  The step <span class="math">\(h_{lm}\)</span> is defined by the
+following modification to (3.9),<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>
+<div class="math">$$(J^TJ + \lambda I)h_{lm} = -g \;with\; g = J^Tf \;and\; \lambda ...</div></p></blockquote>
+                        <a class="btn primary xsmall" href="/leventberg-marquardt-algorithm.html">more ...</a>
+                </div>
+        </div>
+        <hr />
         <div class="article">
                 <h1><a href="/numerical-stability.html">Numerical stability</a></h1>
                 <div class="well small"><footer class="post-info">
@@ -201,199 +416,6 @@ the smallest singular ...</p>
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="/yi-jie-er-jie-you-hua-fang-fa.html">一阶二阶优化方法</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-21T11:15:42+01:00">
-        <i class="icon-calendar"></i>Mon 21 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>1, 计算量, Hessian矩阵
-2, 收敛迭代次数, 更少的迭代次数，但是每次计算量更大
-3, 问题数值精度
-4, 数值稳定性, 算法更复杂</p>
-                        <a class="btn primary xsmall" href="/yi-jie-er-jie-you-hua-fang-fa.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/ill-conditioned-problem.html">ill-conditioned problem</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-18T15:09:54+01:00">
-        <i class="icon-calendar"></i>Fri 18 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>在SLAM，BA中，经常提到ill conditioned problems，需要转换矩阵形式，提供reliable,
-robust and efficient的系统结果。而这些在系统行为又在相关应用中尤为重要，
-所以需要细心的学习。</p>
-<p>文章中建议到:</p>
-<blockquote>
-<p>unless you are familiar with these issues, it is advisable to use profession-
-ally designed methods
-但是至少我们要知道这个事情的存在，与相关考虑的必要性。</p>
-</blockquote>
-                        <a class="btn primary xsmall" href="/ill-conditioned-problem.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/yue-shu-you-hua.html">约束优化</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-16T12:19:15+01:00">
-        <i class="icon-calendar"></i>Wed 16 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p><a href="https://blog.csdn.net/touristman5/article/details/57418552">等式约束，不等式约束问题</a>
-<a href="https://en.wikipedia.org/wiki/Constrained_optimization">wiki: constrained optimization</a></p>
-                        <a class="btn primary xsmall" href="/yue-shu-you-hua.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/fan-shu-norm.html">范数Norm</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-15T15:47:30+01:00">
-        <i class="icon-calendar"></i>Tue 15 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>向量范数(norm)</h1>
-<p>From wiki:</p>
-<blockquote>
-<p>In linear algebra, functional analysis, and related areas of mathematics,
-a norm is a function that assigns a strictly positive length or size to
-each vector in a vector space—except for the zero vector, which is
-assigned a length of zero.</p>
-</blockquote>
-<h1>矩阵范数</h1>
-<p>From wiki:</p>
-<blockquote>
-<p>In ...</p></blockquote>
-                        <a class="btn primary xsmall" href="/fan-shu-norm.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/pseudo-inverse.html">Pseudo Inverse</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-11T18:03:09+01:00">
-        <i class="icon-calendar"></i>Fri 11 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>In mathematics, and in particular linear algebra, a pseudoinverse A+ of a matrix
-A is a generalization of the inverse matrix. The most widely known type of
-matrix pseudoinverse is the Moore–Penrose inverse, which was independently
-described by E. H. Moore in 1920, Arne Bjerhammar in 1951, and Roger ...</p>
-                        <a class="btn primary xsmall" href="/pseudo-inverse.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/xian-xing-bian-huan-de-li-jie.html">线性变换的理解</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-10T23:13:22+01:00">
-        <i class="icon-calendar"></i>Thu 10 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>给定一个向量x
-[数值] = [坐标] x [坐标系统基]</p>
-<p>linear transformation可以理解成坐标系统的改变.
-例如将x变换到以[v1, v2, ... vn]为basis的系统下，</p>
-<div class="math">\begin{aligned}
-X &amp;= c_{1}v_{1} + c_{2}v_{2} + ... c_{n}v_{n} \\
-X &amp;= [v_{1} v_{2} ... v_{n}] [c_{1} c_{2} ...]^{T} \\
-X &amp;= WC  (1)\\
-C &amp;= W^{-1}X (2)
-\end{aligned}</div>
-<p>(2 ...</p>
-                        <a class="btn primary xsmall" href="/xian-xing-bian-huan-de-li-jie.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/svd.html">SVD</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-10T16:21:16+01:00">
-        <i class="icon-calendar"></i>Thu 10 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>特征值分解</h1>
-<p>要求: 方阵
-线性代数中，特征分解（Eigendecomposition），又称谱分解（Spectral decomposition）
-是将矩阵分解为由其特征值和特征向量表示的矩阵之积的方法。
-需要注意只有对可对角化矩阵才可以施以特征分解.</p>
-<p>令 A 是一个 N×N 的方阵，且有 N 个线性无关的特征向量 <span class="math">\(q_{i}\,\,(i=1,\dots ,N)\)</span>。
-这样， A 可以被分解为
-</p>
-<div class="math">$$\mathbf {A} =\mathbf {Q} \mathbf {\Lambda } \mathbf {Q} ^{-1}$$</div>
-<p>
-其中 Q 是N×N方阵，且其第 i列为 A 的特征向量 <span class="math">\(q_{i}\)</span>。 Λ 是对角矩阵 ...</p>
-                        <a class="btn primary xsmall" href="/svd.html">more ...</a>
-                </div>
-        </div>
-        <hr />
 
         <div class="pagination">
         <ul>
@@ -417,7 +439,7 @@ C &amp;= W^{-1}X (2)
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
 <a href="/category/ceres.html">
-    <i class="icon-folder-open icon-large"></i>ceres
+    <i class="icon-folder-open icon-large"></i>Ceres
 </a>
 </li>
 <li>
@@ -433,6 +455,11 @@ C &amp;= W^{-1}X (2)
 <li>
 <a href="/category/german.html">
     <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
 </a>
 </li>
 <li>

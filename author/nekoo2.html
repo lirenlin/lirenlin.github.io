@@ -66,7 +66,7 @@
                           <li class="divider-vertical"></li>
                   <li >
                     <a href="/category/ceres.html">
-						<i class="icon-folder-open icon-large"></i>ceres
+						<i class="icon-folder-open icon-large"></i>Ceres
 					</a>
                   </li>
                   <li >
@@ -82,6 +82,11 @@
                   <li >
                     <a href="/category/german.html">
 						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
 					</a>
                   </li>
                   <li >
@@ -125,59 +130,246 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/eigen.html">Eigen</a></h1>
+                <h1><a href="/robust-regression.html">Robust regression</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2019-01-14T15:34:46+01:00">
-        <i class="icon-calendar"></i>Mon 14 January 2019
+<abbr class="published" title="2019-02-01T01:06:33+01:00">
+        <i class="icon-calendar"></i>Fri 01 February 2019
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
 <span class="label">Category</span>
-<a href="/category/eigen.html"><i class="icon-folder-open"></i>Eigen</a>.
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/eigen.html"><i class="icon-tag"></i>Eigen</a>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>Operator *在Eigen中被重载，可以直接使用一个四元数乘以一个向量来计算来旋转后的向量。
-例如：
-https://stackoverflow.com/questions/50507665/eigen-rotate-a-vector3d-with-a-quaternion</p>
-                        <a class="btn primary xsmall" href="/eigen.html">more ...</a>
+                <div class="summary"><p>最小二乘法对于outlier比较敏感</p>
+<p>对于高斯噪声，最大似然等同于最小二乘
+https://www.jianshu.com/p/d0ea25071c57</p>
+<p>So for least squares to have a useful statistical interpretation, the Wi should 
+be chosen to approximate the inverse measurement covariance of z i.
+Even for non-Gaussian noise with this mean and covariance, the Gauss-Markov
+theorem [37, 11] states that if ...</p>
+                        <a class="btn primary xsmall" href="/robust-regression.html">more ...</a>
                 </div>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/ceres-local-parameterization.html">Ceres local parameterization</a></h1>
+                <h1><a href="/slam.html">SLAM</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2019-01-13T22:04:03+01:00">
-        <i class="icon-calendar"></i>Sun 13 January 2019
+<abbr class="published" title="2019-01-29T16:27:32+01:00">
+        <i class="icon-calendar"></i>Tue 29 January 2019
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
 <span class="label">Category</span>
-<a href="/category/ceres.html"><i class="icon-folder-open"></i>ceres</a>.
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/ceres.html"><i class="icon-tag"></i>ceres</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>Parameterization
-使用一个表达方式去表达一个另一个系统.</p>
-<h1>Local Parameterization</h1>
-<p>In many cases, some parameters lie on a manifold other than Euclidean space, e.g., rotation matrices. In such cases, the user can specify the geometry of the local tangent space by specifying a LocalParameterization object.</p>
-<p>https://groups.google.com/forum/#!topic/ceres-solver/7HfF6DnCv7o</p>
-                        <a class="btn primary xsmall" href="/ceres-local-parameterization.html">more ...</a>
+                <div class="summary"><h2>纯激光SLAM地图构建</h2>
+<p>如果平台只有激光测距的传感器，那个这个系统只有观测方程，没有运动方程。</p>
+<p>在卡尔曼滤波中，步骤分为预测与更新，没有了运动方程，这里只能有一步。由于没有额外
+的信息来消除误差，在运动/观测过程中的误差不会被消除，只会一直积累。</p>
+<p>这需要依赖后端的图优化来一次性优化所有地图的信息，这里回环检测就非常重要，它添加额外的非常
+重要的信息。也就是在图优化的术语中，添加了一个非常强的约束。</p>
+<p>对于运动的估计，利用点云匹配的方法求出，也就是位移与旋转。常用的方法有ICP。在这里，
+算法的稳定性尤为重要，因为这是唯一的估计运动的来源。由于，相邻的测量数据里只有部
+分信息重合，需要避免误匹配。同时，计算量会很大，效率很重要。</p>
+<p>scan to scan
+scan to map
+map to map</p>
+<h2>landmark extraction from laser scan</h2>
+<p>也称作环境feature extraction?</p>
+<ul>
+<li>Spike ...</li></ul>
+                        <a class="btn primary xsmall" href="/slam.html">more ...</a>
                 </div>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/first-order-function.html">First order function</a></h1>
+                <h1><a href="/zhi-neng-jia-ju-she-ji.html">智能家具设计</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2019-01-13T13:18:22+01:00">
-        <i class="icon-calendar"></i>Sun 13 January 2019
+<abbr class="published" title="2019-01-29T14:54:31+01:00">
+        <i class="icon-calendar"></i>Tue 29 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/home.html"><i class="icon-folder-open"></i>Home</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/home.html"><i class="icon-tag"></i>Home</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>无线控制开关，使用继电器(relay)
+bistable(latching) relay可以在没有控制信号的时候保持状态</p>
+<p>RF控制，需要直接对着
+蓝牙控制, 需要控制mcu
+网络控制, 需要控制mcu</p>
+                        <a class="btn primary xsmall" href="/zhi-neng-jia-ju-she-ji.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/qia-er-man-lu-bo-zui-da-si-ran-zui-xiao-er-cheng.html">卡尔曼滤波，最大似然，最小二乘</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-28T23:33:07+01:00">
+        <i class="icon-calendar"></i>Mon 28 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最小二乘估计：不考虑数据的统计特性，如期望，方差等，直接用最小二乘法得到最优估计。
+最小二乘估计只保证测量值与估计值的平方和最小，不保证估计误差的方差最小。最小二乘估计不需要随机变量V的任何统计信息。</p>
+<p>测量误差（测量）服从高斯分布的情况下， 最小二乘法等价于极大似然估计。(负对数)</p>
+<p>卡尔曼误差高斯分布后验概率推导
+http://www.cnblogs.com/ycwang16/p/5999034.html</p>
+<p>卡尔曼最小均方差推导
+卡尔曼滤波就是递推最小二乘法的一种特殊情况，卡尔曼滤波也是去通过最小化方差来求得最优的估计值。</p>
+<p><a href="https://blog.csdn.net/ethan_guo/article/details/80568254">最大似然估计,最小二乘估计,卡尔曼滤波,三者的相互关系</a>
+<a href="https://blog.csdn.net/qinruiyan/article/details/50793114">SLAM学习笔记2：Kalman Filter(卡尔曼滤波) 与Least Square(最小二乘法) 的比较</a></p>
+                        <a class="btn primary xsmall" href="/qia-er-man-lu-bo-zui-da-si-ran-zui-xiao-er-cheng.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/hessian.html">Hessian</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-27T15:13:19+01:00">
+        <i class="icon-calendar"></i>Sun 27 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>Hessian</h1>
+<h1>Hessian positive semidefinite</h1>
+<h1>Hessian ill conditioned, eigen value</h1>
+<ul>
+<li>convergence rate</li>
+<li>numeric statibility</li>
+</ul>
+<p>https://www.zhihu.com/question/56977045
+这里有一个知乎问答 <a href="https://www.zhihu.com/question/24623031">Hessian 矩阵的特征值有什么含义</a></p>
+<h1>Hessian approximation</h1>
+<p>高斯牛顿</p>
+                        <a class="btn primary xsmall" href="/hessian.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/quadratic-forms.html">Quadratic forms</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-27T13:47:50+01:00">
+        <i class="icon-calendar"></i>Sun 27 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最近在凸优化<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>一书中，steepest descent相关章节看到quadratic norm(9.4)，
+gradient descent与steepest descent的却别就在于不同范数(norm)的选取</p>
+<blockquote>
+<p>
+<div class="math">$$\Delta_{nsd}=argmin_v(\nabla f(x)^Tv\mid \|v\|&lt;=1)$$</div>
+i.e.  , as the direction in the unit ball of ‖·‖ that extends farthest in the
+direction <span class="math">\(-\nabla f(x)\)</span><br />
+Steepest descent for quadratic norm<br />
+We consider the ...</p></blockquote>
+                        <a class="btn primary xsmall" href="/quadratic-forms.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/geometric-operations.html">Geometric Operations</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-26T17:49:37+01:00">
+        <i class="icon-calendar"></i>Sat 26 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>Translation</h1>
+<h1>Rotation</h1>
+<h1>Affine transformation</h1>
+<p>线性变换+平移, 6 DOF</p>
+<h1>Rigid transformation (Euclidean transform, SE(3))</h1>
+<p>Any Euclidean transformation is an affine transformation. But not the other way
+around, for example, Reflections, Shear transformation.</p>
+<p>6 Degrees Of Freedom
+Transformation matrix = rotation + translation.</p>
+<h1>仿射函数与线性函数区别</h1>
+<blockquote>
+<p>A linear function fixes the origin, whereas an affine ...</p></blockquote>
+                        <a class="btn primary xsmall" href="/geometric-operations.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/leventberg-marquardt-algorithm.html">Leventberg-Marquardt Algorithm</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-25T12:31:55+01:00">
+        <i class="icon-calendar"></i>Fri 25 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最近想弄懂LM算法，看了一些介绍。 虽然不重要，但是对于它到底是使用line search和trust region算法感到困惑。</p>
+<blockquote>
+<p>Levenberg (1944) and later Marquardt (1963) suggested to use a
+damped Gauss-Newton method, cf Section 2.4.  The step <span class="math">\(h_{lm}\)</span> is defined by the
+following modification to (3.9),<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>
+<div class="math">$$(J^TJ + \lambda I)h_{lm} = -g \;with\; g = J^Tf \;and\; \lambda ...</div></p></blockquote>
+                        <a class="btn primary xsmall" href="/leventberg-marquardt-algorithm.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/floating-point.html">floating point</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-23T17:16:15+01:00">
+        <i class="icon-calendar"></i>Wed 23 January 2019
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
@@ -188,17 +380,22 @@ https://stackoverflow.com/questions/50507665/eigen-rotate-a-vector3d-with-a-quat
 <span class="label">Tags</span>
 	<a href="/tag/programming.html"><i class="icon-tag"></i>Programming</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>ihttps://en.wikipedia.org/wiki/First-class_function</p>
-                        <a class="btn primary xsmall" href="/first-order-function.html">more ...</a>
+                <div class="summary"><h1>Floating point</h1>
+<p>In computing, floating-point arithmetic (FP) is arithmetic using formulaic
+representation of real numbers as an approximation so as to support a trade-off
+between range and precision. For this reason, floating-point computation is
+often found in systems which include very small and very large real numbers,
+which require fast ...</p>
+                        <a class="btn primary xsmall" href="/floating-point.html">more ...</a>
                 </div>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/pseudo-inverse.html">Pseudo Inverse</a></h1>
+                <h1><a href="/numerical-stability.html">Numerical stability</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2019-01-11T18:03:09+01:00">
-        <i class="icon-calendar"></i>Fri 11 January 2019
+<abbr class="published" title="2019-01-23T14:27:51+01:00">
+        <i class="icon-calendar"></i>Wed 23 January 2019
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
@@ -209,184 +406,9 @@ https://stackoverflow.com/questions/50507665/eigen-rotate-a-vector3d-with-a-quat
 <span class="label">Tags</span>
 	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>In mathematics, and in particular linear algebra, a pseudoinverse A+ of a matrix
-A is a generalization of the inverse matrix. The most widely known type of
-matrix pseudoinverse is the Moore–Penrose inverse, which was independently
-described by E. H. Moore in 1920, Arne Bjerhammar in 1951, and Roger ...</p>
-                        <a class="btn primary xsmall" href="/pseudo-inverse.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/xian-xing-bian-huan-de-li-jie.html">线性变换的理解</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-10T23:13:22+01:00">
-        <i class="icon-calendar"></i>Thu 10 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>给定一个向量x
-[数值] = [坐标] x [坐标系统基]</p>
-<p>linear transformation可以理解成坐标系统的改变.
-例如将x变换到以[v1, v2, ... vn]为basis的系统下，</p>
-<div class="math">\begin{aligned}
-X &amp;= c_{1}v_{1} + c_{2}v_{2} + ... c_{n}v_{n} \\
-X &amp;= [v_{1} v_{2} ... v_{n}] [c_{1} c_{2} ...]^{T} \\
-X &amp;= WC  (1)\\
-C &amp;= W^{-1}X (2)
-\end{aligned}</div>
-<p>(2 ...</p>
-                        <a class="btn primary xsmall" href="/xian-xing-bian-huan-de-li-jie.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/svd.html">SVD</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-10T16:21:16+01:00">
-        <i class="icon-calendar"></i>Thu 10 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>特征值分解</h1>
-<p>要求: 方阵
-线性代数中，特征分解（Eigendecomposition），又称谱分解（Spectral decomposition）
-是将矩阵分解为由其特征值和特征向量表示的矩阵之积的方法。
-需要注意只有对可对角化矩阵才可以施以特征分解.</p>
-<p>令 A 是一个 N×N 的方阵，且有 N 个线性无关的特征向量 <span class="math">\(q_{i}\,\,(i=1,\dots ,N)\)</span>。
-这样， A 可以被分解为
-</p>
-<div class="math">$$\mathbf {A} =\mathbf {Q} \mathbf {\Lambda } \mathbf {Q} ^{-1}$$</div>
-<p>
-其中 Q 是N×N方阵，且其第 i列为 A 的特征向量 <span class="math">\(q_{i}\)</span>。 Λ 是对角矩阵 ...</p>
-                        <a class="btn primary xsmall" href="/svd.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/mei-de-ju-zhen.html">"美"的矩阵</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-09T16:56:43+01:00">
-        <i class="icon-calendar"></i>Wed 09 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>"美"的矩阵形式</p>
-<h1>identity matrix 单位矩阵</h1>
-<h1>Unitary matrix 酉矩阵</h1>
-<h1>Normal matrix 正规矩阵</h1>
-<h1>Orthogonal matrix<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></h1>
-<p>An orthogonal matrix is a square matrix whose columns and rows are orthogonal
-unit vectors (i.e., orthonormal vectors), i.e.
-</p>
-<div class="math">$$Q^{T} Q = Q Q^{T} = I$$</div>
-<p>
-where <span class="math">\(I\)</span> is the identity matrix.
-This leads ...</p>
-                        <a class="btn primary xsmall" href="/mei-de-ju-zhen.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/positive-definite-matrix.html">Positive definite matrix</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-09T16:03:03+01:00">
-        <i class="icon-calendar"></i>Wed 09 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-	<a href="/tag/optimization.html"><i class="icon-tag"></i>Optimization</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>Definition<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></h1>
-<p>In linear algebra, a <strong>symmetric</strong> <span class="math">\(n \times n\)</span> real matrix <span class="math">\(M\)</span> is said to be
-positive definite if the scalar <span class="math">\(z^{T}Mz\)</span> is strictly positive for every
-non-zero column vector <span class="math">\(z\)</span> of <span class="math">\(n\)</span> real numbers. Here <span class="math">\(z^{\textsf {T}}\)</span> denotes
-the transpose of <span class="math">\(z\)</span>.</p>
-<p>More generally, an ...</p>
-                        <a class="btn primary xsmall" href="/positive-definite-matrix.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/eigenvalue-eigenvector.html">EigenValue EigenVector</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-06T17:22:56+01:00">
-        <i class="icon-calendar"></i>Sun 06 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>我们知道，矩阵乘法对应了一个变换，是把任意一个向量变成另一个方向或长度都大多不同的新向量。在这个变换的过程中，原向量主要发生旋转、伸缩的变化。如果矩阵对某一个向量或某些向量只发生伸缩变换，不对这些向量产生旋转的效果，那么这些向量就称为这个矩阵的特征向量，伸缩的比例就是特征值。</p>
-<p>特征值eigenvalue和特征向量eigenvector的一大应用是用于大量数据的降维
-压缩，简化计算
-相似矩阵</p>
-<p>https://zhuanlan.zhihu.com/p/31003468</p>
-<p>http://setosa.io/ev/eigenvectors-and-eigenvalues/</p>
-<p>https://www.zhihu.com/question/21874816</p>
-<p>http://mlwiki.org/index.php/Eigendecomposition</p>
-<p>https://blog.csdn.net/dongtinghong/article/details/14216139</p>
-<p>https://stats.stackexchange.com/questions ...</p>
-                        <a class="btn primary xsmall" href="/eigenvalue-eigenvector.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/singular-matrix.html">Singular matrix</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-05T12:26:08+01:00">
-        <i class="icon-calendar"></i>Sat 05 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Singular Matrix or Noninvertible Matrix</p>
-<p>A square matrix which does not have an inverse. A matrix is singular if and only if its determinant is zero.</p>
-                        <a class="btn primary xsmall" href="/singular-matrix.html">more ...</a>
+                <div class="summary"><p><a href="https://en.wikipedia.org/wiki/Numerical_stability">Wiki: numerical stability</a></p>
+<p><a href="https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
+                        <a class="btn primary xsmall" href="/numerical-stability.html">more ...</a>
                 </div>
         </div>
         <hr />
@@ -399,6 +421,8 @@ the transpose of <span class="math">\(z\)</span>.</p>
                         <li class=""><a href="/author/nekoo3.html">3</a></li>
                         <li class=""><a href="/author/nekoo4.html">4</a></li>
                         <li class=""><a href="/author/nekoo5.html">5</a></li>
+                        <li class=""><a href="/author/nekoo6.html">6</a></li>
+                        <li class=""><a href="/author/nekoo7.html">7</a></li>
                         <li class="next"><a href="/author/nekoo3.html">Next &rarr;</a></li>
         </ul>
         </div>
@@ -414,7 +438,7 @@ the transpose of <span class="math">\(z\)</span>.</p>
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
 <a href="/category/ceres.html">
-    <i class="icon-folder-open icon-large"></i>ceres
+    <i class="icon-folder-open icon-large"></i>Ceres
 </a>
 </li>
 <li>
@@ -430,6 +454,11 @@ the transpose of <span class="math">\(z\)</span>.</p>
 <li>
 <a href="/category/german.html">
     <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
 </a>
 </li>
 <li>

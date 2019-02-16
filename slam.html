@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SLAM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>Ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/compiler.html">
+						<i class="icon-folder-open icon-large"></i>Compiler
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to SLAM">
+                                        SLAM
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-29T16:27:32+01:00">
+        <i class="icon-calendar"></i>Tue 29 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info -->                </div>
+                <h2>纯激光SLAM地图构建</h2>
+<p>如果平台只有激光测距的传感器，那个这个系统只有观测方程，没有运动方程。</p>
+<p>在卡尔曼滤波中，步骤分为预测与更新，没有了运动方程，这里只能有一步。由于没有额外
+的信息来消除误差，在运动/观测过程中的误差不会被消除，只会一直积累。</p>
+<p>这需要依赖后端的图优化来一次性优化所有地图的信息，这里回环检测就非常重要，它添加额外的非常
+重要的信息。也就是在图优化的术语中，添加了一个非常强的约束。</p>
+<p>对于运动的估计，利用点云匹配的方法求出，也就是位移与旋转。常用的方法有ICP。在这里，
+算法的稳定性尤为重要，因为这是唯一的估计运动的来源。由于，相邻的测量数据里只有部
+分信息重合，需要避免误匹配。同时，计算量会很大，效率很重要。</p>
+<p>scan to scan
+scan to map
+map to map</p>
+<h2>landmark extraction from laser scan</h2>
+<p>也称作环境feature extraction?</p>
+<ul>
+<li>Spike landmarks, 对于环境中类似于脱离背景的人，因为其筛选标准，会错误判断为路标</li>
+<li>RANSAC, use line extraction, 对于环境中移动的人，有一定的稳定特性。但是对于块状移动物体，例如汽车，肯能也会错误的识别为路标</li>
+<li>scan mathing, 不提取特征，直接比较相邻时刻的laser scans, 计算量问题，稳定性问题，data point reduce, data align问题。后续有看到feature-based laser scan mathing 文章。</li>
+</ul>
+<h2>KF-SLAM, online SLAM</h2>
+<p><figure>
+<img src="images/slam04_ekf_state.png" alt="EKF state" title="EKF state" style="max-width:80%;max-height:80%"/>
+<figcaption> Figure. EKF state representation<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> </figcaption>
+</figure>
+<figure>
+<img src="images/slam08_kf_complexity.png" alt="EKF complexity" title="EKF complexity" style="max-width:80%;max-height:80%"/>
+<figcaption> Figure. EKF complexity<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> </figcaption>
+</figure>
+因为图1中状态的表示与路标数成比例，协方差矩阵(信息矩阵)的大小是路标数量的二阶形式。在卡尔曼滤波过程中，一直需要维护更新这个矩阵。</p>
+<h3>EKF</h3>
+<h3>UKF</h3>
+<h3>SEIF</h3>
+<h2>拥有反馈的SLAM系统</h2>
+<p>在这个系统中，有多种传感器，融合所有传感器的信(sensor fusion)，可以修正一定的误差</p>
+<h2>Online SLAM vs Full SLAM</h2>
+<p>在没有回环检测的时候，卡尔曼滤波与图优化的优劣，strip状的路径
+卡尔曼滤波计算更小，数据存储越小？</p>
+<ul>
+<li>前端<ol>
+<li>特征点提取</li>
+<li>特征匹配，计算相对运动矩阵，估计位姿，估计路标坐标</li>
+<li>回环检测</li>
+</ol>
+</li>
+<li>后端<ol>
+<li>优化，更新位姿，路标</li>
+<li>parameterization: 优化方法求导，四元数
+iterative non-linear optimization: LM, Gauss-Newton etc.
+solve symstem of linear euqation: 计算
+matrix decomposition: 计算
+matrix sparseness: 问题的结构，优化计算
+numeric stability(condition number):
+Marginalization: 消原，或者局部更新，window
+outlier: </li>
+</ol>
+</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam04-ekf-slam.pdf&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam08-kf-wrapup.pdf&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>Ceres
+</a>
+</li>
+<li>
+<a href="/category/compiler.html">
+    <i class="icon-folder-open icon-large"></i>Compiler
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

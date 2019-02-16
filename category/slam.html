@@ -66,7 +66,7 @@
                           <li class="divider-vertical"></li>
                   <li >
                     <a href="/category/ceres.html">
-						<i class="icon-folder-open icon-large"></i>ceres
+						<i class="icon-folder-open icon-large"></i>Ceres
 					</a>
                   </li>
                   <li >
@@ -82,6 +82,11 @@
                   <li >
                     <a href="/category/german.html">
 						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
 					</a>
                   </li>
                   <li >
@@ -125,6 +130,205 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html">位姿图优化空间平移问题</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-16T20:20:10+01:00">
+        <i class="icon-calendar"></i>Sat 16 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>A Tutorial on Graph-Based SLAM<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>
+中有提到一个细节，</p>
+<blockquote>
+<p>Note that the error of a constraint <span class="math">\(e_{ij}\)</span> depends only on the relative position
+of the connected pose <span class="math">\(x_i\)</span> and <span class="math">\(x_j\)</span>.  Accordingly, the error <span class="math">\(F(x)\)</span> of a
+particular configuration of the pose sxis invariant under a rigid transformation
+of all the ...</p></blockquote>
+                        <a class="btn primary xsmall" href="/wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/ba-vs-graph-slam.html">BA vs Graph SLAM</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-15T13:05:07+01:00">
+        <i class="icon-calendar"></i>Fri 15 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>state vector
+error function</p>
+<ol>
+<li>parameterization for the state vector<ul>
+<li>minimum parameterization, 对于分量是分别计算的，在有冗余的时候，例如旋转矩阵R，他们之间的约束没有表示出来，会求得不合理的组合
+但是对于 minimum parameterization，可能不存在欧式空间的加法。不连续可导。</li>
+<li>Extended parameterization</li>
+</ul>
+</li>
+</ol>
+<p><span class="math">\([x, y, \theta]\)</span> or <span class="math">\(T \to \mathbb SE(3)\)</span></p>
+<p>It is a well known thing that 3D rotations can be parameterized with a
+rotation matrix R. A ...</p>
+                        <a class="btn primary xsmall" href="/ba-vs-graph-slam.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/graph-slamzong-jie.html">Graph SLAM总结</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-14T16:21:45+01:00">
+        <i class="icon-calendar"></i>Thu 14 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>Vertex</h2>
+<p>图的顶点，代表待优化的变量，具体表示形式取决于参数化(parameterazation)。</p>
+<p>顶点可以是多种形式，例如SLAM问题中的机器人位姿(pose)，或者路标的坐标(三维空间<span class="math">\([x,y,z]\)</span>，或者二维空间坐标<span class="math">\([x,y]\)</span>)。同时，位姿也可以用不同的参数表达，可以是两个位姿间的变化矩阵<span class="math">\(T\)</span>，或者是3DoF下的位置与转角<span class="math">\([x,y,\theta]\)</span>。可以融合多种信息，统一求解，非常的灵活。</p>
+<h2>Edge</h2>
+<p>相应的，不同顶点之间，需要合适的边连接起来，表示它们之间的约束与变换。这个需要与顶点的性质统一。</p>
+<p>例如，位姿顶点之间，是通过运动方程的边连接。位姿顶点与路标顶点，是通过观测方程连接。在没有相关信息的时候，也可以通过其他信息推导。例如在没有运动方程信息的时候，可以通过scan to scan match来获取pose之间的估计。但是，总体来说，信息越多，通过融合后的预测结果越可信。</p>
+<p>上述距离中 ...</p>
+                        <a class="btn primary xsmall" href="/graph-slamzong-jie.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/apollodai-ma-jie-gou.html">Apollo代码结构</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-07T20:14:27+01:00">
+        <i class="icon-calendar"></i>Thu 07 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>https://blog.csdn.net/tianzy16/article/details/83988402</p>
+                        <a class="btn primary xsmall" href="/apollodai-ma-jie-gou.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/cartographeryuan-ma.html">Cartographer源码</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-07T20:13:11+01:00">
+        <i class="icon-calendar"></i>Thu 07 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>https://zhuanlan.zhihu.com/p/48010119</p>
+<p>https://blog.csdn.net/MyArrow/article/details/80605118
+https://blog.csdn.net/u012209790/article/details/82629422</p>
+                        <a class="btn primary xsmall" href="/cartographeryuan-ma.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/ji-qi-ren-ju-bu-bi-zhang.html">机器人局部蔽障</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-02-07T18:48:59+01:00">
+        <i class="icon-calendar"></i>Thu 07 February 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>动态窗口法(Dynamic window approach)</h2>
+<ul>
+<li>根据运动模型，机器人参数，生成一个合理的搜索空间(search space）</li>
+<li>根据评价函数，选取最后方案</li>
+</ul>
+<p>动态窗口法主要是在速度(v,w)空间(线速度，角速度)中，采样多种速度可能性，并模拟
+在一个固定时间sim_period内，机器人的轨迹，得到多组轨迹以后，对轨迹进行评价，
+选取最优轨迹对应的速度来驱动机器人。
+如何选取可行的二维速度空间，并且使之尽可能小，这样需要模拟的可能路径就少。
+在DWA中，这个窗口的确定是根据机器人的加减速性能(kinematic constraint)</p>
+<p>(程序每隔0.25秒运行一次，sim_period = 0.25s, 计算出在此时刻，根据不同的速度采样，sim_period以后各自不同的轨迹，选取其中最符合最优标准的速度，转换成机器人控制，完成一次的控制。然后等待下一个sim_period再进行同样的循环操作)</p>
+<p>具体解释，可参考：机器人局部避障的动态窗口法(dynamic window approach ...</p>
+                        <a class="btn primary xsmall" href="/ji-qi-ren-ju-bu-bi-zhang.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/slam.html">SLAM</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-29T16:27:32+01:00">
+        <i class="icon-calendar"></i>Tue 29 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>纯激光SLAM地图构建</h2>
+<p>如果平台只有激光测距的传感器，那个这个系统只有观测方程，没有运动方程。</p>
+<p>在卡尔曼滤波中，步骤分为预测与更新，没有了运动方程，这里只能有一步。由于没有额外
+的信息来消除误差，在运动/观测过程中的误差不会被消除，只会一直积累。</p>
+<p>这需要依赖后端的图优化来一次性优化所有地图的信息，这里回环检测就非常重要，它添加额外的非常
+重要的信息。也就是在图优化的术语中，添加了一个非常强的约束。</p>
+<p>对于运动的估计，利用点云匹配的方法求出，也就是位移与旋转。常用的方法有ICP。在这里，
+算法的稳定性尤为重要，因为这是唯一的估计运动的来源。由于，相邻的测量数据里只有部
+分信息重合，需要避免误匹配。同时，计算量会很大，效率很重要。</p>
+<p>scan to scan
+scan to map
+map to map</p>
+<h2>landmark extraction from laser scan</h2>
+<p>也称作环境feature extraction?</p>
+<ul>
+<li>Spike ...</li></ul>
+                        <a class="btn primary xsmall" href="/slam.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/jian-dan-badai-ma-fen-xi.html">简单BA代码分析</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -163,7 +367,7 @@
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
 <a href="/category/ceres.html">
-    <i class="icon-folder-open icon-large"></i>ceres
+    <i class="icon-folder-open icon-large"></i>Ceres
 </a>
 </li>
 <li>
@@ -179,6 +383,11 @@
 <li>
 <a href="/category/german.html">
     <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
 </a>
 </li>
 <li>

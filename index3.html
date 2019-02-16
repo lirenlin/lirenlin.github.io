@@ -66,7 +66,7 @@
                           <li class="divider-vertical"></li>
                   <li >
                     <a href="/category/ceres.html">
-						<i class="icon-folder-open icon-large"></i>ceres
+						<i class="icon-folder-open icon-large"></i>Ceres
 					</a>
                   </li>
                   <li >
@@ -82,6 +82,11 @@
                   <li >
                     <a href="/category/german.html">
 						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
 					</a>
                   </li>
                   <li >
@@ -125,89 +130,11 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/normal-equation.html">Normal Equation</a></h1>
+                <h1><a href="/cholesky-decomposition.html">cholesky decomposition</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2019-01-04T18:08:16+01:00">
-        <i class="icon-calendar"></i>Fri 04 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>从MIT公开课Linear Algebra从了解到，这里做了很好的总结.
-在线性方程组条件下，Normal equation解法与梯度下降法一样，梯度下降法一次迭代就可以稳定。可以证明，与正规方程解法意义相同。同时，正规方程解法具有几何意义.</p>
-<p><a href="https://blog.csdn.net/u013802188/article/details/40181601">CSDN:正规方程组(The normal equations)</a>
-<a href="http://mlwiki.org/index.php/Normal_Equation">ML Wiki: Normal equation</a></p>
-                        <a class="btn primary xsmall" href="/normal-equation.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/interpolation.html">Interpolation</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-03T23:32:10+01:00">
-        <i class="icon-calendar"></i>Thu 03 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>In the mathematical field of numerical analysis, interpolation is a method of
-constructing new data points within the range of a discrete set of known data
-points.</p>
-<p>In engineering and science, one often has a number of data points, obtained by
-sampling or experimentation, which represent the values of a ...</p>
-                        <a class="btn primary xsmall" href="/interpolation.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/matrix-rank.html">Matrix rank</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-26T13:07:00+01:00">
-        <i class="icon-calendar"></i>Wed 26 December 2018
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><ul>
-<li>直观：「秩」是图像经过矩阵变换之后的空间维度</li>
-<li>定义：「秩」是列空间的维度</li>
-<li>物理意义：From an applied setting, rank of a matrix denotes the information content of
-the matrix. The lower the rank, the lower is the "information content".</li>
-</ul>
-<p>我的理解：
-</p>
-<div class="math">$$Ax = b, \quad \textrm {where} \quad A \in \mathbb {R}^{nxn}, x, b \in \mathbb {R}^{n ...</div>
-                        <a class="btn primary xsmall" href="/matrix-rank.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/xian-xing-fang-cheng-zu.html">线性方程组</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-26T10:25:50+01:00">
-        <i class="icon-calendar"></i>Wed 26 December 2018
+<abbr class="published" title="2019-01-22T16:48:47+01:00">
+        <i class="icon-calendar"></i>Tue 22 January 2019
 </abbr>
 <span class="label">By</span>
 <a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
@@ -220,243 +147,246 @@ the matrix. The lower the rank, the lower is the "information content".</li>
 </footer><!-- /.post-info --></div>
                 <div class="summary"><ul>
 <li>
-<p>In general, a system with fewer equations than unknowns has infinitely many
-solutions, but it may have no solution. Such a system is known as an
-underdetermined system.</p>
+<p>Linear least squares, the solution is to solve this system of linear
+equations: <span class="math">\(A^TAx = TX = A^Tb\)</span></p>
 </li>
 <li>
-<p>In general(not always), a system with more equations than unknowns has no solution. Such a
-system is also known as an ...</p></li></ul>
-                        <a class="btn primary xsmall" href="/xian-xing-fang-cheng-zu.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/vim-operation-on-search-matches-using-gn.html">Vim: Operation on search matches using gn</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-26T10:08:53+01:00">
-        <i class="icon-calendar"></i>Wed 26 December 2018
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/vim.html"><i class="icon-folder-open"></i>Vim</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/vim.html"><i class="icon-tag"></i>Vim</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>The gn command (introduced in Vim 7.4) makes it easy to operate on regions of
-text that match the current search pattern. It’s especially useful when used
-with a regex that matches text regions of variable length.</p>
-<p>Here’s what Vim’s documentation has to say about the ...</p>
-                        <a class="btn primary xsmall" href="/vim-operation-on-search-matches-using-gn.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/ju-zhen-cheng-fa.html">矩阵乘法</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-25T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 25 December 2018
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><div class="math">$$C = AB, A \in \mathbb {R}^{m \times n}, b \in \mathbb {R}^{n \times l}, c \in \mathbb {R}^{m \times l}$$</div>
-<p>For example:
-</p>
-<div class="math">$$
-A =
-\begin{bmatrix}
-a_{00} &amp; a_{01} &amp; a_{02}\\
-a_{10} &amp; a_{11} &amp; a_{12}\\
-a_{20} &amp; a_{21} &amp; a_{22}
-\end{bmatrix}
-B =
-\begin ...</div>
-                        <a class="btn primary xsmall" href="/ju-zhen-cheng-fa.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/ju-zhen-fen-jie.html">矩阵分解</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-25T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 25 December 2018
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>Simplify the computation of linear system of equations.</h1>
-<p>Matrix factorization in the context of numerical linear algebra(NLA) generally serves the purpose of rephrasing through a series of easier subproblems a task that may be relatively difficult to solve in its original form.</p>
-<p>For example, given the typical linear system ...</p>
-                        <a class="btn primary xsmall" href="/ju-zhen-fen-jie.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/ju-zhen-xing-zhi-from-wiki.html">矩阵性质 (From Wiki)</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-25T00:00:00+01:00">
-        <i class="icon-calendar"></i>Tue 25 December 2018
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>Square matrix:</h1>
-<p>In mathematics, a square matrix is a matrix with the same number of rows and columns. An n-by-n matrix is known as a square matrix of order n. Any two square matrices of the same order can be added and multiplied.</p>
-<p>Square matrices are often used to represent ...</p>
-                        <a class="btn primary xsmall" href="/ju-zhen-xing-zhi-from-wiki.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/qing-tai-dong-ci-der-modalverb.html">情态动词 der Modalverb</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-22T12:39:19+01:00">
-        <i class="icon-calendar"></i>Sat 22 December 2018
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/german.html"><i class="icon-folder-open"></i>German</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/german.html"><i class="icon-tag"></i>German</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><table>
-<thead>
-<tr>
-<th></th>
-<th>ich</th>
-<th>du</th>
-<th>er/sie/es</th>
-<th>wir</th>
-<th>ihr</th>
-<th>sie/Sie</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>durfen</td>
-<td>darf</td>
-<td>darfst</td>
-<td>darf</td>
-<td>durfen</td>
-<td>durft</td>
-<td>durfen</td>
-</tr>
-<tr>
-<td>konnen</td>
-<td>kann</td>
-<td>kannst</td>
-<td>kann</td>
-<td>konnen</td>
-<td>konnt</td>
-<td>konnen</td>
-</tr>
-<tr>
-<td>mogen</td>
-<td>mochte</td>
-<td>mochtest</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mussen</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sollen</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>wollen</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>sein
-现在时: bin, bist, ist, sind, seid, sind
-过去时: war, warst, war, waren, wart, waren</p>
-<p>haben
-现在时: habe, hast, hat, haben ...</p>
-                        <a class="btn primary xsmall" href="/qing-tai-dong-ci-der-modalverb.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html">计算机求导的四种方式</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-12-21T15:08:08+01:00">
-        <i class="icon-calendar"></i>Fri 21 December 2018
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>计算机求导，有四种方法:</p>
+<p>Non-linear least squares problem via iterative method</p>
 <ul>
-<li>人工解析微分法（manual analytical differentiation）</li>
-<li>数值微分法（numerical differentiation）</li>
-<li>符号微分法（symbolic differentiation）</li>
-<li>自动微分法（automatic differentiation）</li>
-</ul>
-<p><img src="images/differentiation.jpeg" alt="Automatic differentiation in
-machine learning: a survey" title="differentiation" style="max-width: 100%; max-height: 100%;"/></p>
-<p>参考:<br />
-<a href="http://ceres-solver.org/derivatives.html">Ceres Derivatives</a><br />
-<a href="https://toutiao.io/posts/a5qqmj/preview">计算机求导的四种方式</a><br />
-<a href="https://arxiv.org/abs/1502.05767">Automatic differentiation in machine learning: a survey</a></p>
-                        <a class="btn primary xsmall" href="/ji-suan-ji-qiu-dao-de-si-chong-fang-shi.html">more ...</a>
+<li>Gauss-Newton Method, solve <span class="math">\((J_x^T J_x)\Delta = T\Delta = -J_x^Tf(x)\)</span></li>
+<li>Levenberg-Marquardt Algorithm, solve <span class="math">\((J_x^T J_x + \lambda D)\Delta = T\delta = -J_x^Tf ...</span></li></ul></li></ul>
+                        <a class="btn primary xsmall" href="/cholesky-decomposition.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/ill-conditioned-matrices.html">ill-conditioned Matrices</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-21T14:50:04+01:00">
+        <i class="icon-calendar"></i>Mon 21 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>What is an ill-conditioned matrix?<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></h1>
+<p>A matrix can represent a mapping from one space to another space. The
+conditioning number of a matrix gives us the ratio of how crazy this mapping
+can be. The conditioning number is the ratio of the largest singular value to
+the smallest singular ...</p>
+                        <a class="btn primary xsmall" href="/ill-conditioned-matrices.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/yi-jie-er-jie-you-hua-fang-fa.html">一阶二阶优化方法</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-21T11:15:42+01:00">
+        <i class="icon-calendar"></i>Mon 21 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>1, 计算量, Hessian矩阵
+2, 收敛迭代次数, 更少的迭代次数，但是每次计算量更大
+3, 问题数值精度
+4, 数值稳定性, 算法更复杂</p>
+                        <a class="btn primary xsmall" href="/yi-jie-er-jie-you-hua-fang-fa.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/ill-conditioned-problem.html">ill-conditioned problem</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-18T15:09:54+01:00">
+        <i class="icon-calendar"></i>Fri 18 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>在SLAM，BA中，经常提到ill conditioned problems，需要转换矩阵形式，提供reliable,
+robust and efficient的系统结果。而这些在系统行为又在相关应用中尤为重要，
+所以需要细心的学习。</p>
+<p>文章中建议到:</p>
+<blockquote>
+<p>unless you are familiar with these issues, it is advisable to use profession-
+ally designed methods
+但是至少我们要知道这个事情的存在，与相关考虑的必要性。</p>
+</blockquote>
+                        <a class="btn primary xsmall" href="/ill-conditioned-problem.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/yue-shu-you-hua.html">约束优化</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-16T12:19:15+01:00">
+        <i class="icon-calendar"></i>Wed 16 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p><a href="https://blog.csdn.net/touristman5/article/details/57418552">等式约束，不等式约束问题</a>
+<a href="https://en.wikipedia.org/wiki/Constrained_optimization">wiki: constrained optimization</a></p>
+                        <a class="btn primary xsmall" href="/yue-shu-you-hua.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/lattice.html">Lattice</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-16T12:08:46+01:00">
+        <i class="icon-calendar"></i>Wed 16 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/compiler.html"><i class="icon-folder-open"></i>Compiler</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/compile.html"><i class="icon-tag"></i>Compile</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p><a href="/pdfs/E-DFA-using-lattices-small.pdf">DFA using lattices</a>
+<a href="/pdfs/static2.pdf">Lattice Theory Control Flow Graphs Control Flow Graphs Dataflow Analysis Dataflow Analysis</a></p>
+                        <a class="btn primary xsmall" href="/lattice.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/fan-shu-norm.html">范数Norm</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-15T15:47:30+01:00">
+        <i class="icon-calendar"></i>Tue 15 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>向量范数(norm)</h1>
+<p>From wiki:</p>
+<blockquote>
+<p>In linear algebra, functional analysis, and related areas of mathematics,
+a norm is a function that assigns a strictly positive length or size to
+each vector in a vector space—except for the zero vector, which is
+assigned a length of zero.</p>
+</blockquote>
+<h1>矩阵范数</h1>
+<p>From wiki:</p>
+<blockquote>
+<p>In ...</p></blockquote>
+                        <a class="btn primary xsmall" href="/fan-shu-norm.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/jian-dan-badai-ma-fen-xi.html">简单BA代码分析</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-15T08:36:12+01:00">
+        <i class="icon-calendar"></i>Tue 15 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/slam.html"><i class="icon-folder-open"></i>SLAM</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/bundleadjustment.html"><i class="icon-tag"></i>BundleAdjustment</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>简单代码分析，帮助自己从概念到代码的理解。代码使用Eigen, ceres solver第三方软件库。</p>
+<h1>问题假设</h1>
+<p>输入：</p>
+<ul>
+<li><span class="math">\(P^{c}_{ij}\)</span>: 路标(point)j在i相机位姿下，在相机坐标下的观测坐标<span class="math">\([Px^{c} Py^{c}]^T\)</span>(观测数据)</li>
+<li><span class="math">\(T_{i} = [rotation matrix, translation]\in \mathbb {R}^{6}\)</span> 或者<span class="math">\(T = [Quaternion, translation] \in \mathbb {R}^{7}\)</span> 相机位姿(pose)初始估计 (前端计算数据)</li>
+<li><span class="math">\(P^{w}_{j} = [Px^{w} Py^{w ...</span></li></ul>
+                        <a class="btn primary xsmall" href="/jian-dan-badai-ma-fen-xi.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/eigen.html">Eigen</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-14T15:34:46+01:00">
+        <i class="icon-calendar"></i>Mon 14 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/eigen.html"><i class="icon-folder-open"></i>Eigen</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/eigen.html"><i class="icon-tag"></i>Eigen</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>Operator *在Eigen中被重载，可以直接使用一个四元数乘以一个向量来计算来旋转后的向量。
+例如：
+https://stackoverflow.com/questions/50507665/eigen-rotate-a-vector3d-with-a-quaternion</p>
+                        <a class="btn primary xsmall" href="/eigen.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/local-parameterization.html">Local parameterization</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-01-13T22:04:03+01:00">
+        <i class="icon-calendar"></i>Sun 13 January 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/ceres.html"><i class="icon-folder-open"></i>Ceres</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/ceres.html"><i class="icon-tag"></i>Ceres</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>Parameterization
+使用一个表达方式去表达同一个系统的状态/参数.</p>
+<h2>Ceres Local Parameterization</h2>
+<p>In many cases, some parameters lie on a manifold other than Euclidean space, e.g.,
+rotation matrices. In such cases, the user can specify the geometry of the local 
+tangent space by specifying a LocalParameterization object.</p>
+<p>https://groups.google.com/forum/#!topic/ceres-solver/7HfF6DnCv7o ...</p>
+                        <a class="btn primary xsmall" href="/local-parameterization.html">more ...</a>
                 </div>
         </div>
         <hr />
@@ -469,6 +399,8 @@ machine learning: a survey" title="differentiation" style="max-width: 100%; max-
                         <li class="active"><a href="/index3.html">3</a></li>
                         <li class=""><a href="/index4.html">4</a></li>
                         <li class=""><a href="/index5.html">5</a></li>
+                        <li class=""><a href="/index6.html">6</a></li>
+                        <li class=""><a href="/index7.html">7</a></li>
                         <li class="next"><a href="/index4.html">Next &rarr;</a></li>
         </ul>
         </div>
@@ -484,7 +416,7 @@ machine learning: a survey" title="differentiation" style="max-width: 100%; max-
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
 <a href="/category/ceres.html">
-    <i class="icon-folder-open icon-large"></i>ceres
+    <i class="icon-folder-open icon-large"></i>Ceres
 </a>
 </li>
 <li>
@@ -500,6 +432,11 @@ machine learning: a survey" title="differentiation" style="max-width: 100%; max-
 <li>
 <a href="/category/german.html">
     <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
 </a>
 </li>
 <li>
