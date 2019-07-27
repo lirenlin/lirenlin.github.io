@@ -1,5 +1,532 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2019-02-16T20:20:10+01:00</updated><entry><title>位姿图优化空间平移问题</title><link href="/wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html" rel="alternate"></link><updated>2019-02-16T20:20:10+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-16:wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html</id><summary type="html">&lt;p&gt;A Tutorial on Graph-Based SLAM&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2019-07-27T21:00:09+02:00</updated><entry><title>std::bind vs lambda</title><link href="/stdbind-vs-lambda.html" rel="alternate"></link><updated>2019-07-27T21:00:09+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-07-27:stdbind-vs-lambda.html</id><summary type="html">&lt;h1&gt;lambda vs std::bind&lt;/h1&gt;
+&lt;p&gt;基本上是两个不同的用途，但是lambda可以实现std::bind的功能.
+如果目的知识想去创造一个scope临时的函数，例如提供给STL的函数。lambda非诚使用这种使用场景。
+1. 不需要单独的写一个函数，与使用逻辑分开。非常紧凑，没有context switch
+2. lambda 可以inline，compiler可以做更多的优化&lt;/p&gt;
+&lt;p&gt;但是如果lambda只是capture variable，然后调用另一个外部函数的话，bind更加的简单直接。
+"Simpler and clearer" is a matter of opinion. For simple binding cases, bind can take a lot less typing. bind also is focused solely on function binding, so if you see std::bind, you know what you're looking at. Whereas if you use a lambda, you have to look at the lambda implementation to be certain of what it does.&lt;/p&gt;
+&lt;p&gt;https://stackoverflow.com/questions/15598607/when-should-i-use-stdbind&lt;/p&gt;
+&lt;p&gt;但是注意，std::bind参数的传递只能通过copy, move。不能通过reference。这需要通过std::ref/std::cref&lt;/p&gt;
+&lt;h1&gt;&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nx"&gt;include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;iostream&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nx"&gt;include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;functional&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kr"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+  &lt;span class="c1"&gt;// deleted copy constructor, std::bind will fail because of this. It cannot&lt;/span&gt;
+  &lt;span class="c1"&gt;// make a copy for the binding arguments. Instead std::ref could be used to&lt;/span&gt;
+  &lt;span class="c1"&gt;// pass remove the copy operation&lt;/span&gt;
+  &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;getResult&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;_a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+  &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;inc() {_a&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// declaration doesn&amp;#39;t affected by class access specifier&lt;/span&gt;
+  &lt;span class="nx"&gt;friend&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;os&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;os&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;os&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; data object: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+
+&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;foo_cref&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getResult&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;foo_ref&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getResult&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// This will fail as std::bind will copy or move the arguments. arguments are&lt;/span&gt;
+  &lt;span class="c1"&gt;// never passed by reference unless wrapped in std::ref or std::cref&lt;/span&gt;
+  &lt;span class="c1"&gt;// https://en.cppreference.com/w/cpp/utility/functional/bind&lt;/span&gt;
+  &lt;span class="nx"&gt;auto&lt;/span&gt; &lt;span class="nx"&gt;fail_func&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;foo_cref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="nx"&gt;auto&lt;/span&gt; &lt;span class="nx"&gt;cref_func&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;foo_cref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;cref_func&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// value could be updated inside the function object&lt;/span&gt;
+  &lt;span class="nx"&gt;auto&lt;/span&gt; &lt;span class="nx"&gt;func_ref&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;foo_ref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;func_ref&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Rerefence:&lt;/h1&gt;
+&lt;p&gt;http://www.gockelhut.com/cpp-pirate/lambda-vs-bind.html&lt;/p&gt;
+&lt;p&gt;https://shawnliu.me/post/passing-reference-with-std-ref-in-c++/&lt;/p&gt;
+&lt;p&gt;https://github.com/peter-can-write/cpp-notes/blob/master/prefer-lambdas-over-std::bind.md&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ method chaining</title><link href="/c-method-chaining.html" rel="alternate"></link><updated>2019-07-01T22:21:49+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-07-01:c-method-chaining.html</id><summary type="html">&lt;p&gt;Some class methods return object reference to itself. This is for method
+chaining.&lt;/p&gt;
+&lt;p&gt;Reference:&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ algorithm</title><link href="/c-algorithm.html" rel="alternate"></link><updated>2019-06-22T18:47:43+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-06-22:c-algorithm.html</id><summary type="html">&lt;p&gt;std::all_of
+std::any_of
+std::none_of&lt;/p&gt;
+&lt;p&gt;std::partial_sum&lt;/p&gt;
+&lt;p&gt;std::lower_bound
+std::upper_bound
+binary search&lt;/p&gt;
+&lt;p&gt;std::unique
+std::sort&lt;/p&gt;
+&lt;p&gt;std::remove
+std::remove_if
+one iteration, vector remove/erase idiom&lt;/p&gt;
+&lt;p&gt;std::copy
+std::copy_if
+std::copy_n
+std::copy_backward
+&lt;code&gt;`
+std::copy(to_vector.begin(), to_vector.end(),
+          std::ostream_iterator&amp;lt;int&amp;gt;(std::cout, " "));&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;std::for_each, UnaryFunction
+std::for_each_n&lt;/p&gt;
+&lt;p&gt;std::transform, UnaryOperation or BinaryOperation&lt;/p&gt;
+&lt;p&gt;std::count
+std::count_if&lt;/p&gt;
+&lt;p&gt;std::equal&lt;/p&gt;
+&lt;p&gt;std::find_end
+std::search
+std::search_n
+std::find_first_of
+std::adjacent_find&lt;/p&gt;
+&lt;p&gt;range based for loop&lt;/p&gt;
+&lt;p&gt;std::back_inserter
+std::distance&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ notes</title><link href="/c-notes.html" rel="alternate"></link><updated>2019-06-22T17:40:22+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-06-22:c-notes.html</id><summary type="html">&lt;p&gt;https://stackoverflow.com/questions/1600936/officially-what-is-typename-for&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ std::vector</title><link href="/c-stdvector.html" rel="alternate"></link><updated>2019-06-20T20:50:00+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-06-20:c-stdvector.html</id><summary type="html">&lt;h1&gt;c++ range base for loop over vector&lt;/h1&gt;
+&lt;p&gt;If you don't want to change the items as well as want to avoid making copies, then auto const &amp;amp; is the correct choice:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;for (auto const &amp;amp;x : vec)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Whoever suggests you to use auto &amp;amp; is wrong. Ignore them.&lt;br /&gt;
+Here is recap:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Choose &lt;code&gt;auto x&lt;/code&gt; when you want to work with copies.&lt;/li&gt;
+&lt;li&gt;Choose &lt;code&gt;auto &amp;amp;x&lt;/code&gt; when you want to work with original items and may modify them.&lt;/li&gt;
+&lt;li&gt;Choose &lt;code&gt;auto const &amp;amp;x&lt;/code&gt; when you want to work with original items and will not modify them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Does “X&amp;amp; const x” make any sense?&lt;/h1&gt;
+&lt;p&gt;referece is alwas const. You cannot modify it to reference another item.
+reference to a const item is normally what people expect.
+This is &lt;code&gt;const T&amp;amp; x&lt;/code&gt;, instead of &lt;code&gt;T&amp;amp; const x&lt;/code&gt;&lt;/p&gt;
+&lt;h1&gt;vector remove/erase idiom&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;myNumbers&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;use&lt;/span&gt; &lt;span class="nt"&gt;shorter&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;
+&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;erase&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;remove&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;number_in&lt;/span&gt;&lt;span class="o"&gt;),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Remove will not change the size of vector, it will shift other item forward to
+overwrite the given item. An iterator to the next item will be returned.&lt;/li&gt;
+&lt;li&gt;erase is needed to erase those items starting from the iterator. The size of
+the vector will also be updated accordingly.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;vector remove duplicate idiom&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;sort&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;erase&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;unique&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;()),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;sort will make the items with same value consecutive in memory.&lt;/li&gt;
+&lt;li&gt;unique will shift items forward to eliminate all but the first element from
+every consecutive group of equivalent elements from the range. It returns a
+past-the-end iterator for the new logical end of the range.&lt;/li&gt;
+&lt;li&gt;erase will erase items in the range.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Reference:&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/15176104/c11-range-based-loop-get-item-by-value-or-reference-to-const"&gt;c++ range based loop&lt;/a&gt;
+&lt;a href="https://isocpp.org/wiki/faq/const-correctness#const-ref-nonsense"&gt;ISOCPP FAQ. Does “X&amp;amp; const x” make any sense?&lt;/a&gt;
+&lt;a href="https://stackoverflow.com/questions/1041620/whats-the-most-efficient-way-to-erase-duplicates-and-sort-a-vector"&gt;stackoverflow: What's the most efficient way to erase duplicates and sort a vector?&lt;/a&gt;&lt;/p&gt;</summary><category term="C++"></category></entry><entry><title>Chi square</title><link href="/chi-square.html" rel="alternate"></link><updated>2019-05-01T21:57:38+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-05-01:chi-square.html</id><summary type="html">&lt;p&gt;https://en.wikipedia.org/wiki/Chi-squared_test&lt;/p&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Goodness_of_fit&lt;/p&gt;
+&lt;p&gt;https://robotics.stackexchange.com/questions/6447/role-of-chi2-in-slam-back-end-optimization&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\chi2\)&lt;/span&gt; is the squared Mahalanobis distance between predicted value and estimated value in SLAM.&lt;/p&gt;
+&lt;p&gt;https://github.com/RainerKuemmerle/g2o/issues/185&lt;/p&gt;
+&lt;p&gt;https://www.khanacademy.org/math/statistics-probability/inference-categorical-data-chi-square-tests#chi-square-goodness-of-fit-tests&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="TAGS"></category></entry><entry><title>毫米波雷达测方位原理</title><link href="/hao-mi-bo-lei-da-ce-fang-wei-yuan-li.html" rel="alternate"></link><updated>2019-05-01T21:54:49+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-05-01:hao-mi-bo-lei-da-ce-fang-wei-yuan-li.html</id><summary type="html">&lt;p&gt;http://www.elecfans.com/baike/qichedianzi/qichedianzijichuzhichi/20180424667197.html&lt;/p&gt;
+&lt;p&gt;https://www.leiphone.com/news/201612/owHDk93xVS9g1gUC.html&lt;/p&gt;
+&lt;p&gt;http://www.ti.com.cn/cn/lit/wp/zhcy075/zhcy075.pdf&lt;/p&gt;</summary><category term="Radar"></category></entry><entry><title>Frame pose</title><link href="/frame-pose.html" rel="alternate"></link><updated>2019-04-01T22:22:58+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-04-01:frame-pose.html</id><summary type="html">&lt;div class="math"&gt;$$p_{W} = W_{A}T * p_{A}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$p_{A} = A_{W}T * p_{W} = (W_{A}T)^{-1} * p_{w}$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(W_{A}T\)&lt;/span&gt;, frame a's pose in frame W, or read as "transform a point in A's frame
+into W"&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(A_{W}T\)&lt;/span&gt; or &lt;span class="math"&gt;\((W_{W}T)^{-1}\)&lt;/span&gt;, inverse of frame a's pose in frame W, or read as "transform a point in W's frame
+into A"&lt;/p&gt;
+&lt;p&gt;http://library.isr.ist.utl.pt/docs/roswiki/tf(2f)Overview(2f)Transformations.html&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>Covariance matrix</title><link href="/covariance-matrix.html" rel="alternate"></link><updated>2019-03-17T14:29:50+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-03-17:covariance-matrix.html</id><summary type="html">&lt;h2&gt;Different covariance types for Gaussian Mixture Models&lt;/h2&gt;
+&lt;p&gt;https://stats.stackexchange.com/questions/326671/different-covariance-types-for-gaussian-mixture-models&lt;/p&gt;
+&lt;p&gt;http://www.visiondummy.com/2014/04/geometric-interpretation-covariance-matrix/&lt;/p&gt;
+&lt;p&gt;https://math.stackexchange.com/questions/23596/why-is-the-eigenvector-of-a-covariance-matrix-equal-to-a-principal-component&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Serialization</title><link href="/serialization.html" rel="alternate"></link><updated>2019-03-10T14:28:03+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-03-10:serialization.html</id><summary type="html">&lt;p&gt;https://en.wikipedia.org/wiki/Serialization&lt;/p&gt;
+&lt;p&gt;https://cs.stackexchange.com/questions/72102/understanding-serialization&lt;/p&gt;</summary><category term="Programming"></category></entry><entry><title>Factor Graph</title><link href="/factor-graph.html" rel="alternate"></link><updated>2019-03-02T19:09:52+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-03-02:factor-graph.html</id><summary type="html">&lt;h2&gt;High level problem definition and algorithm&lt;/h2&gt;
+&lt;p&gt;Factor graph vs Pose graph&lt;/p&gt;
+&lt;p&gt;elimination
+Sliding window, remove unrelated pose and constraints
+marginalization, keep the size of graph constant while maintain the information.&lt;/p&gt;
+&lt;p&gt;Batch Estimation
+Sliding window&lt;/p&gt;
+&lt;h2&gt;Software package&lt;/h2&gt;
+&lt;p&gt;g2o vs ceres solver vs GTSAM vs AprilSAM vs iSAM
+&lt;em&gt; 性能，维护，扩展升级性，依赖其他库
+&lt;/em&gt; Third party dependency:
+&lt;em&gt; Sparse matrix, boost, eigen
+&lt;/em&gt; open source/free software Licence
+    * LGPL vs GPL vs MIT vs BSD etc.
+| package | Licence |
+---|---
+ CSPARSE | LGPL v2.1+
+ Suitesparse | LGPL v3+
+ g2o | BSD
+ ceres | BSD
+ Eigen &amp;lt; 3.1.1 | LGPL3+
+ Eigen 3.1.1 | MPL2
+ iSAM | LGPL v2.1+&lt;/p&gt;
+&lt;h2&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;performance requirements
+&lt;em&gt; real-time
+    * fast
+    * predictability
+&lt;/em&gt; no OS?
+* cache?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIMD, vectorization, compiler的局限, library&lt;/li&gt;
+&lt;li&gt;multithreading&lt;/li&gt;
+&lt;li&gt;multi-threaded BLAS&lt;/li&gt;
+&lt;li&gt;优化分层，先上层c/c++优化，再硬件优化，汇编优化&lt;/li&gt;
+&lt;li&gt;profiling, performance bottleneck&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;项目管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;git submodule, project system structure
+git code review and repository management
+commit notification, achieve, summary generation
+gerrit ?&lt;/li&gt;
+&lt;li&gt;sandbox user branch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;review, validate and submit change
+https://review.openstack.org/Documentation/intro-quick.html&lt;/p&gt;
+&lt;p&gt;CI jenkins
+&lt;em&gt; project release branch
+&lt;/em&gt; project progress/ticket tracking
+* project quality tracking
+    * regression tracking
+    * performance tracking
+        * build time
+        * runtime on given dataset&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Vim: netrw shortcut</title><link href="/vim-netrw-shortcut.html" rel="alternate"></link><updated>2019-02-20T12:03:08+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-20:vim-netrw-shortcut.html</id><summary type="html">&lt;p&gt;netrw有很对快捷键，这里只记录我经常会用到的快捷键&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Map&lt;/th&gt;
+&lt;th&gt;Quick Explanation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;cr&gt;&lt;/td&gt;
+&lt;td&gt;Netrw will enter the directory or read the file&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;c-l&gt;&lt;/td&gt;
+&lt;td&gt;Causes Netrw to refresh the directory listing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;del&gt;&lt;/td&gt;
+&lt;td&gt;Netrw will attempt to remove the file/directory&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;Makes Netrw go up one directory&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;d&lt;/td&gt;
+&lt;td&gt;Make a directory&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;td&gt;Attempt to remove the files(s)/directory(ies)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;Preview the file&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;o&lt;/td&gt;
+&lt;td&gt;Enter the file/directory under the cursor in a new browser window. A horizontal split is used&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;Open a new file in netrw's current directory&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;Rename the designated file(s)/directory(ies)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;x&lt;/td&gt;
+&lt;td&gt;View file with an associated program&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;Execute filename under cursor via system()&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</summary><category term="Vim"></category></entry><entry><title>Data Association</title><link href="/data-association.html" rel="alternate"></link><updated>2019-02-19T19:01:19+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-19:data-association.html</id><summary type="html">&lt;h2&gt;Mahalanobis distance&lt;/h2&gt;
+&lt;h2&gt;Random sample consensus (RANSAC)&lt;/h2&gt;
+&lt;p&gt;Random sample consensus (RANSAC) is an iterative method to estimate parameters
+of a mathematical model from a set of observed data that contains outliers,
+when outliers are to be accorded no influence on the values of the estimates.
+Therefore, it also can be interpreted as an outlier detection method.[1] It is
+a non-deterministic algorithm in the sense that it produces a reasonable result
+only with a certain probability, with this probability increasing as more
+iterations are allowed.&lt;/p&gt;
+&lt;p&gt;直观上，可以一定程度上的排除outliers。有两个应用&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;系统参数的估计/拟合。给定一组带有噪声的数据与一个系统模型，通过数据来确定系统
+模型的参数。因为数据中外点，会导致拟合的系统出现偏移。所以去除外点对于正确的系统
+估计很重要。
+同时，外点不同于噪点，噪点可以通过统计的方式消除，当然还需要数据量足够大才行。&lt;/li&gt;
+&lt;li&gt;图像特征匹配中，消除误匹配点。
+在图像特征匹配以后，会得到很多对特征匹配。但是其中有一些匹配是误匹配，如果不加挑选，
+使用所有的匹配对进行运动的计算，可能会得到错误的运动数据(旋转，平移)。RANSAC可以用来
+消除误匹配，然后使用剩下的匹配来估计运动。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上述过程类似，
+1. 随机选取n个数据点
+2. 根据一个给定模型，计算模型参数
+3. 从原始数据集合中，根据上述求得模型，寻找其他的符合这个模型的数据点(在一定误差范围内)，
+加入到一个集合里。称为内点集合
+4. 如果总的内点个数大于M，则利用内点集合，重新估计模型参数，计算整体(使用所有数据点)误差。
+跟上一次整体误差比较，如果误差更小，则更新误差，记录模型参数。
+5. 跳转到步骤一，继续下一次迭代。直到迭代次数达到，或者整体误差小于一个预定值。&lt;/p&gt;
+&lt;p&gt;从上面步骤中看出，这个迭代过程，有很多参数需要设置。这也是RANSAC的一个缺点。&lt;/p&gt;
+&lt;h2&gt;Probabilistic data association filter&lt;/h2&gt;
+&lt;h2&gt;ICP&lt;/h2&gt;
+&lt;p&gt;通过迭代的方式，来解决data association与变换矩阵问题。&lt;/p&gt;
+&lt;h3&gt;point subset&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Use all points&lt;/li&gt;
+&lt;li&gt;Uniform sub-sampling&lt;/li&gt;
+&lt;li&gt;Random sampling&lt;/li&gt;
+&lt;li&gt;Feature based sampling&lt;/li&gt;
+&lt;li&gt;Normal-space sampling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;weighting the correspondences&lt;/h3&gt;
+&lt;h3&gt;data association&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;closet point&lt;/li&gt;
+&lt;li&gt;normal shooting&lt;/li&gt;
+&lt;li&gt;closest compatible point&lt;/li&gt;
+&lt;li&gt;projection-based&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;rejecting certain (outlier) point pairs&lt;/h3&gt;</summary><category term="SLAM"></category></entry><entry><title>Sensors</title><link href="/sensors.html" rel="alternate"></link><updated>2019-02-17T15:54:30+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-17:sensors.html</id><summary type="html">&lt;h1&gt;Sensor&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Proprioceptive sensors&lt;ul&gt;
+&lt;li&gt;Motor speed, heading of the robot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Exteroceptive sensors&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;distances to objects, images&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Passive sensors&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Measure energy coming from the environment, very much influenced by
+the environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Active sensors&lt;ul&gt;
+&lt;li&gt;emit their proper energy and measure the reaction. Better
+performance, but some influence on environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;p&gt;some encoders, PC, P
+Vision-based sensors, EC, P
+Active ranging, EC, A&lt;/p&gt;
+&lt;p&gt;compass: 罗盘, magnetic field on earth
+gyroscope: 陀螺仪
+provide an absolute measure for the heading of a mobile system&lt;/p&gt;
+&lt;p&gt;inclinometer: 测斜仪
+Accelerometer&lt;/p&gt;
+&lt;h2&gt;IMU: Inertial Measurement Unit&lt;/h2&gt;
+&lt;p&gt;An inertial measurement unit (IMU) is a device that uses measurement systems
+such as gyroscopes and accelerometers to estimate the relative position (x, y, z),
+orientation (roll, pitch, yaw), velocity, and acceleration of a moving
+vehicle with respect to an inertial frame.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IMUs are extremely sensitive to measurement errors in gyroscopes and
+accelerometers: drift in the gyroscope unavoidably undermines the estimation of
+the vehicle orientation relative to gravity, which results in incorrect
+cancellation of the gravity vector. Additionally observe that, because the
+accelerometer data is integrated twice to obtain the position, any residual
+gravity vector results in a quadratic error in position.&lt;/li&gt;
+&lt;li&gt;After long period of operation, all IMUs drift.  To cancel it, some external
+reference like GPS or cameras has to be used&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Beacons&lt;/h2&gt;
+&lt;p&gt;Beacons are signaling guiding devices with a precisely known position&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Beacons require changes in the environment. Initial setup and maintain -&amp;gt; costly.&lt;/li&gt;
+&lt;li&gt;Limit flexibility and adaptability to changing environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Augmented Reality Tag&lt;/h2&gt;
+&lt;h2&gt;Global Position System&lt;/h2&gt;
+&lt;h3&gt;Differential Global Positioning System (dGPS)&lt;/h3&gt;
+&lt;p&gt;DGPS requires that a GPS receiver, known as the base station, be set up on a
+precisely known location.The base station receiver calculates its position
+based on satellite signals and compares this location to the known location.
+The difference is applied to the GPS data recorded by the roving GPS receiver&lt;/p&gt;
+&lt;p&gt;position accuracies in sub-meter to cm range&lt;/p&gt;
+&lt;h2&gt;Range sensors&lt;/h2&gt;
+&lt;p&gt;Large range distance measurement. key element for localization and environment
+modeling&lt;/p&gt;
+&lt;p&gt;Ultrasonic sensors as well as laser range sensors make use of propagation speed
+of sound or electromagnetic waves respectively.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Quality of time of flight range sensors&lt;ul&gt;
+&lt;li&gt;Inaccuraciesin the time of fight measurement(laser range sensors)&lt;/li&gt;
+&lt;li&gt;Opening angle of transmitted beam (especially ultrasonic range sensors)&lt;/li&gt;
+&lt;li&gt;Interaction with the target (surface, specular reflections)&lt;/li&gt;
+&lt;li&gt;Variation of propagation speed (sound)&lt;ul&gt;
+&lt;li&gt;sound&lt;/li&gt;
+&lt;li&gt;electromagnetic signal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Speed of mobile robot and target (if not at stand still)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Laser Range finder are also known as Lidar (Light Detection And Ranging)&lt;/p&gt;
+&lt;h3&gt;Sonar&lt;/h3&gt;
+&lt;h3&gt;Laser range finder&lt;/h3&gt;
+&lt;h1&gt;Sensor Model&lt;/h1&gt;
+&lt;h1&gt;Sensor Fusion&lt;/h1&gt;
+&lt;p&gt;https://www.ethz.ch/content/dam/ethz/special-interest/mavt/robotics-n-intelligent-systems/asl-dam/documents/lectures/autonomous_mobile_robots/spring-2015/04_-&lt;em&gt;Perception_I&lt;/em&gt;-_Sensors.pdf&lt;/p&gt;</summary><category term="SLAM"></category></entry><entry><title>位姿图优化空间平移问题</title><link href="/wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html" rel="alternate"></link><updated>2019-02-16T20:20:10+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-16:wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html</id><summary type="html">&lt;p&gt;A Tutorial on Graph-Based SLAM&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;
 中有提到一个细节，&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note that the error of a constraint &lt;span class="math"&gt;\(e_{ij}\)&lt;/span&gt; depends only on the relative position
@@ -761,6 +1288,21 @@ outlier: &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2&gt;Data association&lt;/h2&gt;
+&lt;p&gt;无论是在滤波方法，还是图优化方法中，都有一个假设，我们知道在一个位姿下，观测到的环境特征与之前特征的匹配。
+这是一个需要单独解决的问题，称作Data association。在图优化框架中，这部分属于前端工作。&lt;/p&gt;
+&lt;p&gt;滤波模型，利用观测，对预测进行更新修正。图优化模型，利用观测，来建立顶点间的边，也就是约束。
+所以，这两种算法正确的前提是，对于观测误差计算中，用到的data association的正确性。&lt;/p&gt;
+&lt;p&gt;Data association也就是解决这样一个问题：在某个位姿下，每一个观测到的数据，与之前的观测，或者与地图的对应关系。
+例如提供这样的一个信息： &lt;span class="math"&gt;\(c_{t}^{i} = j\)&lt;/span&gt;， &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th 测量值观测到的是环境(map)中&lt;span class="math"&gt;\(j\)&lt;/span&gt;个特征(landmark)&lt;/p&gt;
+&lt;p&gt;这与位姿优化估计，地图建立是完全不同领域的问题，但是是一个SLAM系统稳定正确工作的重要前提。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;raw data&lt;/li&gt;
+&lt;li&gt;feature based&lt;ul&gt;
+&lt;li&gt;feature correspondences&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
@@ -771,7 +1313,62 @@ outlier: &lt;/li&gt;
 &lt;p&gt;http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam08-kf-wrapup.pdf&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary><category term="SLAM"></category></entry><entry><title>智能家具设计</title><link href="/zhi-neng-jia-ju-she-ji.html" rel="alternate"></link><updated>2019-01-29T14:54:31+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-29:zhi-neng-jia-ju-she-ji.html</id><summary type="html">&lt;p&gt;无线控制开关，使用继电器(relay)
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="SLAM"></category></entry><entry><title>智能家具设计</title><link href="/zhi-neng-jia-ju-she-ji.html" rel="alternate"></link><updated>2019-01-29T14:54:31+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-29:zhi-neng-jia-ju-she-ji.html</id><summary type="html">&lt;p&gt;无线控制开关，使用继电器(relay)
 bistable(latching) relay可以在没有控制信号的时候保持状态&lt;/p&gt;
 &lt;p&gt;RF控制，需要直接对着
 蓝牙控制, 需要控制mcu
@@ -3774,9 +4371,8 @@ unknown real variables and conditional to the satisfaction of a system of
 equalities and inequalities, collectively termed constraints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="http://blog.sina.com.cn/s/blog_7445c2940102x3x4.html"&gt;到底什么是非线性优化&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>MLE &amp; MAP</title><link href="/mle-map.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:mle-map.html</id><summary type="html">&lt;p&gt;MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。&lt;/p&gt;
-&lt;p&gt;似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-&lt;br/&gt;
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
+&lt;p&gt;似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。&lt;/p&gt;
+&lt;p&gt;对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
 也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。&lt;/p&gt;
 &lt;p&gt;MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
 Bayes rule
@@ -3787,11 +4383,10 @@ Bayes rule
 &lt;p&gt;
 分母可以去掉，与求参数无关&lt;/p&gt;
 &lt;p&gt;已知观测结果，寻找参数，使得模型输出最符合观测。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F"&gt;全概率公式&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html"&gt;最大似然估计 （MLE） 最大后验概率（MAP）&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="https://zhuanlan.zhihu.com/p/25768606"&gt;概率与似然&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F"&gt;全概率公式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html"&gt;最大似然估计 （MLE） 最大后验概率（MAP）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://zhuanlan.zhihu.com/p/25768606"&gt;概率与似然&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/u011508640/article/details/72815981"&gt;详解最大似然估计（MLE）、最大后验概率估计（MAP），以及贝叶斯公式的理解&lt;/a&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

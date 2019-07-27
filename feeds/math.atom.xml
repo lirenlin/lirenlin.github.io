@@ -1,5 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2019-02-07T17:54:55+01:00</updated><entry><title>ICP</title><link href="/icp.html" rel="alternate"></link><updated>2019-02-07T17:54:55+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-07:icp.html</id><summary type="html">&lt;p&gt;Iterative Closest Point Algorithm主要由两部分组成&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/math.atom.xml" rel="self"></link><id>/</id><updated>2019-05-01T21:57:38+02:00</updated><entry><title>Chi square</title><link href="/chi-square.html" rel="alternate"></link><updated>2019-05-01T21:57:38+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-05-01:chi-square.html</id><summary type="html">&lt;p&gt;https://en.wikipedia.org/wiki/Chi-squared_test&lt;/p&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Goodness_of_fit&lt;/p&gt;
+&lt;p&gt;https://robotics.stackexchange.com/questions/6447/role-of-chi2-in-slam-back-end-optimization&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\chi2\)&lt;/span&gt; is the squared Mahalanobis distance between predicted value and estimated value in SLAM.&lt;/p&gt;
+&lt;p&gt;https://github.com/RainerKuemmerle/g2o/issues/185&lt;/p&gt;
+&lt;p&gt;https://www.khanacademy.org/math/statistics-probability/inference-categorical-data-chi-square-tests#chi-square-goodness-of-fit-tests&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="TAGS"></category></entry><entry><title>Frame pose</title><link href="/frame-pose.html" rel="alternate"></link><updated>2019-04-01T22:22:58+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-04-01:frame-pose.html</id><summary type="html">&lt;div class="math"&gt;$$p_{W} = W_{A}T * p_{A}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$p_{A} = A_{W}T * p_{W} = (W_{A}T)^{-1} * p_{w}$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(W_{A}T\)&lt;/span&gt;, frame a's pose in frame W, or read as "transform a point in A's frame
+into W"&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(A_{W}T\)&lt;/span&gt; or &lt;span class="math"&gt;\((W_{W}T)^{-1}\)&lt;/span&gt;, inverse of frame a's pose in frame W, or read as "transform a point in W's frame
+into A"&lt;/p&gt;
+&lt;p&gt;http://library.isr.ist.utl.pt/docs/roswiki/tf(2f)Overview(2f)Transformations.html&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="Math"></category></entry><entry><title>Covariance matrix</title><link href="/covariance-matrix.html" rel="alternate"></link><updated>2019-03-17T14:29:50+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-03-17:covariance-matrix.html</id><summary type="html">&lt;h2&gt;Different covariance types for Gaussian Mixture Models&lt;/h2&gt;
+&lt;p&gt;https://stats.stackexchange.com/questions/326671/different-covariance-types-for-gaussian-mixture-models&lt;/p&gt;
+&lt;p&gt;http://www.visiondummy.com/2014/04/geometric-interpretation-covariance-matrix/&lt;/p&gt;
+&lt;p&gt;https://math.stackexchange.com/questions/23596/why-is-the-eigenvector-of-a-covariance-matrix-equal-to-a-principal-component&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>Factor Graph</title><link href="/factor-graph.html" rel="alternate"></link><updated>2019-03-02T19:09:52+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-03-02:factor-graph.html</id><summary type="html">&lt;h2&gt;High level problem definition and algorithm&lt;/h2&gt;
+&lt;p&gt;Factor graph vs Pose graph&lt;/p&gt;
+&lt;p&gt;elimination
+Sliding window, remove unrelated pose and constraints
+marginalization, keep the size of graph constant while maintain the information.&lt;/p&gt;
+&lt;p&gt;Batch Estimation
+Sliding window&lt;/p&gt;
+&lt;h2&gt;Software package&lt;/h2&gt;
+&lt;p&gt;g2o vs ceres solver vs GTSAM vs AprilSAM vs iSAM
+&lt;em&gt; 性能，维护，扩展升级性，依赖其他库
+&lt;/em&gt; Third party dependency:
+&lt;em&gt; Sparse matrix, boost, eigen
+&lt;/em&gt; open source/free software Licence
+    * LGPL vs GPL vs MIT vs BSD etc.
+| package | Licence |
+---|---
+ CSPARSE | LGPL v2.1+
+ Suitesparse | LGPL v3+
+ g2o | BSD
+ ceres | BSD
+ Eigen &amp;lt; 3.1.1 | LGPL3+
+ Eigen 3.1.1 | MPL2
+ iSAM | LGPL v2.1+&lt;/p&gt;
+&lt;h2&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;performance requirements
+&lt;em&gt; real-time
+    * fast
+    * predictability
+&lt;/em&gt; no OS?
+* cache?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIMD, vectorization, compiler的局限, library&lt;/li&gt;
+&lt;li&gt;multithreading&lt;/li&gt;
+&lt;li&gt;multi-threaded BLAS&lt;/li&gt;
+&lt;li&gt;优化分层，先上层c/c++优化，再硬件优化，汇编优化&lt;/li&gt;
+&lt;li&gt;profiling, performance bottleneck&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;项目管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;git submodule, project system structure
+git code review and repository management
+commit notification, achieve, summary generation
+gerrit ?&lt;/li&gt;
+&lt;li&gt;sandbox user branch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;review, validate and submit change
+https://review.openstack.org/Documentation/intro-quick.html&lt;/p&gt;
+&lt;p&gt;CI jenkins
+&lt;em&gt; project release branch
+&lt;/em&gt; project progress/ticket tracking
+* project quality tracking
+    * regression tracking
+    * performance tracking
+        * build time
+        * runtime on given dataset&lt;/p&gt;</summary><category term="Math"></category></entry><entry><title>ICP</title><link href="/icp.html" rel="alternate"></link><updated>2019-02-07T17:54:55+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-07:icp.html</id><summary type="html">&lt;p&gt;Iterative Closest Point Algorithm主要由两部分组成&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Data Association&lt;ul&gt;
 &lt;li&gt;Closest-Point Matching&lt;br /&gt;
@@ -2247,9 +2425,8 @@ unknown real variables and conditional to the satisfaction of a system of
 equalities and inequalities, collectively termed constraints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="http://blog.sina.com.cn/s/blog_7445c2940102x3x4.html"&gt;到底什么是非线性优化&lt;/a&gt;&lt;/p&gt;</summary><category term="Math"></category><category term="SLAM"></category></entry><entry><title>MLE &amp; MAP</title><link href="/mle-map.html" rel="alternate"></link><updated>2018-12-18T00:00:00+01:00</updated><author><name>Nekoo</name></author><id>tag:,2018-12-18:mle-map.html</id><summary type="html">&lt;p&gt;MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。&lt;/p&gt;
-&lt;p&gt;似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-&lt;br/&gt;
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
+&lt;p&gt;似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。&lt;/p&gt;
+&lt;p&gt;对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
 也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。&lt;/p&gt;
 &lt;p&gt;MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
 Bayes rule
@@ -2260,11 +2437,10 @@ Bayes rule
 &lt;p&gt;
 分母可以去掉，与求参数无关&lt;/p&gt;
 &lt;p&gt;已知观测结果，寻找参数，使得模型输出最符合观测。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F"&gt;全概率公式&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html"&gt;最大似然估计 （MLE） 最大后验概率（MAP）&lt;/a&gt;
-&lt;br/&gt;
-&lt;a href="https://zhuanlan.zhihu.com/p/25768606"&gt;概率与似然&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F"&gt;全概率公式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cnblogs.com/sylvanas2012/p/5058065.html"&gt;最大似然估计 （MLE） 最大后验概率（MAP）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://zhuanlan.zhihu.com/p/25768606"&gt;概率与似然&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/u011508640/article/details/72815981"&gt;详解最大似然估计（MLE）、最大后验概率估计（MAP），以及贝叶斯公式的理解&lt;/a&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

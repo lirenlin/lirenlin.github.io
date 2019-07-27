@@ -65,6 +65,11 @@
             <ul class="nav">
                           <li class="divider-vertical"></li>
                   <li >
+                    <a href="/category/c.html">
+						<i class="icon-folder-open icon-large"></i>c++
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/ceres.html">
 						<i class="icon-folder-open icon-large"></i>Ceres
 					</a>
@@ -105,6 +110,11 @@
 					</a>
                   </li>
                   <li >
+                    <a href="/category/radar.html">
+						<i class="icon-folder-open icon-large"></i>Radar
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/slam.html">
 						<i class="icon-folder-open icon-large"></i>SLAM
 					</a>
@@ -129,6 +139,66 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="/gradientti-du.html">Gradient梯度</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-19T00:00:00+01:00">
+        <i class="icon-calendar"></i>Wed 19 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>The gradient is a vector-valued function, as opposed to a derivative, which is scalar-valued. </p>
+<p>In some applications it is customary to represent the gradient as a row vector or column vector of its components
+in a rectangular coordinate system.</p>
+<ul>
+<li>muti-variable function<ul>
+<li>scalar-valued function <span class="math">\(f: \mathbb{R}^n \to \mathbb{R ...</span></li></ul></li></ul>
+                        <a class="btn primary xsmall" href="/gradientti-du.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html">旋转矩阵，变化矩阵，旋转向量，欧拉角，四元数</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2018-12-19T00:00:00+01:00">
+        <i class="icon-calendar"></i>Wed 19 December 2018
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>对比</h2>
+<ul>
+<li>平滑插值</li>
+<li>紧凑</li>
+<li>无奇异性</li>
+<li>内存和运算速度更优。内存上，一个四元数只占四个浮点数；在四元数相乘时可以直接在这四个数上进行加减乘的基本运算，比旋转向量转换成旋转矩阵相乘后再转换回旋转向量要高效得多（Rodrigues 变换还涉及除法和三角函数等高级运算）。这些在嵌入式平台上是不小的优势。何况，浮点数运算总是会有误差的，运算越多，误差累计越多，所以理论上四元数相乘也有精度上的优势。</li>
+</ul>
+<h2>transforms axis–angle coordinates to versors (unit quaternions):</h2>
+<p>the following expression transforms axis–angle coordinates to versors (unit quaternions):
+</p>
+<div class="math">$$Q=\left(\cos {\tfrac {\theta }{2}},{\boldsymbol {\omega }}\sin {\tfrac {\theta }{2}}\right)$$</div>
+<h2>Recovering ...</h2>
+                        <a class="btn primary xsmall" href="/xuan-zhuan-ju-zhen-bian-hua-ju-zhen-xuan-zhuan-xiang-liang-ou-la-jiao-si-yuan-shu.html">more ...</a>
+                </div>
+        </div>
+        <hr />
         <div class="article">
                 <h1><a href="/bayes-and-kalman-filter.html">Bayes and Kalman Filter</a></h1>
                 <div class="well small"><footer class="post-info">
@@ -210,9 +280,8 @@ unknown real ...</p></blockquote>
 	<a href="/tag/slam.html"><i class="icon-tag"></i>SLAM</a>
 </footer><!-- /.post-info --></div>
                 <div class="summary"><p>MLE：最大似然概率 给定测量结果，系统模型，寻求系统模型参数让结果跟观测结果最贴近。</p>
-<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。
-<br/>
-对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
+<p>似然函数（也称作似然），是一个关于统计模型参数的函数。也就是这个函数中自变量是统计模型的参数。</p>
+<p>对于观测结果 x ，在参数集合 θ 上的似然，就是在给定这些参数值的基础上，观察到的结果的概率 P(x|θ) 。
 也就是说，似然是关于参数的函数，在参数给定的条件下，对于观察到的 x 的值的条件分布。</p>
 <p>MAP:最大后验概率, 考虑到先验概率的存在 prior probability.
 Bayes rule
@@ -331,6 +400,11 @@ Hessian矩阵，用于二阶牛顿法<br/>
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
+<a href="/category/c.html">
+    <i class="icon-folder-open icon-large"></i>c++
+</a>
+</li>
+<li>
 <a href="/category/ceres.html">
     <i class="icon-folder-open icon-large"></i>Ceres
 </a>
@@ -368,6 +442,11 @@ Hessian矩阵，用于二阶牛顿法<br/>
 <li>
 <a href="/category/programming.html">
     <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/radar.html">
+    <i class="icon-folder-open icon-large"></i>Radar
 </a>
 </li>
 <li>

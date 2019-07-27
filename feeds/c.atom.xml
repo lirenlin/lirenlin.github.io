@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/c.atom.xml" rel="self"></link><id>/</id><updated>2019-07-27T21:00:09+02:00</updated><entry><title>std::bind vs lambda</title><link href="/stdbind-vs-lambda.html" rel="alternate"></link><updated>2019-07-27T21:00:09+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-07-27:stdbind-vs-lambda.html</id><summary type="html">&lt;h1&gt;lambda vs std::bind&lt;/h1&gt;
+&lt;p&gt;基本上是两个不同的用途，但是lambda可以实现std::bind的功能.
+如果目的知识想去创造一个scope临时的函数，例如提供给STL的函数。lambda非诚使用这种使用场景。
+1. 不需要单独的写一个函数，与使用逻辑分开。非常紧凑，没有context switch
+2. lambda 可以inline，compiler可以做更多的优化&lt;/p&gt;
+&lt;p&gt;但是如果lambda只是capture variable，然后调用另一个外部函数的话，bind更加的简单直接。
+"Simpler and clearer" is a matter of opinion. For simple binding cases, bind can take a lot less typing. bind also is focused solely on function binding, so if you see std::bind, you know what you're looking at. Whereas if you use a lambda, you have to look at the lambda implementation to be certain of what it does.&lt;/p&gt;
+&lt;p&gt;https://stackoverflow.com/questions/15598607/when-should-i-use-stdbind&lt;/p&gt;
+&lt;p&gt;但是注意，std::bind参数的传递只能通过copy, move。不能通过reference。这需要通过std::ref/std::cref&lt;/p&gt;
+&lt;h1&gt;&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nx"&gt;include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;iostream&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nx"&gt;include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;functional&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kr"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+  &lt;span class="c1"&gt;// deleted copy constructor, std::bind will fail because of this. It cannot&lt;/span&gt;
+  &lt;span class="c1"&gt;// make a copy for the binding arguments. Instead std::ref could be used to&lt;/span&gt;
+  &lt;span class="c1"&gt;// pass remove the copy operation&lt;/span&gt;
+  &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;getResult&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;_a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+  &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;inc() {_a&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// declaration doesn&amp;#39;t affected by class access specifier&lt;/span&gt;
+  &lt;span class="nx"&gt;friend&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;os&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ostream&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;os&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;os&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; data object: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+
+&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;foo_cref&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getResult&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;foo_ref&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getResult&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;Data&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// This will fail as std::bind will copy or move the arguments. arguments are&lt;/span&gt;
+  &lt;span class="c1"&gt;// never passed by reference unless wrapped in std::ref or std::cref&lt;/span&gt;
+  &lt;span class="c1"&gt;// https://en.cppreference.com/w/cpp/utility/functional/bind&lt;/span&gt;
+  &lt;span class="nx"&gt;auto&lt;/span&gt; &lt;span class="nx"&gt;fail_func&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;foo_cref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="nx"&gt;auto&lt;/span&gt; &lt;span class="nx"&gt;cref_func&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;foo_cref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;cref_func&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// value could be updated inside the function object&lt;/span&gt;
+  &lt;span class="nx"&gt;auto&lt;/span&gt; &lt;span class="nx"&gt;func_ref&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;foo_ref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;ref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;func_ref&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Rerefence:&lt;/h1&gt;
+&lt;p&gt;http://www.gockelhut.com/cpp-pirate/lambda-vs-bind.html&lt;/p&gt;
+&lt;p&gt;https://shawnliu.me/post/passing-reference-with-std-ref-in-c++/&lt;/p&gt;
+&lt;p&gt;https://github.com/peter-can-write/cpp-notes/blob/master/prefer-lambdas-over-std::bind.md&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ method chaining</title><link href="/c-method-chaining.html" rel="alternate"></link><updated>2019-07-01T22:21:49+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-07-01:c-method-chaining.html</id><summary type="html">&lt;p&gt;Some class methods return object reference to itself. This is for method
+chaining.&lt;/p&gt;
+&lt;p&gt;Reference:&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ algorithm</title><link href="/c-algorithm.html" rel="alternate"></link><updated>2019-06-22T18:47:43+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-06-22:c-algorithm.html</id><summary type="html">&lt;p&gt;std::all_of
+std::any_of
+std::none_of&lt;/p&gt;
+&lt;p&gt;std::partial_sum&lt;/p&gt;
+&lt;p&gt;std::lower_bound
+std::upper_bound
+binary search&lt;/p&gt;
+&lt;p&gt;std::unique
+std::sort&lt;/p&gt;
+&lt;p&gt;std::remove
+std::remove_if
+one iteration, vector remove/erase idiom&lt;/p&gt;
+&lt;p&gt;std::copy
+std::copy_if
+std::copy_n
+std::copy_backward
+&lt;code&gt;`
+std::copy(to_vector.begin(), to_vector.end(),
+          std::ostream_iterator&amp;lt;int&amp;gt;(std::cout, " "));&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;std::for_each, UnaryFunction
+std::for_each_n&lt;/p&gt;
+&lt;p&gt;std::transform, UnaryOperation or BinaryOperation&lt;/p&gt;
+&lt;p&gt;std::count
+std::count_if&lt;/p&gt;
+&lt;p&gt;std::equal&lt;/p&gt;
+&lt;p&gt;std::find_end
+std::search
+std::search_n
+std::find_first_of
+std::adjacent_find&lt;/p&gt;
+&lt;p&gt;range based for loop&lt;/p&gt;
+&lt;p&gt;std::back_inserter
+std::distance&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ notes</title><link href="/c-notes.html" rel="alternate"></link><updated>2019-06-22T17:40:22+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-06-22:c-notes.html</id><summary type="html">&lt;p&gt;https://stackoverflow.com/questions/1600936/officially-what-is-typename-for&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ std::vector</title><link href="/c-stdvector.html" rel="alternate"></link><updated>2019-06-20T20:50:00+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-06-20:c-stdvector.html</id><summary type="html">&lt;h1&gt;c++ range base for loop over vector&lt;/h1&gt;
+&lt;p&gt;If you don't want to change the items as well as want to avoid making copies, then auto const &amp;amp; is the correct choice:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;for (auto const &amp;amp;x : vec)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Whoever suggests you to use auto &amp;amp; is wrong. Ignore them.&lt;br /&gt;
+Here is recap:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Choose &lt;code&gt;auto x&lt;/code&gt; when you want to work with copies.&lt;/li&gt;
+&lt;li&gt;Choose &lt;code&gt;auto &amp;amp;x&lt;/code&gt; when you want to work with original items and may modify them.&lt;/li&gt;
+&lt;li&gt;Choose &lt;code&gt;auto const &amp;amp;x&lt;/code&gt; when you want to work with original items and will not modify them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Does “X&amp;amp; const x” make any sense?&lt;/h1&gt;
+&lt;p&gt;referece is alwas const. You cannot modify it to reference another item.
+reference to a const item is normally what people expect.
+This is &lt;code&gt;const T&amp;amp; x&lt;/code&gt;, instead of &lt;code&gt;T&amp;amp; const x&lt;/code&gt;&lt;/p&gt;
+&lt;h1&gt;vector remove/erase idiom&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;myNumbers&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;use&lt;/span&gt; &lt;span class="nt"&gt;shorter&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;
+&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;erase&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;remove&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;number_in&lt;/span&gt;&lt;span class="o"&gt;),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Remove will not change the size of vector, it will shift other item forward to
+overwrite the given item. An iterator to the next item will be returned.&lt;/li&gt;
+&lt;li&gt;erase is needed to erase those items starting from the iterator. The size of
+the vector will also be updated accordingly.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;vector remove duplicate idiom&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;sort&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;erase&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;unique&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;()),&lt;/span&gt; &lt;span class="nt"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;sort will make the items with same value consecutive in memory.&lt;/li&gt;
+&lt;li&gt;unique will shift items forward to eliminate all but the first element from
+every consecutive group of equivalent elements from the range. It returns a
+past-the-end iterator for the new logical end of the range.&lt;/li&gt;
+&lt;li&gt;erase will erase items in the range.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Reference:&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/15176104/c11-range-based-loop-get-item-by-value-or-reference-to-const"&gt;c++ range based loop&lt;/a&gt;
+&lt;a href="https://isocpp.org/wiki/faq/const-correctness#const-ref-nonsense"&gt;ISOCPP FAQ. Does “X&amp;amp; const x” make any sense?&lt;/a&gt;
+&lt;a href="https://stackoverflow.com/questions/1041620/whats-the-most-efficient-way-to-erase-duplicates-and-sort-a-vector"&gt;stackoverflow: What's the most efficient way to erase duplicates and sort a vector?&lt;/a&gt;&lt;/p&gt;</summary><category term="C++"></category></entry></feed>

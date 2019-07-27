@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>c++ std::vector</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/c.html">
+						<i class="icon-folder-open icon-large"></i>c++
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>Ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/compiler.html">
+						<i class="icon-folder-open icon-large"></i>Compiler
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/radar.html">
+						<i class="icon-folder-open icon-large"></i>Radar
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to c++ std::vector">
+                                        c++ std::vector
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-06-20T20:50:00+02:00">
+        <i class="icon-calendar"></i>Thu 20 June 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>C++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>C++</a>
+</footer><!-- /.post-info -->                </div>
+                <h1>c++ range base for loop over vector</h1>
+<p>If you don't want to change the items as well as want to avoid making copies, then auto const &amp; is the correct choice:</p>
+<div class="highlight"><pre><span></span>for (auto const &amp;x : vec)
+</pre></div>
+
+
+<p>Whoever suggests you to use auto &amp; is wrong. Ignore them.<br />
+Here is recap:</p>
+<ul>
+<li>Choose <code>auto x</code> when you want to work with copies.</li>
+<li>Choose <code>auto &amp;x</code> when you want to work with original items and may modify them.</li>
+<li>Choose <code>auto const &amp;x</code> when you want to work with original items and will not modify them.</li>
+</ul>
+<h1>Does “X&amp; const x” make any sense?</h1>
+<p>referece is alwas const. You cannot modify it to reference another item.
+reference to a const item is normally what people expect.
+This is <code>const T&amp; x</code>, instead of <code>T&amp; const x</code></p>
+<h1>vector remove/erase idiom</h1>
+<div class="highlight"><pre><span></span><span class="nt">std</span><span class="p">::</span><span class="nd">vector</span><span class="o">&lt;</span><span class="nt">int</span><span class="o">&gt;&amp;</span> <span class="nt">vec</span> <span class="o">=</span> <span class="nt">myNumbers</span><span class="o">;</span> <span class="o">//</span> <span class="nt">use</span> <span class="nt">shorter</span> <span class="nt">name</span>
+<span class="nt">vec</span><span class="p">.</span><span class="nc">erase</span><span class="o">(</span><span class="nt">std</span><span class="p">::</span><span class="nd">remove</span><span class="o">(</span><span class="nt">vec</span><span class="p">.</span><span class="nc">begin</span><span class="o">(),</span> <span class="nt">vec</span><span class="p">.</span><span class="nc">end</span><span class="o">(),</span> <span class="nt">number_in</span><span class="o">),</span> <span class="nt">vec</span><span class="p">.</span><span class="nc">end</span><span class="o">());</span>
+</pre></div>
+
+
+<ol>
+<li>Remove will not change the size of vector, it will shift other item forward to
+overwrite the given item. An iterator to the next item will be returned.</li>
+<li>erase is needed to erase those items starting from the iterator. The size of
+the vector will also be updated accordingly.</li>
+</ol>
+<h1>vector remove duplicate idiom</h1>
+<div class="highlight"><pre><span></span><span class="nt">std</span><span class="p">::</span><span class="nd">sort</span><span class="o">(</span><span class="nt">vec</span><span class="p">.</span><span class="nc">begin</span><span class="o">(),</span> <span class="nt">vec</span><span class="p">.</span><span class="nc">end</span><span class="o">());</span>
+<span class="nt">vec</span><span class="p">.</span><span class="nc">erase</span><span class="o">(</span><span class="nt">std</span><span class="p">::</span><span class="nd">unique</span><span class="o">(</span><span class="nt">vec</span><span class="p">.</span><span class="nc">begin</span><span class="o">(),</span> <span class="nt">vec</span><span class="p">.</span><span class="nc">end</span><span class="o">()),</span> <span class="nt">vec</span><span class="p">.</span><span class="nc">end</span><span class="o">());</span>
+</pre></div>
+
+
+<ol>
+<li>sort will make the items with same value consecutive in memory.</li>
+<li>unique will shift items forward to eliminate all but the first element from
+every consecutive group of equivalent elements from the range. It returns a
+past-the-end iterator for the new logical end of the range.</li>
+<li>erase will erase items in the range.</li>
+</ol>
+<h1>Reference:</h1>
+<p><a href="https://stackoverflow.com/questions/15176104/c11-range-based-loop-get-item-by-value-or-reference-to-const">c++ range based loop</a>
+<a href="https://isocpp.org/wiki/faq/const-correctness#const-ref-nonsense">ISOCPP FAQ. Does “X&amp; const x” make any sense?</a>
+<a href="https://stackoverflow.com/questions/1041620/whats-the-most-efficient-way-to-erase-duplicates-and-sort-a-vector">stackoverflow: What's the most efficient way to erase duplicates and sort a vector?</a></p>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/c.html">
+    <i class="icon-folder-open icon-large"></i>c++
+</a>
+</li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>Ceres
+</a>
+</li>
+<li>
+<a href="/category/compiler.html">
+    <i class="icon-folder-open icon-large"></i>Compiler
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/radar.html">
+    <i class="icon-folder-open icon-large"></i>Radar
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

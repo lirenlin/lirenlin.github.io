@@ -1,5 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/slam.atom.xml" rel="self"></link><id>/</id><updated>2019-02-16T20:20:10+01:00</updated><entry><title>位姿图优化空间平移问题</title><link href="/wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html" rel="alternate"></link><updated>2019-02-16T20:20:10+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-16:wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html</id><summary type="html">&lt;p&gt;A Tutorial on Graph-Based SLAM&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/slam.atom.xml" rel="self"></link><id>/</id><updated>2019-02-19T19:01:19+01:00</updated><entry><title>Data Association</title><link href="/data-association.html" rel="alternate"></link><updated>2019-02-19T19:01:19+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-19:data-association.html</id><summary type="html">&lt;h2&gt;Mahalanobis distance&lt;/h2&gt;
+&lt;h2&gt;Random sample consensus (RANSAC)&lt;/h2&gt;
+&lt;p&gt;Random sample consensus (RANSAC) is an iterative method to estimate parameters
+of a mathematical model from a set of observed data that contains outliers,
+when outliers are to be accorded no influence on the values of the estimates.
+Therefore, it also can be interpreted as an outlier detection method.[1] It is
+a non-deterministic algorithm in the sense that it produces a reasonable result
+only with a certain probability, with this probability increasing as more
+iterations are allowed.&lt;/p&gt;
+&lt;p&gt;直观上，可以一定程度上的排除outliers。有两个应用&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;系统参数的估计/拟合。给定一组带有噪声的数据与一个系统模型，通过数据来确定系统
+模型的参数。因为数据中外点，会导致拟合的系统出现偏移。所以去除外点对于正确的系统
+估计很重要。
+同时，外点不同于噪点，噪点可以通过统计的方式消除，当然还需要数据量足够大才行。&lt;/li&gt;
+&lt;li&gt;图像特征匹配中，消除误匹配点。
+在图像特征匹配以后，会得到很多对特征匹配。但是其中有一些匹配是误匹配，如果不加挑选，
+使用所有的匹配对进行运动的计算，可能会得到错误的运动数据(旋转，平移)。RANSAC可以用来
+消除误匹配，然后使用剩下的匹配来估计运动。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上述过程类似，
+1. 随机选取n个数据点
+2. 根据一个给定模型，计算模型参数
+3. 从原始数据集合中，根据上述求得模型，寻找其他的符合这个模型的数据点(在一定误差范围内)，
+加入到一个集合里。称为内点集合
+4. 如果总的内点个数大于M，则利用内点集合，重新估计模型参数，计算整体(使用所有数据点)误差。
+跟上一次整体误差比较，如果误差更小，则更新误差，记录模型参数。
+5. 跳转到步骤一，继续下一次迭代。直到迭代次数达到，或者整体误差小于一个预定值。&lt;/p&gt;
+&lt;p&gt;从上面步骤中看出，这个迭代过程，有很多参数需要设置。这也是RANSAC的一个缺点。&lt;/p&gt;
+&lt;h2&gt;Probabilistic data association filter&lt;/h2&gt;
+&lt;h2&gt;ICP&lt;/h2&gt;
+&lt;p&gt;通过迭代的方式，来解决data association与变换矩阵问题。&lt;/p&gt;
+&lt;h3&gt;point subset&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Use all points&lt;/li&gt;
+&lt;li&gt;Uniform sub-sampling&lt;/li&gt;
+&lt;li&gt;Random sampling&lt;/li&gt;
+&lt;li&gt;Feature based sampling&lt;/li&gt;
+&lt;li&gt;Normal-space sampling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;weighting the correspondences&lt;/h3&gt;
+&lt;h3&gt;data association&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;closet point&lt;/li&gt;
+&lt;li&gt;normal shooting&lt;/li&gt;
+&lt;li&gt;closest compatible point&lt;/li&gt;
+&lt;li&gt;projection-based&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;rejecting certain (outlier) point pairs&lt;/h3&gt;</summary><category term="SLAM"></category></entry><entry><title>Sensors</title><link href="/sensors.html" rel="alternate"></link><updated>2019-02-17T15:54:30+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-17:sensors.html</id><summary type="html">&lt;h1&gt;Sensor&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Proprioceptive sensors&lt;ul&gt;
+&lt;li&gt;Motor speed, heading of the robot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Exteroceptive sensors&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;distances to objects, images&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Passive sensors&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Measure energy coming from the environment, very much influenced by
+the environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Active sensors&lt;ul&gt;
+&lt;li&gt;emit their proper energy and measure the reaction. Better
+performance, but some influence on environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;p&gt;some encoders, PC, P
+Vision-based sensors, EC, P
+Active ranging, EC, A&lt;/p&gt;
+&lt;p&gt;compass: 罗盘, magnetic field on earth
+gyroscope: 陀螺仪
+provide an absolute measure for the heading of a mobile system&lt;/p&gt;
+&lt;p&gt;inclinometer: 测斜仪
+Accelerometer&lt;/p&gt;
+&lt;h2&gt;IMU: Inertial Measurement Unit&lt;/h2&gt;
+&lt;p&gt;An inertial measurement unit (IMU) is a device that uses measurement systems
+such as gyroscopes and accelerometers to estimate the relative position (x, y, z),
+orientation (roll, pitch, yaw), velocity, and acceleration of a moving
+vehicle with respect to an inertial frame.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IMUs are extremely sensitive to measurement errors in gyroscopes and
+accelerometers: drift in the gyroscope unavoidably undermines the estimation of
+the vehicle orientation relative to gravity, which results in incorrect
+cancellation of the gravity vector. Additionally observe that, because the
+accelerometer data is integrated twice to obtain the position, any residual
+gravity vector results in a quadratic error in position.&lt;/li&gt;
+&lt;li&gt;After long period of operation, all IMUs drift.  To cancel it, some external
+reference like GPS or cameras has to be used&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Beacons&lt;/h2&gt;
+&lt;p&gt;Beacons are signaling guiding devices with a precisely known position&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Beacons require changes in the environment. Initial setup and maintain -&amp;gt; costly.&lt;/li&gt;
+&lt;li&gt;Limit flexibility and adaptability to changing environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Augmented Reality Tag&lt;/h2&gt;
+&lt;h2&gt;Global Position System&lt;/h2&gt;
+&lt;h3&gt;Differential Global Positioning System (dGPS)&lt;/h3&gt;
+&lt;p&gt;DGPS requires that a GPS receiver, known as the base station, be set up on a
+precisely known location.The base station receiver calculates its position
+based on satellite signals and compares this location to the known location.
+The difference is applied to the GPS data recorded by the roving GPS receiver&lt;/p&gt;
+&lt;p&gt;position accuracies in sub-meter to cm range&lt;/p&gt;
+&lt;h2&gt;Range sensors&lt;/h2&gt;
+&lt;p&gt;Large range distance measurement. key element for localization and environment
+modeling&lt;/p&gt;
+&lt;p&gt;Ultrasonic sensors as well as laser range sensors make use of propagation speed
+of sound or electromagnetic waves respectively.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Quality of time of flight range sensors&lt;ul&gt;
+&lt;li&gt;Inaccuraciesin the time of fight measurement(laser range sensors)&lt;/li&gt;
+&lt;li&gt;Opening angle of transmitted beam (especially ultrasonic range sensors)&lt;/li&gt;
+&lt;li&gt;Interaction with the target (surface, specular reflections)&lt;/li&gt;
+&lt;li&gt;Variation of propagation speed (sound)&lt;ul&gt;
+&lt;li&gt;sound&lt;/li&gt;
+&lt;li&gt;electromagnetic signal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Speed of mobile robot and target (if not at stand still)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Laser Range finder are also known as Lidar (Light Detection And Ranging)&lt;/p&gt;
+&lt;h3&gt;Sonar&lt;/h3&gt;
+&lt;h3&gt;Laser range finder&lt;/h3&gt;
+&lt;h1&gt;Sensor Model&lt;/h1&gt;
+&lt;h1&gt;Sensor Fusion&lt;/h1&gt;
+&lt;p&gt;https://www.ethz.ch/content/dam/ethz/special-interest/mavt/robotics-n-intelligent-systems/asl-dam/documents/lectures/autonomous_mobile_robots/spring-2015/04_-&lt;em&gt;Perception_I&lt;/em&gt;-_Sensors.pdf&lt;/p&gt;</summary><category term="SLAM"></category></entry><entry><title>位姿图优化空间平移问题</title><link href="/wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html" rel="alternate"></link><updated>2019-02-16T20:20:10+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-02-16:wei-zi-tu-you-hua-kong-jian-ping-yi-wen-ti.html</id><summary type="html">&lt;p&gt;A Tutorial on Graph-Based SLAM&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;
 中有提到一个细节，&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note that the error of a constraint &lt;span class="math"&gt;\(e_{ij}\)&lt;/span&gt; depends only on the relative position
@@ -355,6 +490,21 @@ outlier: &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2&gt;Data association&lt;/h2&gt;
+&lt;p&gt;无论是在滤波方法，还是图优化方法中，都有一个假设，我们知道在一个位姿下，观测到的环境特征与之前特征的匹配。
+这是一个需要单独解决的问题，称作Data association。在图优化框架中，这部分属于前端工作。&lt;/p&gt;
+&lt;p&gt;滤波模型，利用观测，对预测进行更新修正。图优化模型，利用观测，来建立顶点间的边，也就是约束。
+所以，这两种算法正确的前提是，对于观测误差计算中，用到的data association的正确性。&lt;/p&gt;
+&lt;p&gt;Data association也就是解决这样一个问题：在某个位姿下，每一个观测到的数据，与之前的观测，或者与地图的对应关系。
+例如提供这样的一个信息： &lt;span class="math"&gt;\(c_{t}^{i} = j\)&lt;/span&gt;， &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th 测量值观测到的是环境(map)中&lt;span class="math"&gt;\(j\)&lt;/span&gt;个特征(landmark)&lt;/p&gt;
+&lt;p&gt;这与位姿优化估计，地图建立是完全不同领域的问题，但是是一个SLAM系统稳定正确工作的重要前提。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;raw data&lt;/li&gt;
+&lt;li&gt;feature based&lt;ul&gt;
+&lt;li&gt;feature correspondences&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
@@ -365,7 +515,62 @@ outlier: &lt;/li&gt;
 &lt;p&gt;http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam08-kf-wrapup.pdf&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary><category term="SLAM"></category></entry><entry><title>简单BA代码分析</title><link href="/jian-dan-badai-ma-fen-xi.html" rel="alternate"></link><updated>2019-01-15T08:36:12+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-15:jian-dan-badai-ma-fen-xi.html</id><summary type="html">&lt;p&gt;简单代码分析，帮助自己从概念到代码的理解。代码使用Eigen, ceres solver第三方软件库。&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="SLAM"></category></entry><entry><title>简单BA代码分析</title><link href="/jian-dan-badai-ma-fen-xi.html" rel="alternate"></link><updated>2019-01-15T08:36:12+01:00</updated><author><name>Nekoo</name></author><id>tag:,2019-01-15:jian-dan-badai-ma-fen-xi.html</id><summary type="html">&lt;p&gt;简单代码分析，帮助自己从概念到代码的理解。代码使用Eigen, ceres solver第三方软件库。&lt;/p&gt;
 &lt;h1&gt;问题假设&lt;/h1&gt;
 &lt;p&gt;输入：&lt;/p&gt;
 &lt;ul&gt;

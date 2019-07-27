@@ -65,6 +65,11 @@
             <ul class="nav">
                           <li class="divider-vertical"></li>
                   <li >
+                    <a href="/category/c.html">
+						<i class="icon-folder-open icon-large"></i>c++
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/ceres.html">
 						<i class="icon-folder-open icon-large"></i>Ceres
 					</a>
@@ -105,6 +110,11 @@
 					</a>
                   </li>
                   <li >
+                    <a href="/category/radar.html">
+						<i class="icon-folder-open icon-large"></i>Radar
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/slam.html">
 						<i class="icon-folder-open icon-large"></i>SLAM
 					</a>
@@ -129,6 +139,85 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="/frame-pose.html">Frame pose</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-04-01T22:22:58+02:00">
+        <i class="icon-calendar"></i>Mon 01 April 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="math">$$p_{W} = W_{A}T * p_{A}$$</div>
+<div class="math">$$p_{A} = A_{W}T * p_{W} = (W_{A}T)^{-1} * p_{w}$$</div>
+<p><span class="math">\(W_{A}T\)</span>, frame a's pose in frame W, or read as "transform a point in A's frame
+into W"</p>
+<p><span class="math">\(A_{W}T\)</span> or <span class="math">\((W_{W}T)^{-1 ...</span></p>
+                        <a class="btn primary xsmall" href="/frame-pose.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/covariance-matrix.html">Covariance matrix</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-03-17T14:29:50+01:00">
+        <i class="icon-calendar"></i>Sun 17 March 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>Different covariance types for Gaussian Mixture Models</h2>
+<p>https://stats.stackexchange.com/questions/326671/different-covariance-types-for-gaussian-mixture-models</p>
+<p>http://www.visiondummy.com/2014/04/geometric-interpretation-covariance-matrix/</p>
+<p>https://math.stackexchange.com/questions/23596/why-is-the-eigenvector-of-a-covariance-matrix-equal-to-a-principal-component</p>
+                        <a class="btn primary xsmall" href="/covariance-matrix.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/factor-graph.html">Factor Graph</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-03-02T19:09:52+01:00">
+        <i class="icon-calendar"></i>Sat 02 March 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>High level problem definition and algorithm</h2>
+<p>Factor graph vs Pose graph</p>
+<p>elimination
+Sliding window, remove unrelated pose and constraints
+marginalization, keep the size of graph constant while maintain the information.</p>
+<p>Batch Estimation
+Sliding window</p>
+<h2>Software package</h2>
+<p>g2o vs ceres solver vs GTSAM vs AprilSAM vs iSAM
+<em> 性能，维护，扩展升级性，依赖其他库 ...</em></p>
+                        <a class="btn primary xsmall" href="/factor-graph.html">more ...</a>
+                </div>
+        </div>
+        <hr />
         <div class="article">
                 <h1><a href="/icp.html">ICP</a></h1>
                 <div class="well small"><footer class="post-info">
@@ -339,83 +428,6 @@ following modification to (3.9),<sup id="fnref:1"><a class="footnote-ref" href="
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="/numerical-stability.html">Numerical stability</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-23T14:27:51+01:00">
-        <i class="icon-calendar"></i>Wed 23 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p><a href="https://en.wikipedia.org/wiki/Numerical_stability">Wiki: numerical stability</a></p>
-<p><a href="https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
-                        <a class="btn primary xsmall" href="/numerical-stability.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/cholesky-decomposition.html">cholesky decomposition</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-22T16:48:47+01:00">
-        <i class="icon-calendar"></i>Tue 22 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><ul>
-<li>
-<p>Linear least squares, the solution is to solve this system of linear
-equations: <span class="math">\(A^TAx = TX = A^Tb\)</span></p>
-</li>
-<li>
-<p>Non-linear least squares problem via iterative method</p>
-<ul>
-<li>Gauss-Newton Method, solve <span class="math">\((J_x^T J_x)\Delta = T\Delta = -J_x^Tf(x)\)</span></li>
-<li>Levenberg-Marquardt Algorithm, solve <span class="math">\((J_x^T J_x + \lambda D)\Delta = T\delta = -J_x^Tf ...</span></li></ul></li></ul>
-                        <a class="btn primary xsmall" href="/cholesky-decomposition.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/ill-conditioned-matrices.html">ill-conditioned Matrices</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-01-21T14:50:04+01:00">
-        <i class="icon-calendar"></i>Mon 21 January 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>What is an ill-conditioned matrix?<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></h1>
-<p>A matrix can represent a mapping from one space to another space. The
-conditioning number of a matrix gives us the ratio of how crazy this mapping
-can be. The conditioning number is the ratio of the largest singular value to
-the smallest singular ...</p>
-                        <a class="btn primary xsmall" href="/ill-conditioned-matrices.html">more ...</a>
-                </div>
-        </div>
-        <hr />
 
         <div class="pagination">
         <ul>
@@ -424,6 +436,7 @@ the smallest singular ...</p>
                         <li class=""><a href="/tag/math2.html">2</a></li>
                         <li class=""><a href="/tag/math3.html">3</a></li>
                         <li class=""><a href="/tag/math4.html">4</a></li>
+                        <li class=""><a href="/tag/math5.html">5</a></li>
                         <li class="next"><a href="/tag/math2.html">Next &rarr;</a></li>
         </ul>
         </div>
@@ -437,6 +450,11 @@ the smallest singular ...</p>
     <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/c.html">
+    <i class="icon-folder-open icon-large"></i>c++
+</a>
+</li>
 <li>
 <a href="/category/ceres.html">
     <i class="icon-folder-open icon-large"></i>Ceres
@@ -475,6 +493,11 @@ the smallest singular ...</p>
 <li>
 <a href="/category/programming.html">
     <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/radar.html">
+    <i class="icon-folder-open icon-large"></i>Radar
 </a>
 </li>
 <li>
