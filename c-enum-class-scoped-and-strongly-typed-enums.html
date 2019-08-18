@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>c++ enum class -- scoped and strongly typed enums</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Nekoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="Yet another site ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">Yet another site </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/c.html">
+						<i class="icon-folder-open icon-large"></i>c++
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/ceres.html">
+						<i class="icon-folder-open icon-large"></i>Ceres
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/compiler.html">
+						<i class="icon-folder-open icon-large"></i>Compiler
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/eigen.html">
+						<i class="icon-folder-open icon-large"></i>Eigen
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/german.html">
+						<i class="icon-folder-open icon-large"></i>German
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/home.html">
+						<i class="icon-folder-open icon-large"></i>Home
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/math.html">
+						<i class="icon-folder-open icon-large"></i>Math
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/optimization.html">
+						<i class="icon-folder-open icon-large"></i>Optimization
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/other.html">
+						<i class="icon-folder-open icon-large"></i>Other
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/programming.html">
+						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/python.html">
+						<i class="icon-folder-open icon-large"></i>Python
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/radar.html">
+						<i class="icon-folder-open icon-large"></i>Radar
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/slam.html">
+						<i class="icon-folder-open icon-large"></i>SLAM
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to c++ enum class -- scoped and strongly typed enums">
+                                        c++ enum class -- scoped and strongly typed enums
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-18T16:45:44+02:00">
+        <i class="icon-calendar"></i>Sun 18 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
+</footer><!-- /.post-info -->                </div>
+                <h2>enum class</h2>
+<ul>
+<li>enumerator names are local to the enum</li>
+<li>their values do not implicitly convert to other types</li>
+<li>the underlying type of an enum can be specified.</li>
+</ul>
+<h2>plain enum</h2>
+<ul>
+<li>enumerator names are in the same scope as the enum, causing name clashes.</li>
+<li>their values implicitly convert to intergers and other types</li>
+<li>the underlying type of an enum cannot be specified.</li>
+</ul>
+<h2>enum and string mapping</h2>
+<p>Most of the time, we want a mapping between enum and string. So that we could
+print some useful message. The most straight-forward way is to have a function
+with switch statement inside. For each enumerators, return different
+descriptive string. A mapping data structure could also be used for this
+purpose.</p>
+<p>To save some typing work, one could use macros/pre-processor to help with
+code-generation.</p>
+<p>Depending on how the string need to be, there are two cases:</p>
+<ul>
+<li>
+<p>enum names themselves as strings
+  There are various third-party code to do this. To list a few:</p>
+<ul>
+<li><a href="https://github.com/aantron/better-enums">better enum</a></li>
+</ul>
+<p>better enum is using macro to help with code generation. A struct is used
+to wrap all the functions. Conversion operator is defined so that, the
+struct could be used as a normal enumerator in swith/comparison statements</p>
+<ul>
+<li><a href="https://github.com/Neargye/magic_enum">magic_enum</a></li>
+</ul>
+<p>magic_enum is taking advantage of <strong>__PRETTY_FUNCTION__</strong> compiler magic
+constant to generate string from enumerators.</p>
+<p>This reuqires certain compiler support. gcc &gt;= 9, clang/llvm &gt;= 5.</p>
+<div class="highlight"><pre><span></span><span class="err">```</span><span class="nt">c</span><span class="o">++</span>
+<span class="nt">enum</span> <span class="nt">class</span> <span class="nt">Color</span> <span class="p">{</span><span class="err">RED,</span> <span class="err">GREEN,</span> <span class="err">BLUE</span><span class="p">}</span><span class="o">;</span>
+<span class="o">//</span><span class="nt">the</span> <span class="nt">string</span> <span class="nt">returned</span> <span class="nt">by</span> <span class="nt">this</span> <span class="nt">function</span> <span class="nt">contains</span> <span class="nt">the</span> <span class="nt">enumerator</span> <span class="nt">v</span><span class="err">&#39;</span><span class="nt">s</span> <span class="nt">string</span> <span class="nt">representation</span><span class="o">.</span>
+<span class="o">//</span> <span class="nt">E</span> <span class="nt">is</span> <span class="nt">enum</span> <span class="nt">type</span><span class="o">,</span> <span class="nt">v</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">enumerator</span> <span class="nt">of</span> <span class="nt">E</span> <span class="nt">enum</span><span class="o">.</span>
+<span class="nt">template</span><span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">E</span><span class="o">,</span> <span class="nt">E</span> <span class="nt">v</span><span class="o">&gt;</span>
+<span class="nt">std</span><span class="p">::</span><span class="nd">string</span> <span class="nt">getEnumName</span><span class="o">()</span> <span class="p">{</span> <span class="err">return</span> <span class="err">__PRETTY_FUNCTION__</span><span class="p">;}</span>
+<span class="nt">std</span><span class="p">::</span><span class="nd">cout</span> <span class="o">&lt;&lt;</span> <span class="nt">getEnumName</span><span class="o">&lt;</span><span class="nt">Color</span><span class="o">,</span> <span class="nt">Color</span><span class="p">::</span><span class="nd">GREEN</span><span class="o">&gt;()</span> <span class="o">&lt;&lt;</span> <span class="nt">std</span><span class="p">::</span><span class="nd">endl</span><span class="o">;</span>
+<span class="o">//</span><span class="nt">The</span> <span class="nt">output</span> <span class="nt">will</span> <span class="nt">look</span> <span class="nt">like</span><span class="o">:</span>
+<span class="o">//</span><span class="nt">std</span><span class="p">::</span><span class="nd">string</span> <span class="nt">getNameImpl</span><span class="o">()</span> <span class="cp">[</span><span class="n">E</span><span class="o"> =</span><span class="nx">Color</span><span class="p">,</span> <span class="n">v</span><span class="o"> =</span> <span class="nx">Color</span><span class="nl">::BLUE</span><span class="cp">]</span>
+<span class="err">```</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Other user supplied string mapping</p>
+</li>
+</ul>
+<h2>Reference</h2>
+<p><a href="http://www.stroustrup.com/C++11FAQ.html#enum">Bjarne Stroustrup's C++11 FAQ</a></p>
+<p><a href="https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum">stackoverflow: Why is enum class preferred over plain enum?</a></p>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/c.html">
+    <i class="icon-folder-open icon-large"></i>c++
+</a>
+</li>
+<li>
+<a href="/category/ceres.html">
+    <i class="icon-folder-open icon-large"></i>Ceres
+</a>
+</li>
+<li>
+<a href="/category/compiler.html">
+    <i class="icon-folder-open icon-large"></i>Compiler
+</a>
+</li>
+<li>
+<a href="/category/eigen.html">
+    <i class="icon-folder-open icon-large"></i>Eigen
+</a>
+</li>
+<li>
+<a href="/category/german.html">
+    <i class="icon-folder-open icon-large"></i>German
+</a>
+</li>
+<li>
+<a href="/category/home.html">
+    <i class="icon-folder-open icon-large"></i>Home
+</a>
+</li>
+<li>
+<a href="/category/math.html">
+    <i class="icon-folder-open icon-large"></i>Math
+</a>
+</li>
+<li>
+<a href="/category/optimization.html">
+    <i class="icon-folder-open icon-large"></i>Optimization
+</a>
+</li>
+<li>
+<a href="/category/other.html">
+    <i class="icon-folder-open icon-large"></i>Other
+</a>
+</li>
+<li>
+<a href="/category/programming.html">
+    <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/python.html">
+    <i class="icon-folder-open icon-large"></i>Python
+</a>
+</li>
+<li>
+<a href="/category/radar.html">
+    <i class="icon-folder-open icon-large"></i>Radar
+</a>
+</li>
+<li>
+<a href="/category/slam.html">
+    <i class="icon-folder-open icon-large"></i>SLAM
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

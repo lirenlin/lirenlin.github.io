@@ -1,5 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/c.atom.xml" rel="self"></link><id>/</id><updated>2019-07-27T21:00:09+02:00</updated><entry><title>std::bind vs lambda</title><link href="/stdbind-vs-lambda.html" rel="alternate"></link><updated>2019-07-27T21:00:09+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-07-27:stdbind-vs-lambda.html</id><summary type="html">&lt;h1&gt;lambda vs std::bind&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/c.atom.xml" rel="self"></link><id>/</id><updated>2019-08-18T16:45:44+02:00</updated><entry><title>c++ enum class -- scoped and strongly typed enums</title><link href="/c-enum-class-scoped-and-strongly-typed-enums.html" rel="alternate"></link><updated>2019-08-18T16:45:44+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-08-18:c-enum-class-scoped-and-strongly-typed-enums.html</id><summary type="html">&lt;h2&gt;enum class&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;enumerator names are local to the enum&lt;/li&gt;
+&lt;li&gt;their values do not implicitly convert to other types&lt;/li&gt;
+&lt;li&gt;the underlying type of an enum can be specified.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;plain enum&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;enumerator names are in the same scope as the enum, causing name clashes.&lt;/li&gt;
+&lt;li&gt;their values implicitly convert to intergers and other types&lt;/li&gt;
+&lt;li&gt;the underlying type of an enum cannot be specified.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;enum and string mapping&lt;/h2&gt;
+&lt;p&gt;Most of the time, we want a mapping between enum and string. So that we could
+print some useful message. The most straight-forward way is to have a function
+with switch statement inside. For each enumerators, return different
+descriptive string. A mapping data structure could also be used for this
+purpose.&lt;/p&gt;
+&lt;p&gt;To save some typing work, one could use macros/pre-processor to help with
+code-generation.&lt;/p&gt;
+&lt;p&gt;Depending on how the string need to be, there are two cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;enum names themselves as strings
+  There are various third-party code to do this. To list a few:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/aantron/better-enums"&gt;better enum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;better enum is using macro to help with code generation. A struct is used
+to wrap all the functions. Conversion operator is defined so that, the
+struct could be used as a normal enumerator in swith/comparison statements&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Neargye/magic_enum"&gt;magic_enum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;magic_enum is taking advantage of &lt;strong&gt;__PRETTY_FUNCTION__&lt;/strong&gt; compiler magic
+constant to generate string from enumerators.&lt;/p&gt;
+&lt;p&gt;This reuqires certain compiler support. gcc &amp;gt;= 9, clang/llvm &amp;gt;= 5.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="nt"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;
+&lt;span class="nt"&gt;enum&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt; &lt;span class="nt"&gt;Color&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="err"&gt;RED,&lt;/span&gt; &lt;span class="err"&gt;GREEN,&lt;/span&gt; &lt;span class="err"&gt;BLUE&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;string&lt;/span&gt; &lt;span class="nt"&gt;returned&lt;/span&gt; &lt;span class="nt"&gt;by&lt;/span&gt; &lt;span class="nt"&gt;this&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt; &lt;span class="nt"&gt;contains&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;enumerator&lt;/span&gt; &lt;span class="nt"&gt;v&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;s&lt;/span&gt; &lt;span class="nt"&gt;string&lt;/span&gt; &lt;span class="nt"&gt;representation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;E&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;enum&lt;/span&gt; &lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;v&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;enumerator&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;E&lt;/span&gt; &lt;span class="nt"&gt;enum&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="nt"&gt;template&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;typename&lt;/span&gt; &lt;span class="nt"&gt;E&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;E&lt;/span&gt; &lt;span class="nt"&gt;v&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;string&lt;/span&gt; &lt;span class="nt"&gt;getEnumName&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;return&lt;/span&gt; &lt;span class="err"&gt;__PRETTY_FUNCTION__&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nt"&gt;getEnumName&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;Color&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;Color&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;GREEN&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;endl&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;The&lt;/span&gt; &lt;span class="nt"&gt;output&lt;/span&gt; &lt;span class="nt"&gt;will&lt;/span&gt; &lt;span class="nt"&gt;look&lt;/span&gt; &lt;span class="nt"&gt;like&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;string&lt;/span&gt; &lt;span class="nt"&gt;getNameImpl&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt; =&lt;/span&gt;&lt;span class="nx"&gt;Color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt; =&lt;/span&gt; &lt;span class="nx"&gt;Color&lt;/span&gt;&lt;span class="nl"&gt;::BLUE&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;
+&lt;span class="err"&gt;```&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Other user supplied string mapping&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.stroustrup.com/C++11FAQ.html#enum"&gt;Bjarne Stroustrup's C++11 FAQ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum"&gt;stackoverflow: Why is enum class preferred over plain enum?&lt;/a&gt;&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>Pointer to Implementation idiom</title><link href="/pointer-to-implementation-idiom.html" rel="alternate"></link><updated>2019-08-11T20:18:33+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-08-11:pointer-to-implementation-idiom.html</id><summary type="html">&lt;h2&gt;Keywords&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Reduce compilation dependency&lt;/li&gt;
+&lt;li&gt;pointer to implementation, smart pointer&lt;/li&gt;
+&lt;li&gt;forward declaration&lt;/li&gt;
+&lt;li&gt;incomplete type&lt;/li&gt;
+&lt;li&gt;constness forwarding&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reference:&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.fluentcpp.com/2017/09/22/make-pimpl-using-unique_ptr/"&gt;fluent c++&lt;/a&gt;
+&lt;a href="https://www.bfilipek.com/2018/01/pimpl.html"&gt;The Pimpl Pattern - what you should know &lt;/a&gt;
+&lt;a href="https://herbsutter.com/gotw/_100/"&gt;GotW&lt;/a&gt;&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>Template dependent name</title><link href="/template-dependent-name.html" rel="alternate"></link><updated>2019-08-06T22:51:38+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-08-06:template-dependent-name.html</id><summary type="html">&lt;p&gt;https://en.cppreference.com/w/cpp/language/dependent_name&lt;/p&gt;
+&lt;p&gt;https://stackoverflow.com/questions/610245/where-and-why-do-i-have-to-put-the-template-and-typename-keywords&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ type sepcifier, modifier, qualifier</title><link href="/c-type-sepcifier-modifier-qualifier.html" rel="alternate"></link><updated>2019-08-03T21:26:03+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-08-03:c-type-sepcifier-modifier-qualifier.html</id><summary type="html">&lt;h1&gt;type modifier&lt;/h1&gt;
+&lt;p&gt;A modifier is used to alter the meaning of the base type so that it more
+precisely fits the needs of various situations.
+  * size
+  * sign&lt;/p&gt;
+&lt;h1&gt;access modifier&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;private&lt;/li&gt;
+&lt;li&gt;public&lt;/li&gt;
+&lt;li&gt;protected&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;qualifier&lt;/h1&gt;
+&lt;p&gt;The type qualifiers provide additional information about the variables they precede.
+  * const
+  * volatile
+  * restrict&lt;/p&gt;
+&lt;h1&gt;type specifier&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;friend&lt;/li&gt;
+&lt;li&gt;inline&lt;/li&gt;
+&lt;li&gt;constexpr&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;storage specifier&lt;/h1&gt;
+&lt;h1&gt;format specifier&lt;/h1&gt;
+&lt;p&gt;https://stackoverflow.com/questions/35218641/what-are-declarator-specifiers-in-c-language&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>c++ term</title><link href="/c-term.html" rel="alternate"></link><updated>2019-07-28T12:43:31+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-07-28:c-term.html</id><summary type="html">&lt;p&gt;closure
+free varialbe
+first order function&lt;/p&gt;
+&lt;p&gt;callable object
+  * function object, functor
+  A function object (or functor) is simply any object of a class that provides at least one definition for operator() What this means is that if you then declare an object f of the class in which this operator() is defined you can subsequently use that object f just like you would use an "ordinary" function.
+  * lambda expression
+  * bind expression
+  * free functions
+  * member functions&lt;/p&gt;
+&lt;p&gt;STL function objects
+type erasure&lt;/p&gt;
+&lt;h1&gt;why lambda expression could be inlined?&lt;/h1&gt;
+&lt;p&gt;https://stackoverflow.com/questions/13722426/why-can-lambdas-be-better-optimized-by-the-compiler-than-plain-functions&lt;/p&gt;
+&lt;p&gt;lambda expression are function object.
+its type is passed to the a function template, which will results in a specific
+version for this template type argument.&lt;/p&gt;
+&lt;p&gt;In this case, the compiler knows the type and implementation of function call operator. It has better chances to do some optimizations.&lt;/p&gt;</summary><category term="c++"></category></entry><entry><title>std::bind vs lambda</title><link href="/stdbind-vs-lambda.html" rel="alternate"></link><updated>2019-07-27T21:00:09+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-07-27:stdbind-vs-lambda.html</id><summary type="html">&lt;h1&gt;lambda vs std::bind&lt;/h1&gt;
 &lt;p&gt;基本上是两个不同的用途，但是lambda可以实现std::bind的功能.
 如果目的知识想去创造一个scope临时的函数，例如提供给STL的函数。lambda非诚使用这种使用场景。
 1. 不需要单独的写一个函数，与使用逻辑分开。非常紧凑，没有context switch

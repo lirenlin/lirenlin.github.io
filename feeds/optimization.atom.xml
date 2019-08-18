@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/optimization.atom.xml" rel="self"></link><id>/</id><updated>2019-08-04T14:44:30+02:00</updated><entry><title>Energy function/loss function</title><link href="/energy-functionloss-function.html" rel="alternate"></link><updated>2019-08-04T14:44:30+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-08-04:energy-functionloss-function.html</id><summary type="html">&lt;h1&gt;energy function&lt;/h1&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Energy_functional
+https://stackoverflow.com/questions/50342526/what-is-the-difference-between-energy-function-and-loss-function&lt;/p&gt;
+&lt;h1&gt;objective function&lt;/h1&gt;
+&lt;h1&gt;cost function&lt;/h1&gt;
+&lt;h1&gt;loss function&lt;/h1&gt;
+&lt;p&gt;https://en.wikipedia.org/wiki/Loss_function&lt;/p&gt;
+&lt;h1&gt;likelihood function&lt;/h1&gt;
+&lt;p&gt;In statistics, the likelihood function (often simply called likelihood) expresses how likely particular values of statistical parameters are for a given set of observations.&lt;/p&gt;</summary><category term="Optimization"></category></entry></feed>

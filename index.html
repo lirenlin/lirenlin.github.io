@@ -100,6 +100,11 @@
 					</a>
                   </li>
                   <li >
+                    <a href="/category/optimization.html">
+						<i class="icon-folder-open icon-large"></i>Optimization
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/other.html">
 						<i class="icon-folder-open icon-large"></i>Other
 					</a>
@@ -107,6 +112,11 @@
                   <li >
                     <a href="/category/programming.html">
 						<i class="icon-folder-open icon-large"></i>Programming
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/python.html">
+						<i class="icon-folder-open icon-large"></i>Python
 					</a>
                   </li>
                   <li >
@@ -140,6 +150,274 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/c-enum-class-scoped-and-strongly-typed-enums.html">c++ enum class -- scoped and strongly typed enums</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-18T16:45:44+02:00">
+        <i class="icon-calendar"></i>Sun 18 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>enum class</h2>
+<ul>
+<li>enumerator names are local to the enum</li>
+<li>their values do not implicitly convert to other types</li>
+<li>the underlying type of an enum can be specified.</li>
+</ul>
+<h2>plain enum</h2>
+<ul>
+<li>enumerator names are in the same scope as the enum, causing name clashes.</li>
+<li>their values implicitly convert to intergers and other ...</li></ul>
+                        <a class="btn primary xsmall" href="/c-enum-class-scoped-and-strongly-typed-enums.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/python-argument-expansion.html">Python argument expansion</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-17T12:10:31+02:00">
+        <i class="icon-calendar"></i>Sat 17 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/python.html"><i class="icon-folder-open"></i>Python</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/python.html"><i class="icon-tag"></i>Python</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><ul>
+<li>
+<p>* operator: positional argument expansion
+for a list, expand to function call argument list</p>
+</li>
+<li>
+<p>** operator: keyword argument expansion for a dictionary, expand to function call keyword argument list</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>def add(a, b):
+  print a+b
+
+a = [1, 2]
+kwargs={&#39;b&#39;:1, &#39;a&#39;: 1}
+add(*a)
+add(**kwargs)
+
+
+def add(a, *args ...</pre></div>
+                        <a class="btn primary xsmall" href="/python-argument-expansion.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/epislon.html">Epislon</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-11T21:05:20+02:00">
+        <i class="icon-calendar"></i>Sun 11 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/programming.html"><i class="icon-folder-open"></i>Programming</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/programming.html"><i class="icon-tag"></i>Programming</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>machine epsilon</h2>
+<p>https://en.wikipedia.org/wiki/Machine_epsilon</p>
+<h2>epsilon-delta defintion of limit</h2>
+<p>https://en.wikipedia.org/wiki/(%CE%B5,_%CE%B4)-definition_of_limit</p>
+                        <a class="btn primary xsmall" href="/epislon.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/pointer-to-implementation-idiom.html">Pointer to Implementation idiom</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-11T20:18:33+02:00">
+        <i class="icon-calendar"></i>Sun 11 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>Keywords</h2>
+<ul>
+<li>Reduce compilation dependency</li>
+<li>pointer to implementation, smart pointer</li>
+<li>forward declaration</li>
+<li>incomplete type</li>
+<li>constness forwarding</li>
+</ul>
+<h2>Reference:</h2>
+<p><a href="https://www.fluentcpp.com/2017/09/22/make-pimpl-using-unique_ptr/">fluent c++</a>
+<a href="https://www.bfilipek.com/2018/01/pimpl.html">The Pimpl Pattern - what you should know </a>
+<a href="https://herbsutter.com/gotw/_100/">GotW</a></p>
+                        <a class="btn primary xsmall" href="/pointer-to-implementation-idiom.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/template-dependent-name.html">Template dependent name</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-06T22:51:38+02:00">
+        <i class="icon-calendar"></i>Tue 06 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>https://en.cppreference.com/w/cpp/language/dependent_name</p>
+<p>https://stackoverflow.com/questions/610245/where-and-why-do-i-have-to-put-the-template-and-typename-keywords</p>
+                        <a class="btn primary xsmall" href="/template-dependent-name.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/python-list-slicing.html">python list slicing</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-04T15:21:47+02:00">
+        <i class="icon-calendar"></i>Sun 04 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/python.html"><i class="icon-folder-open"></i>python</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>一个很好的总结:
+<a href="https://stackoverflow.com/questions/509211/understanding-slice-notation">stackoverflow: Understanding slice notation</a></p>
+<div class="highlight"><pre><span></span>a[start:end:step] # items from start through  stop - 1. a[stop] not included.
+</pre></div>
+
+
+<p>当step为负数的时候，算法跟之前一样，[start, start+step, start+step+step, ..., end)</p>
+                        <a class="btn primary xsmall" href="/python-list-slicing.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/energy-functionloss-function.html">Energy function/loss function</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-04T14:44:30+02:00">
+        <i class="icon-calendar"></i>Sun 04 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/optimization.html"><i class="icon-folder-open"></i>Optimization</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/optimization.html"><i class="icon-tag"></i>Optimization</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>energy function</h1>
+<p>https://en.wikipedia.org/wiki/Energy_functional
+https://stackoverflow.com/questions/50342526/what-is-the-difference-between-energy-function-and-loss-function</p>
+<h1>objective function</h1>
+<h1>cost function</h1>
+<h1>loss function</h1>
+<p>https://en.wikipedia.org/wiki/Loss_function</p>
+<h1>likelihood function</h1>
+<p>In statistics, the likelihood function (often simply called likelihood) expresses how likely particular values of statistical parameters are for a given set ...</p>
+                        <a class="btn primary xsmall" href="/energy-functionloss-function.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/c-type-sepcifier-modifier-qualifier.html">c++ type sepcifier, modifier, qualifier</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-08-03T21:26:03+02:00">
+        <i class="icon-calendar"></i>Sat 03 August 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>type modifier</h1>
+<p>A modifier is used to alter the meaning of the base type so that it more
+precisely fits the needs of various situations.
+  * size
+  * sign</p>
+<h1>access modifier</h1>
+<ul>
+<li>private</li>
+<li>public</li>
+<li>protected</li>
+</ul>
+<h1>qualifier</h1>
+<p>The type qualifiers provide additional information about the variables they precede.
+  * const
+  * volatile
+  * restrict</p>
+<h1>type specifier</h1>
+<ul>
+<li>friend ...</li></ul>
+                        <a class="btn primary xsmall" href="/c-type-sepcifier-modifier-qualifier.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/c-term.html">c++ term</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-07-28T12:43:31+02:00">
+        <i class="icon-calendar"></i>Sun 28 July 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>closure
+free varialbe
+first order function</p>
+<p>callable object
+  * function object, functor
+  A function object (or functor) is simply any object of a class that provides at least one definition for operator() What this means is that if you then declare an object f of the class in which this operator ...</p>
+                        <a class="btn primary xsmall" href="/c-term.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/stdbind-vs-lambda.html">std::bind vs lambda</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -166,241 +444,6 @@
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="/c-method-chaining.html">c++ method chaining</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-07-01T22:21:49+02:00">
-        <i class="icon-calendar"></i>Mon 01 July 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Some class methods return object reference to itself. This is for method
-chaining.</p>
-<p>Reference:</p>
-                        <a class="btn primary xsmall" href="/c-method-chaining.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/c-algorithm.html">c++ algorithm</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-06-22T18:47:43+02:00">
-        <i class="icon-calendar"></i>Sat 22 June 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>std::all_of
-std::any_of
-std::none_of</p>
-<p>std::partial_sum</p>
-<p>std::lower_bound
-std::upper_bound
-binary search</p>
-<p>std::unique
-std::sort</p>
-<p>std::remove
-std::remove_if
-one iteration, vector remove/erase idiom</p>
-<p>std::copy
-std::copy_if
-std::copy_n
-std::copy_backward
-<code>`
-std::copy(to_vector.begin(), to_vector.end(),
-          std::ostream_iterator&lt;int&gt;(std::cout, " "));</code></p>
-<p>std::for_each, UnaryFunction ...</p>
-                        <a class="btn primary xsmall" href="/c-algorithm.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/c-notes.html">c++ notes</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-06-22T17:40:22+02:00">
-        <i class="icon-calendar"></i>Sat 22 June 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>https://stackoverflow.com/questions/1600936/officially-what-is-typename-for</p>
-                        <a class="btn primary xsmall" href="/c-notes.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/c-stdvector.html">c++ std::vector</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-06-20T20:50:00+02:00">
-        <i class="icon-calendar"></i>Thu 20 June 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/c.html"><i class="icon-folder-open"></i>C++</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/c.html"><i class="icon-tag"></i>C++</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h1>c++ range base for loop over vector</h1>
-<p>If you don't want to change the items as well as want to avoid making copies, then auto const &amp; is the correct choice:</p>
-<div class="highlight"><pre><span></span>for (auto const &amp;x : vec)
-</pre></div>
-
-
-<p>Whoever suggests you to use auto &amp; is wrong. Ignore them.<br />
-Here is recap:</p>
-<ul>
-<li>Choose ...</li></ul>
-                        <a class="btn primary xsmall" href="/c-stdvector.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/chi-square.html">Chi square</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-05-01T21:57:38+02:00">
-        <i class="icon-calendar"></i>Wed 01 May 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/tags.html"><i class="icon-tag"></i>TAGS</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>https://en.wikipedia.org/wiki/Chi-squared_test</p>
-<p>https://en.wikipedia.org/wiki/Goodness_of_fit</p>
-<p>https://robotics.stackexchange.com/questions/6447/role-of-chi2-in-slam-back-end-optimization</p>
-<p><span class="math">\(\chi2\)</span> is the squared Mahalanobis distance between predicted value and estimated value in SLAM.</p>
-<p>https://github.com/RainerKuemmerle/g2o/issues/185</p>
-<p>https://www.khanacademy.org/math/statistics-probability/inference-categorical-data-chi-square-tests#chi-square-goodness-of-fit-tests</p>
-<script type="text/javascript">if (!document ...</script>
-                        <a class="btn primary xsmall" href="/chi-square.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/hao-mi-bo-lei-da-ce-fang-wei-yuan-li.html">毫米波雷达测方位原理</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-05-01T21:54:49+02:00">
-        <i class="icon-calendar"></i>Wed 01 May 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/radar.html"><i class="icon-folder-open"></i>Radar</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/radar.html"><i class="icon-tag"></i>Radar</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>http://www.elecfans.com/baike/qichedianzi/qichedianzijichuzhichi/20180424667197.html</p>
-<p>https://www.leiphone.com/news/201612/owHDk93xVS9g1gUC.html</p>
-<p>http://www.ti.com.cn/cn/lit/wp/zhcy075/zhcy075.pdf</p>
-                        <a class="btn primary xsmall" href="/hao-mi-bo-lei-da-ce-fang-wei-yuan-li.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/frame-pose.html">Frame pose</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-04-01T22:22:58+02:00">
-        <i class="icon-calendar"></i>Mon 01 April 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><div class="math">$$p_{W} = W_{A}T * p_{A}$$</div>
-<div class="math">$$p_{A} = A_{W}T * p_{W} = (W_{A}T)^{-1} * p_{w}$$</div>
-<p><span class="math">\(W_{A}T\)</span>, frame a's pose in frame W, or read as "transform a point in A's frame
-into W"</p>
-<p><span class="math">\(A_{W}T\)</span> or <span class="math">\((W_{W}T)^{-1 ...</span></p>
-                        <a class="btn primary xsmall" href="/frame-pose.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/covariance-matrix.html">Covariance matrix</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-03-17T14:29:50+01:00">
-        <i class="icon-calendar"></i>Sun 17 March 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h2>Different covariance types for Gaussian Mixture Models</h2>
-<p>https://stats.stackexchange.com/questions/326671/different-covariance-types-for-gaussian-mixture-models</p>
-<p>http://www.visiondummy.com/2014/04/geometric-interpretation-covariance-matrix/</p>
-<p>https://math.stackexchange.com/questions/23596/why-is-the-eigenvector-of-a-covariance-matrix-equal-to-a-principal-component</p>
-                        <a class="btn primary xsmall" href="/covariance-matrix.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/serialization.html">Serialization</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-03-10T14:28:03+01:00">
-        <i class="icon-calendar"></i>Sun 10 March 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/programming.html"><i class="icon-folder-open"></i>Programming</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/programming.html"><i class="icon-tag"></i>Programming</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>https://en.wikipedia.org/wiki/Serialization</p>
-<p>https://cs.stackexchange.com/questions/72102/understanding-serialization</p>
-                        <a class="btn primary xsmall" href="/serialization.html">more ...</a>
-                </div>
-        </div>
-        <hr />
 
         <div class="pagination">
         <ul>
@@ -413,6 +456,7 @@ into W"</p>
                         <li class=""><a href="/index6.html">6</a></li>
                         <li class=""><a href="/index7.html">7</a></li>
                         <li class=""><a href="/index8.html">8</a></li>
+                        <li class=""><a href="/index9.html">9</a></li>
                         <li class="next"><a href="/index2.html">Next &rarr;</a></li>
         </ul>
         </div>
@@ -462,6 +506,11 @@ into W"</p>
 </a>
 </li>
 <li>
+<a href="/category/optimization.html">
+    <i class="icon-folder-open icon-large"></i>Optimization
+</a>
+</li>
+<li>
 <a href="/category/other.html">
     <i class="icon-folder-open icon-large"></i>Other
 </a>
@@ -469,6 +518,11 @@ into W"</p>
 <li>
 <a href="/category/programming.html">
     <i class="icon-folder-open icon-large"></i>Programming
+</a>
+</li>
+<li>
+<a href="/category/python.html">
+    <i class="icon-folder-open icon-large"></i>Python
 </a>
 </li>
 <li>

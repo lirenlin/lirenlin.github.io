@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yet another site</title><link href="/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>/</id><updated>2019-08-17T12:10:31+02:00</updated><entry><title>Python argument expansion</title><link href="/python-argument-expansion.html" rel="alternate"></link><updated>2019-08-17T12:10:31+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-08-17:python-argument-expansion.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;* operator: positional argument expansion
+for a list, expand to function call argument list&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;** operator: keyword argument expansion for a dictionary, expand to function call keyword argument list&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def add(a, b):
+  print a+b
+
+a = [1, 2]
+kwargs={&amp;#39;b&amp;#39;:1, &amp;#39;a&amp;#39;: 1}
+add(*a)
+add(**kwargs)
+
+
+def add(a, *args, **kwargs):
+  print a      # positional argument
+  print args   # a list
+  print kwargs # a dict
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Python"></category></entry><entry><title>python list slicing</title><link href="/python-list-slicing.html" rel="alternate"></link><updated>2019-08-04T15:21:47+02:00</updated><author><name>Nekoo</name></author><id>tag:,2019-08-04:python-list-slicing.html</id><summary type="html">&lt;p&gt;一个很好的总结:
+&lt;a href="https://stackoverflow.com/questions/509211/understanding-slice-notation"&gt;stackoverflow: Understanding slice notation&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;a[start:end:step] # items from start through  stop - 1. a[stop] not included.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当step为负数的时候，算法跟之前一样，[start, start+step, start+step+step, ..., end)&lt;/p&gt;</summary><category term="python"></category></entry></feed>
