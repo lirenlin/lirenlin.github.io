@@ -150,6 +150,33 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/stdbind-vs-lambda.html">std::bind vs lambda</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2019-07-27T21:00:09+02:00">
+        <i class="icon-calendar"></i>Sat 27 July 2019
+</abbr>
+<span class="label">By</span>
+<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
+<span class="label">Category</span>
+<a href="/category/c.html"><i class="icon-folder-open"></i>c++</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/c.html"><i class="icon-tag"></i>c++</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h1>lambda vs std::bind</h1>
+<p>基本上是两个不同的用途，但是lambda可以实现std::bind的功能.
+如果目的知识想去创造一个scope临时的函数，例如提供给STL的函数。lambda非诚使用这种使用场景。
+1. 不需要单独的写一个函数，与使用逻辑分开。非常紧凑，没有context switch
+2. lambda 可以inline，compiler可以做更多的优化</p>
+<p>但是如果lambda只是capture variable，然后调用另一个外部函数的话，bind更加的简单直接。
+"Simpler and clearer" is a matter of opinion. For simple binding cases, bind can take a lot less typing. bind also is focused solely on function ...</p>
+                        <a class="btn primary xsmall" href="/stdbind-vs-lambda.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/c-method-chaining.html">c++ method chaining</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -381,36 +408,6 @@ into W"</p>
                 <div class="summary"><p>https://en.wikipedia.org/wiki/Serialization</p>
 <p>https://cs.stackexchange.com/questions/72102/understanding-serialization</p>
                         <a class="btn primary xsmall" href="/serialization.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/factor-graph.html">Factor Graph</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2019-03-02T19:09:52+01:00">
-        <i class="icon-calendar"></i>Sat 02 March 2019
-</abbr>
-<span class="label">By</span>
-<a href="/author/nekoo.html"><i class="icon-user"></i>Nekoo</a>
-<span class="label">Category</span>
-<a href="/category/math.html"><i class="icon-folder-open"></i>Math</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/math.html"><i class="icon-tag"></i>Math</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><h2>High level problem definition and algorithm</h2>
-<p>Factor graph vs Pose graph</p>
-<p>elimination
-Sliding window, remove unrelated pose and constraints
-marginalization, keep the size of graph constant while maintain the information.</p>
-<p>Batch Estimation
-Sliding window</p>
-<h2>Software package</h2>
-<p>g2o vs ceres solver vs GTSAM vs AprilSAM vs iSAM
-<em> 性能，维护，扩展升级性，依赖其他库 ...</em></p>
-                        <a class="btn primary xsmall" href="/factor-graph.html">more ...</a>
                 </div>
         </div>
         <hr />
