@@ -247,6 +247,7 @@
   <span class="nx">f</span><span class="p">(</span><span class="nx">list_float</span><span class="p">);</span>
 
   <span class="c1">//The compiler cannot deduce template type from constructor</span>
+  <span class="c1">//https://stackoverflow.com/questions/984394/why-not-infer-template-parameter-from-constructor</span>
   <span class="nx">Container</span><span class="o">&lt;</span><span class="nx">std</span><span class="o">::</span><span class="nx">vector</span><span class="p">,</span> <span class="kr">int</span><span class="o">&gt;</span> <span class="nx">vec_int_con</span> <span class="p">{</span><span class="nx">vec_int</span><span class="p">};</span>
   <span class="nx">Container</span><span class="o">&lt;</span><span class="nx">std</span><span class="o">::</span><span class="nx">list</span><span class="p">,</span> <span class="kr">float</span><span class="o">&gt;</span> <span class="nx">list_float_con</span> <span class="p">{</span><span class="nx">list_float</span><span class="p">};</span>
 
